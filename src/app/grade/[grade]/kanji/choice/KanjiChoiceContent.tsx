@@ -1,31 +1,26 @@
 "use client";
 
-export function generateStaticParams() {
-  return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
-}
-
 import { use, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import type { Grade } from "@/types/problem";
+import type { Grade, KanjiChoiceProblem } from "@/types/problem";
 import { GRADE1_KANJI } from "@/data/kanji/grade1";
 import { GRADE2_KANJI } from "@/data/kanji/grade2";
 import { GRADE3_KANJI } from "@/data/kanji/grade3";
-import { generateFillProblem } from "@/data/kanji/generator";
+import { generateChoiceProblem } from "@/data/kanji/generator";
 import { selectAdaptiveProblems } from "@/lib/adaptive";
 import { useProgress } from "@/hooks/useProgress";
 import { useProblemSession } from "@/hooks/useProblemSession";
 import { ProblemShell } from "@/components/problem/ProblemShell";
-import { FillInBlank } from "@/components/problem/FillInBlank";
+import { MultipleChoice } from "@/components/problem/MultipleChoice";
 import { AnswerFeedback } from "@/components/feedback/AnswerFeedback";
 import { SessionSummary } from "@/components/feedback/SessionSummary";
 import { StarBurst } from "@/components/feedback/StarBurst";
-import type { KanjiFillProblem } from "@/types/problem";
 
 const KANJI_BY_GRADE = { 1: GRADE1_KANJI, 2: GRADE2_KANJI, 3: GRADE3_KANJI };
 
 interface Params { grade: string }
 
-export default function KanjiFillPage({ params }: { params: Promise<Params> }) {
+export default function KanjiChoiceContent({ params }: { params: Promise<Params> }) {
   const { grade: gradeStr } = use(params);
   const grade = parseInt(gradeStr, 10) as Grade;
   const router = useRouter();
@@ -33,21 +28,21 @@ export default function KanjiFillPage({ params }: { params: Promise<Params> }) {
   const { progress, recordAnswer, recordSession } = useProgress(grade);
 
   const allEntries = KANJI_BY_GRADE[grade] ?? GRADE1_KANJI;
-  const allProblems = allEntries.map((e) => generateFillProblem(e));
+  const allProblems = allEntries.map((e) => generateChoiceProblem(e, allEntries));
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
-    (p) => `kanji:${(p as KanjiFillProblem).character}`,
+    (p) => `kanji:${(p as KanjiChoiceProblem).character}`,
     10,
   );
 
   const { state, currentProblem, submitAnswer, nextProblem, getDurationMs } =
-    useProblemSession(selected, progress.masteries, (p) => `kanji:${(p as KanjiFillProblem).character}`, recordAnswer);
+    useProblemSession(selected, progress.masteries, (p) => `kanji:${(p as KanjiChoiceProblem).character}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
 
   const handleAnswer = useCallback(
-    (isCorrect: boolean, userAnswer: string) => {
+    (isCorrect: boolean) => {
       submitAnswer(isCorrect);
       if (isCorrect) setStarBurst(true);
     },
@@ -64,7 +59,7 @@ export default function KanjiFillPage({ params }: { params: Promise<Params> }) {
       id: state.sessionId,
       grade,
       subject: "kanji",
-      mode: "fill",
+      mode: "choice",
       totalProblems: state.problems.length,
       correctCount: state.correctCount,
       completedAt: Date.now(),
@@ -73,9 +68,8 @@ export default function KanjiFillPage({ params }: { params: Promise<Params> }) {
   }, [state, grade, recordSession, getDurationMs]);
 
   if (state.isComplete) {
-    // セッション記録（一度だけ）
     return (
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white flex items-center justify-center px-4">
         <SessionSummary
           correct={state.correctCount}
           total={state.problems.length}
@@ -87,7 +81,7 @@ export default function KanjiFillPage({ params }: { params: Promise<Params> }) {
   }
 
   if (!currentProblem) return null;
-  const problem = currentProblem as KanjiFillProblem;
+  const problem = currentProblem as KanjiChoiceProblem;
   const currentAnswer = state.answers[state.currentIndex];
   const answered = currentAnswer !== "unanswered";
   const isCorrect = currentAnswer === "correct";
@@ -96,12 +90,12 @@ export default function KanjiFillPage({ params }: { params: Promise<Params> }) {
     <>
       <StarBurst trigger={starBurst} />
       <ProblemShell
-        title="うめ字もんだい"
+        title="4たくもんだい"
         current={state.currentIndex + (answered ? 1 : 0)}
         total={state.problems.length}
         onQuit={() => router.push(`/grade/${grade}/kanji`)}
       >
-        <FillInBlank
+        <MultipleChoice
           problem={problem}
           onAnswer={handleAnswer}
           answered={answered}

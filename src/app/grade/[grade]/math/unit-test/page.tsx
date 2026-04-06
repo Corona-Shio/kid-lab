@@ -1,5 +1,9 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
+}
+
 import { use, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";

@@ -1,5 +1,9 @@
 "use client";
 
+export function generateStaticParams() {
+  return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
+}
+
 import { use } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
