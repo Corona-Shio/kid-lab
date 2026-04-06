@@ -6,6 +6,8 @@ export function generateStaticParams() {
   return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
 }
 
-export default function SummaryTestPage(props: Props) {
-  return <SummaryTestContent {...props} />;
+export default async function SummaryTestPage({ params }: Props) {
+  const { grade } = await params;
+
+  return <SummaryTestContent gradeStr={grade} />;
 }

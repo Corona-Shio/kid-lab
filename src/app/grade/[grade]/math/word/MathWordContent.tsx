@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { Grade, MathWordProblem } from "@/types/problem";
 import { UNITS_BY_GRADE } from "@/types/problem";
@@ -14,10 +14,7 @@ import { AnswerFeedback } from "@/components/feedback/AnswerFeedback";
 import { SessionSummary } from "@/components/feedback/SessionSummary";
 import { StarBurst } from "@/components/feedback/StarBurst";
 
-interface Params { grade: string }
-
-export default function MathWordContent({ params }: { params: Promise<Params> }) {
-  const { grade: gradeStr } = use(params);
+export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
   const router = useRouter();
 

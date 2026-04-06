@@ -6,6 +6,8 @@ export function generateStaticParams() {
   return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
 }
 
-export default function MathCalcPage(props: Props) {
-  return <MathCalcContent {...props} />;
+export default async function MathCalcPage({ params }: Props) {
+  const { grade } = await params;
+
+  return <MathCalcContent gradeStr={grade} />;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import type { Grade, MathUnit, MathCalcProblem } from "@/types/problem";
@@ -18,10 +18,7 @@ import { Header } from "@/components/layout/Header";
 import { PageWrapper } from "@/components/layout/PageWrapper";
 import { Card } from "@/components/ui/Card";
 
-interface Params { grade: string }
-
-export default function UnitTestContent({ params }: { params: Promise<Params> }) {
-  const { grade: gradeStr } = use(params);
+export default function UnitTestContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
   const router = useRouter();
 

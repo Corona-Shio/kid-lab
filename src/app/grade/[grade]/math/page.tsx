@@ -6,6 +6,8 @@ export function generateStaticParams() {
   return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
 }
 
-export default function MathMenuPage(props: Props) {
-  return <MathMenuContent {...props} />;
+export default async function MathMenuPage({ params }: Props) {
+  const { grade } = await params;
+
+  return <MathMenuContent gradeStr={grade} />;
 }

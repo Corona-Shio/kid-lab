@@ -1,6 +1,5 @@
 "use client";
 
-import { use } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Header } from "@/components/layout/Header";
@@ -8,10 +7,7 @@ import { PageWrapper } from "@/components/layout/PageWrapper";
 import type { Grade } from "@/types/problem";
 import { GRADE_THEMES } from "@/types/common";
 
-interface Params { grade: string }
-
-export default function KanjiMenuContent({ params }: { params: Promise<Params> }) {
-  const { grade: gradeStr } = use(params);
+export default function KanjiMenuContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
   const theme = GRADE_THEMES[grade] ?? GRADE_THEMES[1];
 
