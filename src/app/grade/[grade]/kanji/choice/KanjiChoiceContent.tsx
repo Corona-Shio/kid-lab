@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { Grade, KanjiChoiceProblem } from "@/types/problem";
 import { GRADE1_KANJI } from "@/data/kanji/grade1";
@@ -18,10 +18,7 @@ import { StarBurst } from "@/components/feedback/StarBurst";
 
 const KANJI_BY_GRADE = { 1: GRADE1_KANJI, 2: GRADE2_KANJI, 3: GRADE3_KANJI };
 
-interface Params { grade: string }
-
-export default function KanjiChoiceContent({ params }: { params: Promise<Params> }) {
-  const { grade: gradeStr } = use(params);
+export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
   const router = useRouter();
 

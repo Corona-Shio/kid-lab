@@ -6,6 +6,8 @@ export function generateStaticParams() {
   return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
 }
 
-export default function UnitTestPage(props: Props) {
-  return <UnitTestContent {...props} />;
+export default async function UnitTestPage({ params }: Props) {
+  const { grade } = await params;
+
+  return <UnitTestContent gradeStr={grade} />;
 }

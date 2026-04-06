@@ -6,6 +6,8 @@ export function generateStaticParams() {
   return [{ grade: "1" }, { grade: "2" }, { grade: "3" }];
 }
 
-export default function GradePage(props: Props) {
-  return <GradeContent {...props} />;
+export default async function GradePage({ params }: Props) {
+  const { grade } = await params;
+
+  return <GradeContent gradeStr={grade} />;
 }

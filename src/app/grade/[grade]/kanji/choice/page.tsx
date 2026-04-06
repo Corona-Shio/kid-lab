@@ -6,6 +6,8 @@ export function generateStaticParams() {
 
 interface Props { params: Promise<{ grade: string }> }
 
-export default function KanjiChoicePage(props: Props) {
-  return <KanjiChoiceWrapper {...props} />;
+export default async function KanjiChoicePage({ params }: Props) {
+  const { grade } = await params;
+
+  return <KanjiChoiceWrapper gradeStr={grade} />;
 }
