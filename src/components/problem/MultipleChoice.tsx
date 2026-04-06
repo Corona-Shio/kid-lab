@@ -1,0 +1,71 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import type { KanjiChoiceProblem } from "@/types/problem";
+import { Card } from "@/components/ui/Card";
+
+interface MultipleChoiceProps {
+  problem: KanjiChoiceProblem;
+  onAnswer: (isCorrect: boolean, userAnswer: string) => void;
+  answered: boolean;
+  isCorrect?: boolean;
+}
+
+export function MultipleChoice({
+  problem,
+  onAnswer,
+  answered,
+  isCorrect,
+}: MultipleChoiceProps) {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  function handleSelect(index: number) {
+    if (answered) return;
+    setSelected(index);
+    const correct = index === problem.answerIndex;
+    onAnswer(correct, problem.choices[index]);
+  }
+
+  function getChoiceVariant(index: number): "default" | "success" | "error" | "highlight" {
+    if (!answered) return "default";
+    if (index === problem.answerIndex) return "success";
+    if (index === selected && selected !== problem.answerIndex) return "error";
+    return "default";
+  }
+
+  return (
+    <div className="flex flex-col gap-5">
+      <Card>
+        <p className="text-2xl font-bold text-gray-700 text-center py-2">
+          {problem.question}
+        </p>
+      </Card>
+
+      <div className="grid grid-cols-2 gap-3">
+        {problem.choices.map((choice, i) => (
+          <motion.button
+            key={i}
+            onClick={() => handleSelect(i)}
+            disabled={answered}
+            whileHover={answered ? {} : { scale: 1.04, y: -2 }}
+            whileTap={answered ? {} : { scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 500, damping: 20 }}
+            className={[
+              "min-h-[80px] rounded-3xl border-4 font-bold text-3xl shadow transition-all duration-200",
+              answered
+                ? i === problem.answerIndex
+                  ? "bg-emerald-50 border-emerald-400 text-emerald-700 shadow-emerald-200"
+                  : i === selected
+                  ? "bg-rose-50 border-rose-400 text-rose-600 shadow-rose-200"
+                  : "bg-white border-gray-200 text-gray-400"
+                : "bg-white border-purple-200 text-gray-700 hover:border-purple-400 hover:shadow-purple-200 shadow-purple-100 cursor-pointer",
+            ].join(" ")}
+          >
+            {choice}
+          </motion.button>
+        ))}
+      </div>
+    </div>
+  );
+}

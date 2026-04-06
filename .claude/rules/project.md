@@ -1,0 +1,12 @@
+本プロジェクトに管理においては下記を遵守してください。
+- ブランチ名に master を使わず main を使うようにしてください。
+- コミットメッセージは日本語で書いてください。
+- Claude Code の実行許可ダイアログが毎回表示されないようにするため、複数コマンドが必要な場合は個別の Bash 呼び出しに分けてください。
+  - `&&` や `|` でコマンドを連結しない。
+    - 悪い例: `cd /d/work/editor-with-git/app && npx vitest run`
+    - 良い例: `cd /d/work/editor-with-git/app` → `npx vitest run`
+  - パイプの代わりに一時ファイル (`.tmp` 配下) へリダイレクトし、結果は Read ツールで読む。
+    - 悪い例: `npx vitest run --coverage 2>/dev/null | tail -60`
+    - 良い例: `npx vitest run --coverage 2>/dev/null > .tmp/cov.txt` → `tail -60 .tmp/cov.txt`
+- git -C コマンドを使わず、cd で対応してください。
+- README にはプロジェクトの目的、背景情報、内容物、使い方などを網羅的に記載し、初見の人が全貌を把握し滞りなくタスクを進められるようにしてください。 README の末尾にはバージョンごとの更新情報を記載してください。

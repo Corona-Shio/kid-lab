@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9ff;
+  --foreground: #2d2d3a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-kosugi-maru), "Kosugi Maru", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 大きなフォントサイズ基準 */
+html {
+  font-size: 18px;
+}
+
+/* タッチデバイス向け */
+button, a {
+  min-height: 44px;
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f0f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 999px;
+}

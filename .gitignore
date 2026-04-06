@@ -1,0 +1,6 @@
+.tmp
+plans
+node_modules
+.next
+.env*
+*.local
