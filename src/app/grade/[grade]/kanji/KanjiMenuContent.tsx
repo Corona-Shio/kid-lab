@@ -17,9 +17,9 @@ export default function KanjiMenuContent({ params }: { params: Promise<Params> }
 
   const modes = [
     {
-      label: "うめ字もんだい",
-      emoji: "📝",
-      description: "□にかんじをかこう",
+      label: "よみかたもんだい",
+      emoji: "📖",
+      description: "かんじのよみかたをこたえよう",
       href: `/grade/${grade}/kanji/fill`,
       gradient: "from-orange-400 to-rose-400",
     },

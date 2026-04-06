@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const KanjiChoiceContent = dynamic(() => import("./KanjiChoiceContent"), { ssr: false });
+import KanjiChoiceContent from "./KanjiChoiceContent";
 
 interface Props { params: Promise<{ grade: string }> }
 

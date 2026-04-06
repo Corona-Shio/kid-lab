@@ -91,7 +91,7 @@ export default function KanjiFillContent({ params }: { params: Promise<Params> }
     <>
       <StarBurst trigger={starBurst} />
       <ProblemShell
-        title="うめ字もんだい"
+        title="よみかたもんだい"
         current={state.currentIndex + (answered ? 1 : 0)}
         total={state.problems.length}
         onQuit={() => router.push(`/grade/${grade}/kanji`)}
