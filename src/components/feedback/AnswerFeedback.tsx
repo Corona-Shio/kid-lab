@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { pickRandom } from "@/lib/utils";
@@ -21,11 +22,22 @@ const INCORRECT_MESSAGES = [
   "ドンマイ！",
 ];
 
+function getSeededIndex(seed: string | number, size: number) {
+  const raw = String(seed);
+  let hash = 0;
+  for (const char of raw) {
+    hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  }
+  return hash % size;
+}
+
 interface AnswerFeedbackProps {
   isCorrect: boolean;
   correctAnswer: string;
   onNext: () => void;
   isLast: boolean;
+  messageSeed?: string | number;
+  fixedCorrectMessage?: string;
 }
 
 export function AnswerFeedback({
@@ -33,10 +45,20 @@ export function AnswerFeedback({
   correctAnswer,
   onNext,
   isLast,
+  messageSeed,
+  fixedCorrectMessage,
 }: AnswerFeedbackProps) {
-  const message = isCorrect
-    ? pickRandom(CORRECT_MESSAGES)
-    : pickRandom(INCORRECT_MESSAGES);
+  const message = useMemo(() => {
+    if (isCorrect && fixedCorrectMessage) {
+      return fixedCorrectMessage;
+    }
+
+    const pool = isCorrect ? CORRECT_MESSAGES : INCORRECT_MESSAGES;
+    if (messageSeed === undefined) {
+      return pickRandom(pool);
+    }
+    return pool[getSeededIndex(messageSeed, pool.length)];
+  }, [fixedCorrectMessage, isCorrect, messageSeed]);
 
   return (
     <AnimatePresence>
@@ -50,9 +72,7 @@ export function AnswerFeedback({
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 600, damping: 15, delay: 0.15 }}
-          className={[
-            "text-5xl",
-          ].join(" ")}
+          className="text-5xl"
         >
           {isCorrect ? "🎉" : "😅"}
         </motion.div>
@@ -69,7 +89,7 @@ export function AnswerFeedback({
           {message}
         </motion.p>
 
-        {!isCorrect && (
+        {isCorrect ? null : (
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
