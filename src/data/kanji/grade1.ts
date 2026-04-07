@@ -69,7 +69,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ニチ", "ジツ"], kunyomi: ["ひ", "か"] },
     strokes: 4,
     examples: [
-      { word: "今日", reading: "きょう", sentence: "今□の天気はいい。", blankIndex: 1 },
+      { word: "日", reading: "ひ", sentence: "朝、□がのぼる。", blankIndex: 2 },
       { word: "日曜日", reading: "にちようび", sentence: "□曜日に家族と出かけた。", blankIndex: 0 },
     ],
   },
@@ -114,7 +114,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["サン"], kunyomi: ["み"] },
     strokes: 3,
     examples: [
-      { word: "三つ", reading: "みっつ", sentence: "ボールが□つある。", blankIndex: 4 },
+      { word: "三つ", reading: "みっつ", sentence: "ボールが□つある。", blankIndex: 4, targetReading: "みっ" },
       { word: "三角", reading: "さんかく", sentence: "□角形を書いた。", blankIndex: 0 },
     ],
   },
@@ -123,7 +123,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["シ"], kunyomi: ["よん", "よ"] },
     strokes: 5,
     examples: [
-      { word: "四つ", reading: "よっつ", sentence: "足が□本の動物は犬だ。", blankIndex: 2 },
+      { word: "四つ", reading: "よっつ", sentence: "足が□本の動物は犬だ。", blankIndex: 2, targetReading: "よっ" },
       { word: "四角", reading: "しかく", sentence: "□角い紙を折った。", blankIndex: 0 },
     ],
   },
@@ -132,7 +132,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ゴ"], kunyomi: ["いつ"] },
     strokes: 4,
     examples: [
-      { word: "五つ", reading: "いつつ", sentence: "飴が□つある。", blankIndex: 2 },
+      { word: "五つ", reading: "いつつ", sentence: "飴が□つある。", blankIndex: 2, targetReading: "いつ" },
       { word: "五月", reading: "ごがつ", sentence: "□月に運動会がある。", blankIndex: 0 },
     ],
   },
@@ -141,7 +141,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ロク"], kunyomi: ["む"] },
     strokes: 4,
     examples: [
-      { word: "六つ", reading: "むっつ", sentence: "クッキーが□つある。", blankIndex: 4 },
+      { word: "六つ", reading: "むっつ", sentence: "クッキーが□つある。", blankIndex: 4, targetReading: "むっ" },
       { word: "六月", reading: "ろくがつ", sentence: "□月は梅雨だ。", blankIndex: 0 },
     ],
   },
@@ -159,7 +159,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ハチ"], kunyomi: ["や"] },
     strokes: 2,
     examples: [
-      { word: "八つ", reading: "やっつ", sentence: "みかんが□つある。", blankIndex: 4 },
+      { word: "八つ", reading: "やっつ", sentence: "みかんが□つある。", blankIndex: 4, targetReading: "やっ" },
       { word: "八月", reading: "はちがつ", sentence: "□月は夏休みだ。", blankIndex: 0 },
     ],
   },
@@ -240,7 +240,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ガク"], kunyomi: ["まな"] },
     strokes: 8,
     examples: [
-      { word: "学校", reading: "がっこう", sentence: "□校に行く時間だ。", blankIndex: 0 },
+      { word: "学校", reading: "がっこう", sentence: "□校に行く時間だ。", blankIndex: 0, targetReading: "がっ" },
       { word: "学ぶ", reading: "まなぶ", sentence: "毎日一生けんめい□ぶ。", blankIndex: 5 },
     ],
   },
@@ -349,7 +349,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     strokes: 5,
     examples: [
       { word: "石", reading: "いし", sentence: "きれいな□を拾った。", blankIndex: 4 },
-      { word: "石けん", reading: "せっけん", sentence: "□けんで手を洗う。", blankIndex: 0 },
+      { word: "石けん", reading: "せっけん", sentence: "□けんで手を洗う。", blankIndex: 0, targetReading: "せっ" },
     ],
   },
   {
@@ -430,7 +430,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     strokes: 3,
     examples: [
       { word: "下", reading: "した", sentence: "机の□に入れた。", blankIndex: 2 },
-      { word: "下手", reading: "へた", sentence: "まだ□手だけど頑張る。", blankIndex: 0 },
+      { word: "下手", reading: "へた", sentence: "まだ□手だけど頑張る。", blankIndex: 0, targetReading: "へ" },
     ],
   },
   {
@@ -457,7 +457,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     strokes: 3,
     examples: [
       { word: "口", reading: "くち", sentence: "□を大きく開ける。", blankIndex: 0 },
-      { word: "入口", reading: "いりぐち", sentence: "入□から入る。", blankIndex: 1 },
+      { word: "入口", reading: "いりぐち", sentence: "入□から入る。", blankIndex: 1, targetReading: "ぐち" },
     ],
   },
   {
@@ -627,7 +627,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ブン", "モン"], kunyomi: ["ふみ"] },
     strokes: 4,
     examples: [
-      { word: "文字", reading: "もじ", sentence: "大きな□字で書く。", blankIndex: 0 },
+      { word: "文字", reading: "もじ", sentence: "大きな□字で書く。", blankIndex: 0, targetReading: "も" },
       { word: "作文", reading: "さくぶん", sentence: "作□を書いた。", blankIndex: 1 },
     ],
   },
@@ -709,7 +709,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     strokes: 2,
     examples: [
       { word: "入る", reading: "はいる", sentence: "部屋に□る。", blankIndex: 3 },
-      { word: "入口", reading: "いりぐち", sentence: "□口に花がある。", blankIndex: 0 },
+      { word: "入口", reading: "いりぐち", sentence: "□口に花がある。", blankIndex: 0, targetReading: "いり" },
     ],
   },
 ];

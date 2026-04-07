@@ -160,7 +160,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ケイ", "キョウ"], kunyomi: ["あに"] },
     strokes: 5,
     examples: [
-      { word: "お兄さん", reading: "おにいさん", sentence: "お□さんと遊んだ。", blankIndex: 1 },
+      { word: "お兄さん", reading: "おにいさん", sentence: "お□さんと遊んだ。", blankIndex: 1, targetReading: "にい" },
       { word: "兄弟", reading: "きょうだい", sentence: "□弟で仲良くする。", blankIndex: 0 },
     ],
   },
@@ -215,7 +215,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 14,
     examples: [
       { word: "国語", reading: "こくご", sentence: "国□のテストがある。", blankIndex: 1 },
-      { word: "物語", reading: "ものがたり", sentence: "おもしろい物□を読んだ。", blankIndex: 2 },
+      { word: "物語", reading: "ものがたり", sentence: "おもしろい物□を読んだ。", blankIndex: 2, targetReading: "がたり" },
     ],
   },
   {
@@ -241,7 +241,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["コン", "キン"], kunyomi: ["いま"] },
     strokes: 4,
     examples: [
-      { word: "今日", reading: "きょう", sentence: "□日は晴れだ。", blankIndex: 0 },
+      { word: "今日", reading: "きょう", sentence: "□日は晴れだ。", blankIndex: 0, targetReading: "きょ" },
       { word: "今", reading: "いま", sentence: "□から始めよう。", blankIndex: 0 },
     ],
   },
@@ -287,7 +287,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 10,
     examples: [
       { word: "紙", reading: "かみ", sentence: "白い□に絵を描く。", blankIndex: 3 },
-      { word: "手紙", reading: "てがみ", sentence: "手□を書いた。", blankIndex: 1 },
+      { word: "手紙", reading: "てがみ", sentence: "手□を書いた。", blankIndex: 1, targetReading: "がみ" },
     ],
   },
   {
@@ -305,7 +305,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 10,
     examples: [
       { word: "時間", reading: "じかん", sentence: "□間を守る。", blankIndex: 0 },
-      { word: "時計", reading: "とけい", sentence: "□計を見る。", blankIndex: 0 },
+      { word: "時計", reading: "とけい", sentence: "□計を見る。", blankIndex: 0, targetReading: "と" },
     ],
   },
   {
@@ -332,7 +332,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 7,
     examples: [
       { word: "会社", reading: "かいしゃ", sentence: "お父さんは会□で働く。", blankIndex: 2 },
-      { word: "神社", reading: "じんじゃ", sentence: "お正月に神□に行った。", blankIndex: 2 },
+      { word: "神社", reading: "じんじゃ", sentence: "お正月に神□に行った。", blankIndex: 2, targetReading: "じゃ" },
     ],
   },
   {
@@ -458,7 +458,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 11,
     examples: [
       { word: "船", reading: "ふね", sentence: "大きな□に乗った。", blankIndex: 3 },
-      { word: "船旅", reading: "ふなたび", sentence: "□旅をした。", blankIndex: 0 },
+      { word: "船旅", reading: "ふなたび", sentence: "□旅をした。", blankIndex: 0, targetReading: "ふな" },
     ],
   },
   {
@@ -539,7 +539,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 12,
     examples: [
       { word: "朝", reading: "あさ", sentence: "□早く起きた。", blankIndex: 0 },
-      { word: "今朝", reading: "けさ", sentence: "今□の天気はいい。", blankIndex: 1 },
+      { word: "今朝", reading: "けさ", sentence: "今□の天気はいい。", blankIndex: 1, targetReading: "け" },
     ],
   },
   {
@@ -800,7 +800,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 8,
     examples: [
       { word: "明るい", reading: "あかるい", sentence: "□るい部屋が好きだ。", blankIndex: 0 },
-      { word: "明日", reading: "あした", sentence: "□日も晴れるといい。", blankIndex: 0 },
+      { word: "明日", reading: "あした", sentence: "□日も晴れるといい。", blankIndex: 0, targetReading: "あ" },
     ],
   },
   {
@@ -827,7 +827,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 5,
     examples: [
       { word: "北", reading: "きた", sentence: "□に向かって歩く。", blankIndex: 0 },
-      { word: "北海道", reading: "ほっかいどう", sentence: "□海道に行った。", blankIndex: 0 },
+      { word: "北海道", reading: "ほっかいどう", sentence: "□海道に行った。", blankIndex: 0, targetReading: "ほっ" },
     ],
   },
   {
@@ -835,7 +835,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ボ"], kunyomi: ["はは"] },
     strokes: 5,
     examples: [
-      { word: "お母さん", reading: "おかあさん", sentence: "お□さんに手紙を書いた。", blankIndex: 1 },
+      { word: "お母さん", reading: "おかあさん", sentence: "お□さんに手紙を書いた。", blankIndex: 1, targetReading: "かあ" },
       { word: "母国", reading: "ぼこく", sentence: "□国語を大切にする。", blankIndex: 0 },
     ],
   },
@@ -844,7 +844,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["フ"], kunyomi: ["ちち"] },
     strokes: 4,
     examples: [
-      { word: "お父さん", reading: "おとうさん", sentence: "お□さんと釣りに行った。", blankIndex: 1 },
+      { word: "お父さん", reading: "おとうさん", sentence: "お□さんと釣りに行った。", blankIndex: 1, targetReading: "とう" },
       { word: "父親", reading: "ちちおや", sentence: "□親に似ている。", blankIndex: 0 },
     ],
   },

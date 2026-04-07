@@ -17,6 +17,7 @@ export interface KanjiExample {
   reading: string;  // 読み仮名（例: "やまだ"）
   sentence: string; // 例文（例: "山田さんは元気です。"）
   blankIndex: number; // sentenceの何文字目を□にするか（0始まり）
+  targetReading?: string; // この例文で空欄の漢字がどう読まれるか（例: "せっ", "いり"）
 }
 
 export interface KanjiFillProblem {
