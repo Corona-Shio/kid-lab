@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { MathCalcProblem } from "@/types/problem";
 import { Card } from "@/components/ui/Card";
@@ -134,9 +134,9 @@ export function CalcInput({
               delay={i * 0.03}
             />
           ))}
-          {/* 最下行: ⌫, 0, こたえる */}
+          {/* 最下行: 削除, 0, こたえる */}
           <NumButton
-            label="⌫"
+            label={<DeleteKeyLabel />}
             gradient={DELETE_COLOR}
             onPress={handleDelete}
             disabled={input.length === 0}
@@ -162,7 +162,7 @@ export function CalcInput({
 // -------------------------------------------------------
 
 interface NumButtonProps {
-  label: string;
+  label: ReactNode;
   gradient: string;
   onPress: () => void;
   disabled?: boolean;
@@ -190,8 +190,33 @@ function NumButton({ label, gradient, onPress, disabled = false, delay = 0 }: Nu
     >
       {/* ハイライト */}
       <span className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-xl sm:rounded-t-2xl" />
-      <span className="relative z-10">{label}</span>
+      <span className="relative z-10 flex items-center justify-center">{label}</span>
     </motion.button>
+  );
+}
+
+function DeleteKeyLabel() {
+  return (
+    <span className="flex items-center justify-center gap-1.5">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="h-5 w-5 sm:h-6 sm:w-6 text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.25)]"
+      >
+        <path
+          d="M9 7L4 12L9 17H19C20.1 17 21 16.1 21 15V9C21 7.9 20.1 7 19 7H9Z"
+          fill="currentColor"
+          fillOpacity="0.28"
+        />
+        <path
+          d="M10.7 9.3L16.7 15.3M16.7 9.3L10.7 15.3"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+        />
+      </svg>
+      <span className="text-sm sm:text-base leading-none">けす</span>
+    </span>
   );
 }
 
