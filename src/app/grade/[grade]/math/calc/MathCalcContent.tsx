@@ -98,6 +98,8 @@ export default function MathCalcContent({ gradeStr }: { gradeStr: string }) {
           <AnswerFeedback
             isCorrect={isCorrect}
             correctAnswer={String(problem.answer)}
+            messageSeed={problem.id}
+            fixedCorrectMessage="正解！"
             onNext={() => {
               if (state.currentIndex === state.problems.length - 1) handleComplete();
               handleNext();
