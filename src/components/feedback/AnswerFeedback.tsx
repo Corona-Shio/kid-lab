@@ -38,6 +38,7 @@ interface AnswerFeedbackProps {
   isLast: boolean;
   messageSeed?: string | number;
   fixedCorrectMessage?: string;
+  compactMobile?: boolean;
 }
 
 export function AnswerFeedback({
@@ -47,6 +48,7 @@ export function AnswerFeedback({
   isLast,
   messageSeed,
   fixedCorrectMessage,
+  compactMobile = false,
 }: AnswerFeedbackProps) {
   const message = useMemo(() => {
     if (isCorrect && fixedCorrectMessage) {
@@ -60,19 +62,32 @@ export function AnswerFeedback({
     return pool[getSeededIndex(messageSeed, pool.length)];
   }, [fixedCorrectMessage, isCorrect, messageSeed]);
 
+  const containerClass = compactMobile
+    ? "flex flex-col items-center gap-3 mt-3 sm:gap-4 sm:mt-4"
+    : "flex flex-col items-center gap-4 mt-4";
+  const iconClass = compactMobile ? "text-4xl sm:text-5xl" : "text-5xl";
+  const messageClass = [
+    compactMobile ? "text-xl sm:text-2xl" : "text-2xl",
+    "font-bold",
+    isCorrect ? "text-emerald-600" : "text-rose-500",
+  ].join(" ");
+  const answerClass = compactMobile
+    ? "text-sm sm:text-base text-gray-600 font-medium"
+    : "text-base text-gray-600 font-medium";
+
   return (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
-        className="flex flex-col items-center gap-4 mt-4"
+        className={containerClass}
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 600, damping: 15, delay: 0.15 }}
-          className="text-5xl"
+          className={iconClass}
         >
           {isCorrect ? "🎉" : "😅"}
         </motion.div>
@@ -81,10 +96,7 @@ export function AnswerFeedback({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className={[
-            "text-2xl font-bold",
-            isCorrect ? "text-emerald-600" : "text-rose-500",
-          ].join(" ")}
+          className={messageClass}
         >
           {message}
         </motion.p>
@@ -94,7 +106,7 @@ export function AnswerFeedback({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-base text-gray-600 font-medium"
+            className={answerClass}
           >
             せいかい: <span className="font-bold text-emerald-600">{correctAnswer}</span>
           </motion.p>
@@ -105,7 +117,7 @@ export function AnswerFeedback({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <Button onClick={onNext} size="lg">
+          <Button onClick={onNext} size={compactMobile ? "md" : "lg"}>
             {isLast ? "けっかをみる 📊" : "つぎへ →"}
           </Button>
         </motion.div>
