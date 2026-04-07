@@ -22,6 +22,23 @@ export function FillInBlank({
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  function renderSentenceWithHighlight(sentence: string, character: string) {
+    const index = sentence.indexOf(character);
+    if (index === -1) return sentence;
+
+    const before = sentence.slice(0, index);
+    const after = sentence.slice(index + character.length);
+    return (
+      <>
+        {before}
+        <span className="inline-flex px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 font-bold">
+          {character}
+        </span>
+        {after}
+      </>
+    );
+  }
+
   useEffect(() => {
     if (!answered) {
       setInput("");
@@ -37,35 +54,18 @@ export function FillInBlank({
 
   return (
     <div className="flex flex-col gap-5">
-      {/* 漢字を大きく表示 */}
-      <div className="flex justify-center">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className={[
-            "w-32 h-32 flex items-center justify-center rounded-3xl border-4 shadow-lg text-7xl font-bold select-none",
-            answered
-              ? isCorrect
-                ? "border-emerald-400 bg-emerald-50 text-emerald-700"
-                : "border-rose-400 bg-rose-50 text-rose-700"
-              : "border-purple-300 bg-white text-gray-800",
-          ].join(" ")}
-          style={{ fontFamily: "var(--font-kaisei-decol)" }}
-        >
-          {problem.character}
-        </motion.div>
-      </div>
-
-      {/* 例文 */}
       <Card variant="default">
-        <p className="text-lg text-gray-600 leading-relaxed text-center py-1">
-          {problem.sentence}
+        <p className="text-sm text-purple-500 font-bold text-center">
+          ぶんのなかの ことばを よんでみよう
+        </p>
+        <p className="text-xl text-gray-700 leading-relaxed text-center py-2">
+          {renderSentenceWithHighlight(problem.sentence, problem.character)}
         </p>
       </Card>
 
       {/* 読み方入力 */}
       <div className="flex flex-col items-center gap-4">
-        <p className="text-sm text-purple-500 font-bold">よみかたをひらがなでかいてね</p>
+        <p className="text-sm text-purple-500 font-bold">「{problem.character}」の よみを ひらがなで かいてね</p>
         <motion.input
           ref={inputRef}
           type="text"

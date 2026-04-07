@@ -15,7 +15,7 @@ export default function KanjiMenuContent({ gradeStr }: { gradeStr: string }) {
     {
       label: "よみかたもんだい",
       emoji: "📖",
-      description: "かんじのよみかたをこたえよう",
+      description: "ぶんのなかでよみかたをこたえよう",
       href: `/grade/${grade}/kanji/fill`,
       gradient: "from-orange-400 to-rose-400",
     },

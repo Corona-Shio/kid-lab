@@ -23,8 +23,8 @@ export interface KanjiFillProblem {
   type: "fill";
   id: string;
   character: string;
-  sentence: string;     // □を含む文（例: "□田さんは元気です。"）
-  answer: string;       // 正解漢字
+  sentence: string;     // 出題に使う文（例: "山田さんは元気です。"）
+  answer: string;       // 正解の読み（ひらがな）
   reading: string;      // 正解の読み
   hint?: string;        // ヒント（読み仮名など）
 }
