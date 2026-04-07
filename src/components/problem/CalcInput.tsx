@@ -214,7 +214,7 @@ function SubmitButton({ onPress, disabled, gradient }: SubmitButtonProps) {
       }}
       disabled={disabled}
       className={[
-        "relative h-14 sm:h-16 rounded-xl sm:rounded-2xl font-black text-base sm:text-lg text-white select-none",
+        "relative h-14 sm:h-16 rounded-xl sm:rounded-2xl font-black text-[0.95rem] sm:text-lg text-white select-none whitespace-nowrap tracking-tight",
         "shadow-md active:shadow-sm transition-all duration-100",
         `bg-gradient-to-br ${gradient}`,
         disabled ? "opacity-30 cursor-not-allowed" : "cursor-pointer",
@@ -231,11 +231,7 @@ function SubmitButton({ onPress, disabled, gradient }: SubmitButtonProps) {
         )}
       </AnimatePresence>
       <span className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-xl sm:rounded-t-2xl" />
-      <span className="relative z-10 leading-tight">
-        こたえ
-        <br />
-        る！
-      </span>
+      <span className="relative z-10">こたえる！</span>
     </motion.button>
   );
 }
