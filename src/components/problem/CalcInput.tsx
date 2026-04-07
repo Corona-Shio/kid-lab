@@ -14,9 +14,9 @@ interface CalcInputProps {
 
 // 数字ボタンの色テーマ（行ごと）
 const ROW_COLORS = [
-  "from-violet-400 to-indigo-500",  // 7, 8, 9
-  "from-sky-400 to-cyan-500",       // 4, 5, 6
-  "from-emerald-400 to-teal-500",   // 1, 2, 3
+  "from-violet-400 to-indigo-500", // 7, 8, 9
+  "from-sky-400 to-cyan-500", // 4, 5, 6
+  "from-emerald-400 to-teal-500", // 1, 2, 3
 ];
 
 const ZERO_COLOR = "from-sky-400 to-cyan-500";
@@ -74,37 +74,36 @@ export function CalcInput({
   const displayValue = input || "?";
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
+    <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-sm mx-auto">
       {/* 問題カード */}
-      <Card variant={answered ? (isCorrect ? "success" : "error") : "highlight"}>
-        <p className="text-4xl font-bold text-center py-3 text-gray-800 tracking-wide">
+      <Card
+        variant={answered ? (isCorrect ? "success" : "error") : "highlight"}
+        className="p-4 sm:p-5"
+      >
+        <p className="text-[1.95rem] sm:text-4xl leading-tight font-bold text-center py-2 sm:py-3 text-gray-800 tracking-wide">
           {problem.expression} ={" "}
           <motion.span
             animate={shake ? { x: [0, -10, 10, -10, 10, 0] } : {}}
             transition={{ duration: 0.4 }}
             className={[
-              "inline-block min-w-[3rem] px-2 rounded-xl",
-              answered
-                ? isCorrect
-                  ? "text-emerald-600"
-                  : "text-rose-500"
-                : "text-yellow-500",
+              "inline-block min-w-[2.5rem] sm:min-w-[3rem] px-2 rounded-xl",
+              answered ? (isCorrect ? "text-emerald-600" : "text-rose-500") : "text-yellow-500",
             ].join(" ")}
           >
             {displayValue}
           </motion.span>
         </p>
         {answered && !isCorrect && (
-          <p className="text-center text-base text-gray-500 font-bold pb-2">
+          <p className="text-center text-sm sm:text-base text-gray-500 font-bold pb-1 sm:pb-2">
             せいかい:{" "}
-            <span className="text-emerald-600 text-lg">{problem.answer}</span>
+            <span className="text-emerald-600 text-base sm:text-lg">{problem.answer}</span>
           </p>
         )}
       </Card>
 
       {/* 電卓パッド（回答前のみ表示） */}
       {!answered && (
-        <div className="grid grid-cols-3 gap-2.5 px-1">
+        <div className="grid grid-cols-3 gap-2 sm:gap-2.5 px-0.5 sm:px-1">
           {/* 7, 8, 9 */}
           {["7", "8", "9"].map((d, i) => (
             <NumButton
@@ -183,14 +182,14 @@ function NumButton({ label, gradient, onPress, disabled = false, delay = 0 }: Nu
       }}
       disabled={disabled}
       className={[
-        "relative h-16 rounded-2xl font-black text-2xl text-white select-none",
+        "relative h-14 sm:h-16 rounded-xl sm:rounded-2xl font-black text-[1.6rem] sm:text-2xl text-white select-none",
         "shadow-md active:shadow-sm transition-shadow duration-100",
         `bg-gradient-to-br ${gradient}`,
         disabled ? "opacity-30 cursor-not-allowed" : "cursor-pointer",
       ].join(" ")}
     >
       {/* ハイライト */}
-      <span className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-2xl" />
+      <span className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-xl sm:rounded-t-2xl" />
       <span className="relative z-10">{label}</span>
     </motion.button>
   );
@@ -215,7 +214,7 @@ function SubmitButton({ onPress, disabled, gradient }: SubmitButtonProps) {
       }}
       disabled={disabled}
       className={[
-        "relative h-16 rounded-2xl font-black text-lg text-white select-none",
+        "relative h-14 sm:h-16 rounded-xl sm:rounded-2xl font-black text-base sm:text-lg text-white select-none",
         "shadow-md active:shadow-sm transition-all duration-100",
         `bg-gradient-to-br ${gradient}`,
         disabled ? "opacity-30 cursor-not-allowed" : "cursor-pointer",
@@ -225,13 +224,13 @@ function SubmitButton({ onPress, disabled, gradient }: SubmitButtonProps) {
         {!disabled && (
           <motion.span
             key="shine"
-            className="absolute inset-0 rounded-2xl bg-white/10"
+            className="absolute inset-0 rounded-xl sm:rounded-2xl bg-white/10"
             animate={{ opacity: [0.1, 0.3, 0.1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
         )}
       </AnimatePresence>
-      <span className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-2xl" />
+      <span className="absolute inset-x-0 top-0 h-1/2 bg-white/20 rounded-t-xl sm:rounded-t-2xl" />
       <span className="relative z-10 leading-tight">
         こたえ
         <br />

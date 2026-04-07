@@ -100,6 +100,7 @@ export default function MathCalcContent({ gradeStr }: { gradeStr: string }) {
             correctAnswer={String(problem.answer)}
             messageSeed={problem.id}
             fixedCorrectMessage="正解！"
+            compactMobile
             onNext={() => {
               if (state.currentIndex === state.problems.length - 1) handleComplete();
               handleNext();
