@@ -242,7 +242,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 9,
     examples: [
       { word: "客", reading: "きゃく", sentence: "お□さんが来た。", blankIndex: 1 },
-      { word: "観客", reading: "かんきゃく", sentence: "□客が拍手した。", blankIndex: 0 },
+      { word: "観客", reading: "かんきゃく", sentence: "観□が拍手した。", blankIndex: 1 },
     ],
   },
   {
@@ -376,7 +376,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ケイ"], kunyomi: ["かかり"] },
     strokes: 9,
     examples: [
-      { word: "係", reading: "かかり", sentence: "日直□の仕事をした。", blankIndex: 3 },
+      { word: "日直係", reading: "にっちょくがかり", sentence: "日直□の仕事をした。", blankIndex: 2, targetReading: "がかり" },
       { word: "関係", reading: "かんけい", sentence: "深い関□がある。", blankIndex: 2 },
     ],
   },
@@ -943,7 +943,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ズ", "トウ"], kunyomi: ["まめ"] },
     strokes: 7,
     examples: [
-      { word: "豆", reading: "まめ", sentence: "大□を食べた。", blankIndex: 1 },
+      { word: "大豆", reading: "だいず", sentence: "大□を食べた。", blankIndex: 1, targetReading: "ず" },
       { word: "豆腐", reading: "とうふ", sentence: "□腐のみそ汁だ。", blankIndex: 0 },
     ],
   },
