@@ -149,7 +149,7 @@ function UnitTestSession({
         total={state.problems.length}
         onQuit={onHome}
       >
-        <CalcInput problem={problem} onAnswer={handleAnswer} answered={answered} isCorrect={isCorrect} />
+        <CalcInput key={`${state.currentIndex}-${state.retryCount}`} problem={problem} onAnswer={handleAnswer} answered={answered} isCorrect={isCorrect} />
         {answered && (
           <AnswerFeedback
             isCorrect={isCorrect}

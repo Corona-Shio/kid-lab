@@ -93,6 +93,7 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
         onQuit={() => router.push(`/grade/${grade}/kanji`)}
       >
         <MultipleChoice
+          key={`${state.currentIndex}-${state.retryCount}`}
           problem={problem}
           onAnswer={handleAnswer}
           answered={answered}

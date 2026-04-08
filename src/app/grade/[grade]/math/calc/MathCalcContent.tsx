@@ -89,6 +89,7 @@ export default function MathCalcContent({ gradeStr }: { gradeStr: string }) {
         onQuit={() => router.push(`/grade/${grade}/math`)}
       >
         <CalcInput
+          key={`${state.currentIndex}-${state.retryCount}`}
           problem={problem}
           onAnswer={handleAnswer}
           answered={answered}

@@ -89,6 +89,7 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
         onQuit={() => router.push(`/grade/${grade}/math`)}
       >
         <WordProblem
+          key={`${state.currentIndex}-${state.retryCount}`}
           problem={problem}
           onAnswer={handleAnswer}
           answered={answered}
