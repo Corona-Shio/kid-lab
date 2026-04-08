@@ -34,7 +34,7 @@ export default function KanjiFillContent({ gradeStr }: { gradeStr: string }) {
     10,
   );
 
-  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs } =
+  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
     useProblemSession(selected, progress.masteries, (p) => `kanji:${(p as KanjiFillProblem).character}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -71,7 +71,7 @@ export default function KanjiFillContent({ gradeStr }: { gradeStr: string }) {
         <SessionSummary
           correct={state.correctCount}
           total={state.problems.length}
-          onRetry={() => router.refresh()}
+          onRetry={resetSession}
           onHome={() => router.push(`/grade/${grade}/kanji`)}
         />
       </div>

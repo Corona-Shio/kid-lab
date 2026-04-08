@@ -19,6 +19,19 @@ export interface ProblemSessionState {
   retryCount: number;
 }
 
+function createInitialState(problems: Problem[], startedAt: number): ProblemSessionState {
+  return {
+    sessionId: generateSessionId(),
+    problems,
+    currentIndex: 0,
+    answers: new Array(problems.length).fill("unanswered") as AnswerState[],
+    correctCount: 0,
+    isComplete: false,
+    startedAt,
+    retryCount: 0,
+  };
+}
+
 export function useProblemSession(
   problems: Problem[],
   masteries: Record<string, TopicMastery>,
@@ -27,16 +40,9 @@ export function useProblemSession(
 ) {
   const startedAt = useRef(Date.now());
   const stateRef = useRef<ProblemSessionState | null>(null);
-  const [state, setState] = useState<ProblemSessionState>({
-    sessionId: generateSessionId(),
-    problems,
-    currentIndex: 0,
-    answers: new Array(problems.length).fill("unanswered") as AnswerState[],
-    correctCount: 0,
-    isComplete: false,
-    startedAt: startedAt.current,
-    retryCount: 0,
-  });
+  const [state, setState] = useState<ProblemSessionState>(() =>
+    createInitialState(problems, startedAt.current),
+  );
 
   // 常に最新の state を ref で参照できるようにする（ステール・クロージャー防止）
   stateRef.current = state;
@@ -89,5 +95,10 @@ export function useProblemSession(
     return Date.now() - startedAt.current;
   }, []);
 
-  return { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs };
+  const resetSession = useCallback(() => {
+    startedAt.current = Date.now();
+    setState(createInitialState(problems, startedAt.current));
+  }, [problems]);
+
+  return { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession };
 }
