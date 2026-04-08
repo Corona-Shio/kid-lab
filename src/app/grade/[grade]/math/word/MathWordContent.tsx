@@ -29,7 +29,7 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
     Math.min(10, allProblems.length),
   );
 
-  const { state, currentProblem, submitAnswer, nextProblem, getDurationMs } =
+  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs } =
     useProblemSession(selected, progress.masteries, (p) => `math:${(p as MathWordProblem).unit}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -84,7 +84,7 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
       <StarBurst trigger={starBurst} />
       <ProblemShell
         title="ぶんしょうもんだい"
-        current={state.currentIndex + (answered ? 1 : 0)}
+        current={state.currentIndex + 1}
         total={state.problems.length}
         onQuit={() => router.push(`/grade/${grade}/math`)}
       >
@@ -102,6 +102,7 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
               if (state.currentIndex === state.problems.length - 1) handleComplete();
               handleNext();
             }}
+            onRetry={retryAnswer}
             isLast={state.currentIndex === state.problems.length - 1}
           />
         )}

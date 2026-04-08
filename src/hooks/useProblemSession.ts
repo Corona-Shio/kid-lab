@@ -70,9 +70,17 @@ export function useProblemSession(
     });
   }, []);
 
+  const retryAnswer = useCallback(() => {
+    setState((prev) => {
+      const answers = [...prev.answers];
+      answers[prev.currentIndex] = "unanswered";
+      return { ...prev, answers };
+    });
+  }, []);
+
   const getDurationMs = useCallback(() => {
     return Date.now() - startedAt.current;
   }, []);
 
-  return { state, currentProblem, submitAnswer, nextProblem, getDurationMs };
+  return { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs };
 }

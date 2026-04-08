@@ -35,6 +35,7 @@ interface AnswerFeedbackProps {
   isCorrect: boolean;
   correctAnswer: string;
   onNext: () => void;
+  onRetry?: () => void;
   isLast: boolean;
   messageSeed?: string | number;
   fixedCorrectMessage?: string;
@@ -45,6 +46,7 @@ export function AnswerFeedback({
   isCorrect,
   correctAnswer,
   onNext,
+  onRetry,
   isLast,
   messageSeed,
   fixedCorrectMessage,
@@ -116,10 +118,22 @@ export function AnswerFeedback({
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
+          className="flex flex-col items-center gap-2"
         >
-          <Button onClick={onNext} size={compactMobile ? "md" : "lg"}>
-            {isLast ? "けっかをみる 📊" : "つぎへ →"}
-          </Button>
+          {isCorrect ? (
+            <Button onClick={onNext} size={compactMobile ? "md" : "lg"}>
+              {isLast ? "けっかをみる 📊" : "つぎへ →"}
+            </Button>
+          ) : (
+            <>
+              <Button onClick={onRetry} size={compactMobile ? "md" : "lg"}>
+                もういちど！
+              </Button>
+              <Button onClick={onNext} variant="ghost" size={compactMobile ? "sm" : "md"}>
+                スキップ
+              </Button>
+            </>
+          )}
         </motion.div>
       </motion.div>
     </AnimatePresence>

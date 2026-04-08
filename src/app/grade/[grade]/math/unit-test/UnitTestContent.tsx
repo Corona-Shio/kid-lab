@@ -103,7 +103,7 @@ function UnitTestSession({
 }) {
   const problems = shuffle(generateCalcProblems(unit, 20)).slice(0, 10);
 
-  const { state, currentProblem, submitAnswer, nextProblem, getDurationMs } =
+  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs } =
     useProblemSession(problems, masteries, (p) => `math:${(p as MathCalcProblem).unit}`, onAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -145,7 +145,7 @@ function UnitTestSession({
       <StarBurst trigger={starBurst} />
       <ProblemShell
         title={`テスト: ${UNIT_LABELS[unit]}`}
-        current={state.currentIndex + (answered ? 1 : 0)}
+        current={state.currentIndex + 1}
         total={state.problems.length}
         onQuit={onHome}
       >
@@ -160,6 +160,7 @@ function UnitTestSession({
               }
               handleNext();
             }}
+            onRetry={retryAnswer}
             isLast={state.currentIndex === state.problems.length - 1}
           />
         )}

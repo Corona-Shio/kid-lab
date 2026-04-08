@@ -5,18 +5,14 @@ import { motion } from "framer-motion";
 interface ProgressBarProps {
   current: number;
   total: number;
-  label?: string;
 }
 
-export function ProgressBar({ current, total, label }: ProgressBarProps) {
+export function ProgressBar({ current, total }: ProgressBarProps) {
   const pct = total > 0 ? Math.min((current / total) * 100, 100) : 0;
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm font-bold text-gray-500">
-          {label ?? "もんめ"}
-        </span>
+      <div className="flex justify-end items-center mb-1.5">
         <span className="text-sm font-bold text-purple-600">
           {current} / {total} もん
         </span>

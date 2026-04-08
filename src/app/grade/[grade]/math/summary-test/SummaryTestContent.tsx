@@ -26,7 +26,7 @@ export default function SummaryTestContent({ gradeStr }: { gradeStr: string }) {
     units.flatMap((unit) => generateCalcProblems(unit, perUnit)),
   ).slice(0, 20);
 
-  const { state, currentProblem, submitAnswer, nextProblem, getDurationMs } =
+  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs } =
     useProblemSession(allProblems, progress.masteries, (p) => `math:${(p as MathCalcProblem).unit}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -81,7 +81,7 @@ export default function SummaryTestContent({ gradeStr }: { gradeStr: string }) {
       <StarBurst trigger={starBurst} />
       <ProblemShell
         title="🏆 まとめテスト"
-        current={state.currentIndex + (answered ? 1 : 0)}
+        current={state.currentIndex + 1}
         total={state.problems.length}
         onQuit={() => router.push(`/grade/${grade}/math`)}
       >
@@ -99,6 +99,7 @@ export default function SummaryTestContent({ gradeStr }: { gradeStr: string }) {
               if (state.currentIndex === state.problems.length - 1) handleComplete();
               handleNext();
             }}
+            onRetry={retryAnswer}
             isLast={state.currentIndex === state.problems.length - 1}
           />
         )}

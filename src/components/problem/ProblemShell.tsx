@@ -25,11 +25,6 @@ export function ProblemShell({
         title={title}
         showBack={!!onQuit}
         onBack={onQuit}
-        rightSlot={
-          <span className="text-sm font-bold text-purple-400">
-            {current}/{total}
-          </span>
-        }
       />
       <div className="px-4 pt-3 pb-1 max-w-2xl mx-auto w-full">
         <ProgressBar current={current} total={total} />
