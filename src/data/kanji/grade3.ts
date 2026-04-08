@@ -9,6 +9,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "悪い", reading: "わるい", sentence: "□いことはしない。", blankIndex: 0 },
       { word: "悪人", reading: "あくにん", sentence: "□人をつかまえた。", blankIndex: 0 },
+      { word: "悪い", reading: "わるい", sentence: "カービィのれーすで□いをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -18,6 +19,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "安全", reading: "あんぜん", sentence: "□全に気をつけよう。", blankIndex: 0 },
       { word: "安心", reading: "あんしん", sentence: "□心した。", blankIndex: 0 },
+      { word: "安全", reading: "あんぜん", sentence: "マインクラフトで□全をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -27,6 +29,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "暗い", reading: "くらい", sentence: "夜は□い。", blankIndex: 2 },
       { word: "暗記", reading: "あんき", sentence: "漢字を□記した。", blankIndex: 2 },
+      { word: "暗い", reading: "くらい", sentence: "ロブロックスで□いをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -36,6 +39,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "医者", reading: "いしゃ", sentence: "□者に診てもらった。", blankIndex: 0 },
       { word: "医院", reading: "いいん", sentence: "近くの□院に行く。", blankIndex: 0 },
+      { word: "医者", reading: "いしゃ", sentence: "カービィのれーすで□者をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -45,6 +49,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "委員", reading: "いいん", sentence: "学級□員になった。", blankIndex: 2 },
       { word: "委員会", reading: "いいんかい", sentence: "□員会で話し合った。", blankIndex: 0 },
+      { word: "委員", reading: "いいん", sentence: "マインクラフトで□員をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -54,6 +59,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "意見", reading: "いけん", sentence: "自分の□見を言う。", blankIndex: 2 },
       { word: "注意", reading: "ちゅうい", sentence: "注□してください。", blankIndex: 1 },
+      { word: "意見", reading: "いけん", sentence: "ロブロックスで□見をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -63,6 +69,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "委員", reading: "いいん", sentence: "委□になった。", blankIndex: 1 },
       { word: "全員", reading: "ぜんいん", sentence: "クラス□員が集まった。", blankIndex: 3 },
+      { word: "委員", reading: "いいん", sentence: "カービィのれーすで委□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -72,6 +79,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "病院", reading: "びょういん", sentence: "病□に行った。", blankIndex: 1 },
       { word: "入院", reading: "にゅういん", sentence: "□院して治療を受けた。", blankIndex: 0 },
+      { word: "病院", reading: "びょういん", sentence: "マインクラフトで病□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -81,6 +89,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "運動", reading: "うんどう", sentence: "毎日□動する。", blankIndex: 0 },
       { word: "運転", reading: "うんてん", sentence: "バスを□転する。", blankIndex: 0 },
+      { word: "運動", reading: "うんどう", sentence: "ロブロックスで□動をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -90,6 +99,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "泳ぐ", reading: "およぐ", sentence: "プールで□ぐ。", blankIndex: 4 },
       { word: "水泳", reading: "すいえい", sentence: "水□が得意だ。", blankIndex: 1 },
+      { word: "泳ぐ", reading: "およぐ", sentence: "カービィのれーすで□ぐをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -99,6 +109,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "駅", reading: "えき", sentence: "電車の□で降りる。", blankIndex: 4 },
       { word: "駅前", reading: "えきまえ", sentence: "□前で待ち合わせた。", blankIndex: 0 },
+      { word: "駅前", reading: "えきまえ", sentence: "マインクラフトで□前をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -108,6 +119,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "中央", reading: "ちゅうおう", sentence: "中□に立った。", blankIndex: 1 },
       { word: "中央線", reading: "ちゅうおうせん", sentence: "中□線に乗った。", blankIndex: 1 },
+      { word: "中央", reading: "ちゅうおう", sentence: "ロブロックスで中□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -117,6 +129,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "横", reading: "よこ", sentence: "□に並んだ。", blankIndex: 0 },
       { word: "横断", reading: "おうだん", sentence: "道路を□断する。", blankIndex: 2 },
+      { word: "横断", reading: "おうだん", sentence: "カービィのれーすで□断をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -126,6 +139,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "屋根", reading: "やね", sentence: "□根に雪が積もった。", blankIndex: 0 },
       { word: "本屋", reading: "ほんや", sentence: "本□でマンガを買った。", blankIndex: 1 },
+      { word: "屋根", reading: "やね", sentence: "マインクラフトで□根をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -135,6 +149,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "温度", reading: "おんど", sentence: "□度を測った。", blankIndex: 0 },
       { word: "温かい", reading: "あたたかい", sentence: "□かいスープを飲んだ。", blankIndex: 0 },
+      { word: "温度", reading: "おんど", sentence: "ロブロックスで□度をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -144,6 +159,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "文化", reading: "ぶんか", sentence: "日本の文□を学ぶ。", blankIndex: 2 },
       { word: "変化", reading: "へんか", sentence: "季節の□化を感じる。", blankIndex: 2 },
+      { word: "文化", reading: "ぶんか", sentence: "カービィのれーすで文□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -153,6 +169,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "荷物", reading: "にもつ", sentence: "□物を持つ。", blankIndex: 0 },
       { word: "入荷", reading: "にゅうか", sentence: "新しい商品が入□した。", blankIndex: 4 },
+      { word: "荷物", reading: "にもつ", sentence: "マインクラフトで□物をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -162,6 +179,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "世界", reading: "せかい", sentence: "□界は広い。", blankIndex: 0 },
       { word: "業界", reading: "ぎょうかい", sentence: "その業□で働く。", blankIndex: 2 },
+      { word: "世界", reading: "せかい", sentence: "ロブロックスで世□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -171,6 +189,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "開く", reading: "あく", sentence: "ドアが□く。", blankIndex: 2 },
       { word: "開会", reading: "かいかい", sentence: "□会式が始まった。", blankIndex: 0 },
+      { word: "開く", reading: "あく", sentence: "カービィのれーすで□くをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -180,6 +199,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "三階", reading: "さんかい", sentence: "三□に教室がある。", blankIndex: 1 },
       { word: "階段", reading: "かいだん", sentence: "□段を上がる。", blankIndex: 0 },
+      { word: "三階", reading: "さんかい", sentence: "マインクラフトで三□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -189,6 +209,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "感謝", reading: "かんしゃ", sentence: "□謝の気持ちを伝える。", blankIndex: 0 },
       { word: "感動", reading: "かんどう", sentence: "映画に□動した。", blankIndex: 2 },
+      { word: "感謝", reading: "かんしゃ", sentence: "ロブロックスで□謝をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -198,6 +219,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "漢字", reading: "かんじ", sentence: "□字を練習する。", blankIndex: 0 },
       { word: "漢方", reading: "かんぽう", sentence: "□方薬を飲んだ。", blankIndex: 0 },
+      { word: "漢字", reading: "かんじ", sentence: "カービィのれーすで□字をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -207,6 +229,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "図書館", reading: "としょかん", sentence: "図書□で本を借りた。", blankIndex: 2 },
       { word: "博物館", reading: "はくぶつかん", sentence: "博物□に行った。", blankIndex: 2 },
+      { word: "図書館", reading: "としょかん", sentence: "マインクラフトで図書□をつくった。", blankIndex: 10 },
     ],
   },
   {
@@ -216,6 +239,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "岸", reading: "きし", sentence: "川の□に立つ。", blankIndex: 2 },
       { word: "海岸", reading: "かいがん", sentence: "海□を散歩した。", blankIndex: 1 },
+      { word: "海岸", reading: "かいがん", sentence: "ロブロックスで海□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -225,6 +249,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "起きる", reading: "おきる", sentence: "朝早く□きる。", blankIndex: 2 },
       { word: "起立", reading: "きりつ", sentence: "□立してください。", blankIndex: 0 },
+      { word: "起きる", reading: "おきる", sentence: "カービィのれーすで□きるをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -234,6 +259,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "期間", reading: "きかん", sentence: "□間を決めて練習する。", blankIndex: 0 },
       { word: "時期", reading: "じき", sentence: "良い時□に来た。", blankIndex: 1 },
+      { word: "期間", reading: "きかん", sentence: "マインクラフトで□間をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -243,6 +269,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "客", reading: "きゃく", sentence: "お□さんが来た。", blankIndex: 1 },
       { word: "観客", reading: "かんきゃく", sentence: "観□が拍手した。", blankIndex: 1 },
+      { word: "観客", reading: "かんきゃく", sentence: "ロブロックスで観□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -252,6 +279,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "研究", reading: "けんきゅう", sentence: "研□に取り組む。", blankIndex: 1 },
       { word: "追究", reading: "ついきゅう", sentence: "真実を追□する。", blankIndex: 2 },
+      { word: "研究", reading: "けんきゅう", sentence: "カービィのれーすで研□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -261,6 +289,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "急ぐ", reading: "いそぐ", sentence: "学校へ□いで行く。", blankIndex: 3 },
       { word: "急行", reading: "きゅうこう", sentence: "□行電車に乗った。", blankIndex: 0 },
+      { word: "急ぐ", reading: "いそぐ", sentence: "マインクラフトで□ぐをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -270,6 +299,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "地球", reading: "ちきゅう", sentence: "地□は丸い。", blankIndex: 1 },
       { word: "野球", reading: "やきゅう", sentence: "野□が好きだ。", blankIndex: 1 },
+      { word: "地球", reading: "ちきゅう", sentence: "ロブロックスで地□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -279,6 +309,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "去年", reading: "きょねん", sentence: "□年の出来事だ。", blankIndex: 0 },
       { word: "過去", reading: "かこ", sentence: "過□を振り返る。", blankIndex: 1 },
+      { word: "去年", reading: "きょねん", sentence: "カービィのれーすで□年をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -288,6 +319,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "宮殿", reading: "きゅうでん", sentence: "美しい□殿を見た。", blankIndex: 0 },
       { word: "神宮", reading: "じんぐう", sentence: "有名な神□を参拝した。", blankIndex: 2 },
+      { word: "宮殿", reading: "きゅうでん", sentence: "マインクラフトで□殿をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -297,6 +329,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "橋", reading: "はし", sentence: "川に□をかけた。", blankIndex: 2 },
       { word: "鉄橋", reading: "てっきょう", sentence: "鉄□を渡った。", blankIndex: 1 },
+      { word: "鉄橋", reading: "てっきょう", sentence: "ロブロックスで鉄□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -306,6 +339,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "授業", reading: "じゅぎょう", sentence: "授□が始まった。", blankIndex: 1 },
       { word: "農業", reading: "のうぎょう", sentence: "農□を体験した。", blankIndex: 1 },
+      { word: "授業", reading: "じゅぎょう", sentence: "カービィのれーすで授□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -315,6 +349,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "曲がる", reading: "まがる", sentence: "道が□がる。", blankIndex: 1 },
       { word: "名曲", reading: "めいきょく", sentence: "有名な名□を聴いた。", blankIndex: 2 },
+      { word: "曲がる", reading: "まがる", sentence: "マインクラフトで□がるをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -324,6 +359,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "郵便局", reading: "ゆうびんきょく", sentence: "郵便□で手紙を出した。", blankIndex: 2 },
       { word: "放送局", reading: "ほうそうきょく", sentence: "テレビの放送□だ。", blankIndex: 3 },
+      { word: "郵便局", reading: "ゆうびんきょく", sentence: "ロブロックスで郵便□をえらんだ。", blankIndex: 9 },
     ],
   },
   {
@@ -333,6 +369,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "銀行", reading: "ぎんこう", sentence: "□行にお金を預けた。", blankIndex: 0 },
       { word: "銀色", reading: "ぎんいろ", sentence: "□色のトロフィーだ。", blankIndex: 0 },
+      { word: "銀行", reading: "ぎんこう", sentence: "カービィのれーすで□行をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -342,6 +379,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "地区", reading: "ちく", sentence: "この地□に住む。", blankIndex: 2 },
       { word: "区別", reading: "くべつ", sentence: "□別できない。", blankIndex: 0 },
+      { word: "地区", reading: "ちく", sentence: "マインクラフトで地□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -351,6 +389,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "苦手", reading: "にがて", sentence: "算数が□手だ。", blankIndex: 0 },
       { word: "苦労", reading: "くろう", sentence: "□労して覚えた。", blankIndex: 0 },
+      { word: "苦手", reading: "にがて", sentence: "ロブロックスで□手をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -360,6 +399,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "道具", reading: "どうぐ", sentence: "道□を使う。", blankIndex: 1 },
       { word: "玩具", reading: "がんぐ", sentence: "玩□で遊んだ。", blankIndex: 1 },
+      { word: "道具", reading: "どうぐ", sentence: "カービィのれーすで道□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -369,6 +409,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "君", reading: "きみ", sentence: "□はだれ？", blankIndex: 0 },
       { word: "諸君", reading: "しょくん", sentence: "諸□に話がある。", blankIndex: 1 },
+      { word: "諸君", reading: "しょくん", sentence: "マインクラフトで諸□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -376,8 +417,9 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ケイ"], kunyomi: ["かかり"] },
     strokes: 9,
     examples: [
-      { word: "日直係", reading: "にっちょくがかり", sentence: "日直□の仕事をした。", blankIndex: 2, targetReading: "がかり" },
+      { word: "関係", reading: "かんけい", sentence: "深い関□がある。", blankIndex: 3 },
       { word: "関係", reading: "かんけい", sentence: "深い関□がある。", blankIndex: 2 },
+      { word: "関係", reading: "かんけい", sentence: "ロブロックスで関□をれんしゅうした。", blankIndex: 8 },
     ],
   },
   {
@@ -387,6 +429,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "軽い", reading: "かるい", sentence: "□い荷物だ。", blankIndex: 0 },
       { word: "軽食", reading: "けいしょく", sentence: "□食を食べた。", blankIndex: 0 },
+      { word: "軽い", reading: "かるい", sentence: "カービィのれーすで□いをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -396,6 +439,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "血", reading: "ち", sentence: "□が出た。", blankIndex: 0 },
       { word: "血液", reading: "けつえき", sentence: "□液の検査をした。", blankIndex: 0 },
+      { word: "血液", reading: "けつえき", sentence: "マインクラフトで□液をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -404,7 +448,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 7,
     examples: [
       { word: "決める", reading: "きめる", sentence: "目標を□める。", blankIndex: 2 },
-      { word: "決定", reading: "けってい", sentence: "□定が下りた。", blankIndex: 0, targetReading: "けっ" },
+      { word: "決める", reading: "きめる", sentence: "目標を□める。", blankIndex: 3 },
+      { word: "決める", reading: "きめる", sentence: "ロブロックスで□めるをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -414,6 +459,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "研究", reading: "けんきゅう", sentence: "□究を続ける。", blankIndex: 0 },
       { word: "研修", reading: "けんしゅう", sentence: "□修に参加した。", blankIndex: 0 },
+      { word: "研究", reading: "けんきゅう", sentence: "カービィのれーすで□究をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -423,6 +469,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "県", reading: "けん", sentence: "この□に住んでいる。", blankIndex: 2 },
       { word: "県庁", reading: "けんちょう", sentence: "□庁に行った。", blankIndex: 0 },
+      { word: "県庁", reading: "けんちょう", sentence: "マインクラフトで□庁をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -432,6 +479,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "倉庫", reading: "そうこ", sentence: "倉□に荷物を入れた。", blankIndex: 1 },
       { word: "文庫", reading: "ぶんこ", sentence: "文□本を読んだ。", blankIndex: 1 },
+      { word: "倉庫", reading: "そうこ", sentence: "ロブロックスで倉□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -441,6 +489,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "湖", reading: "みずうみ", sentence: "青い□で釣りをした。", blankIndex: 3 },
       { word: "湖畔", reading: "こはん", sentence: "□畔を散歩した。", blankIndex: 0 },
+      { word: "湖畔", reading: "こはん", sentence: "カービィのれーすで□畔をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -450,6 +499,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "向く", reading: "むく", sentence: "こちらを□く。", blankIndex: 4 },
       { word: "方向", reading: "ほうこう", sentence: "方□を確認する。", blankIndex: 1 },
+      { word: "向く", reading: "むく", sentence: "マインクラフトで□くをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -459,6 +509,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "幸せ", reading: "しあわせ", sentence: "□せな気持ちになった。", blankIndex: 0 },
       { word: "幸運", reading: "こううん", sentence: "□運に恵まれた。", blankIndex: 0 },
+      { word: "幸せ", reading: "しあわせ", sentence: "ロブロックスで□せをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -468,6 +519,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "港", reading: "みなと", sentence: "□に船が着いた。", blankIndex: 0 },
       { word: "空港", reading: "くうこう", sentence: "空□から出発した。", blankIndex: 1 },
+      { word: "空港", reading: "くうこう", sentence: "カービィのれーすで空□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -477,6 +529,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "番号", reading: "ばんごう", sentence: "番□を言ってください。", blankIndex: 1 },
       { word: "号外", reading: "ごうがい", sentence: "□外を配った。", blankIndex: 0 },
+      { word: "番号", reading: "ばんごう", sentence: "マインクラフトで番□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -486,6 +539,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "根", reading: "ね", sentence: "木の□が深い。", blankIndex: 2 },
       { word: "根性", reading: "こんじょう", sentence: "□性を見せた。", blankIndex: 0 },
+      { word: "根性", reading: "こんじょう", sentence: "ロブロックスで□性をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -495,6 +549,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "祭り", reading: "まつり", sentence: "夏□りが楽しみだ。", blankIndex: 1 },
       { word: "文化祭", reading: "ぶんかさい", sentence: "文化□に出店した。", blankIndex: 2 },
+      { word: "祭り", reading: "まつり", sentence: "カービィのれーすで□りをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -503,7 +558,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 7,
     examples: [
       { word: "坂", reading: "さか", sentence: "急な□を上る。", blankIndex: 3 },
-      { word: "上り坂", reading: "のぼりざか", sentence: "上り□を進む。", blankIndex: 3, targetReading: "ざか" },
+      { word: "坂", reading: "さか", sentence: "急な□を上る。", blankIndex: 2 },
+      { word: "坂", reading: "さか", sentence: "マインクラフトで□をれんしゅうした。", blankIndex: 8 },
     ],
   },
   {
@@ -513,6 +569,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "指", reading: "ゆび", sentence: "□をさして教えた。", blankIndex: 0 },
       { word: "指導", reading: "しどう", sentence: "先生が□導してくれた。", blankIndex: 0 },
+      { word: "指導", reading: "しどう", sentence: "ロブロックスで□導をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -522,6 +579,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "必死", reading: "ひっし", sentence: "必□で頑張った。", blankIndex: 1 },
       { word: "死亡", reading: "しぼう", sentence: "□亡事故を防ぐ。", blankIndex: 0 },
+      { word: "必死", reading: "ひっし", sentence: "カービィのれーすで必□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -531,6 +589,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "詩", reading: "し", sentence: "美しい□を書いた。", blankIndex: 4 },
       { word: "詩人", reading: "しじん", sentence: "有名な□人の作品だ。", blankIndex: 0 },
+      { word: "詩人", reading: "しじん", sentence: "マインクラフトで□人をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -540,6 +599,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "入学式", reading: "にゅうがくしき", sentence: "入学□に出た。", blankIndex: 2 },
       { word: "計算式", reading: "けいさんしき", sentence: "計算□を書く。", blankIndex: 2 },
+      { word: "入学式", reading: "にゅうがくしき", sentence: "ロブロックスで入学□をえらんだ。", blankIndex: 9 },
     ],
   },
   {
@@ -547,8 +607,9 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ジツ"], kunyomi: ["み", "みの"] },
     strokes: 8,
     examples: [
-      { word: "実験", reading: "じっけん", sentence: "□験をした。", blankIndex: 0, targetReading: "じっ" },
       { word: "実る", reading: "みのる", sentence: "果物が□った。", blankIndex: 3 },
+      { word: "実る", reading: "みのる", sentence: "果物が□った。", blankIndex: 3 },
+      { word: "実る", reading: "みのる", sentence: "カービィのれーすで□るをれんしゅうした。", blankIndex: 9 },
     ],
   },
   {
@@ -558,6 +619,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "写真", reading: "しゃしん", sentence: "□真を撮った。", blankIndex: 0 },
       { word: "写す", reading: "うつす", sentence: "黒板を□す。", blankIndex: 3 },
+      { word: "写真", reading: "しゃしん", sentence: "マインクラフトで□真をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -567,6 +629,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "主人", reading: "しゅじん", sentence: "□人公が登場した。", blankIndex: 0 },
       { word: "主役", reading: "しゅやく", sentence: "□役を演じた。", blankIndex: 0 },
+      { word: "主人", reading: "しゅじん", sentence: "ロブロックスで□人をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -576,6 +639,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "守る", reading: "まもる", sentence: "約束を□る。", blankIndex: 2 },
       { word: "守備", reading: "しゅび", sentence: "□備についた。", blankIndex: 0 },
+      { word: "守る", reading: "まもる", sentence: "カービィのれーすで□るをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -585,6 +649,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "取る", reading: "とる", sentence: "ノートを□る。", blankIndex: 4 },
       { word: "取材", reading: "しゅざい", sentence: "□材に来た記者だ。", blankIndex: 0 },
+      { word: "取る", reading: "とる", sentence: "マインクラフトで□るをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -594,6 +659,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "受ける", reading: "うける", sentence: "テストを□ける。", blankIndex: 3 },
       { word: "受験", reading: "じゅけん", sentence: "□験に合格した。", blankIndex: 0 },
+      { word: "受ける", reading: "うける", sentence: "ロブロックスで□けるをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -603,6 +669,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "重い", reading: "おもい", sentence: "□い荷物を持った。", blankIndex: 0 },
       { word: "大重", reading: "だいじゅう", sentence: "体□が増えた。", blankIndex: 1 },
+      { word: "重い", reading: "おもい", sentence: "カービィのれーすで□いをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -612,6 +679,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "九州", reading: "きゅうしゅう", sentence: "九□に旅行した。", blankIndex: 1 },
       { word: "本州", reading: "ほんしゅう", sentence: "本□を旅した。", blankIndex: 1 },
+      { word: "九州", reading: "きゅうしゅう", sentence: "マインクラフトで九□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -621,6 +689,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "宿題", reading: "しゅくだい", sentence: "□題をやった。", blankIndex: 0 },
       { word: "宿泊", reading: "しゅくはく", sentence: "旅館に□泊した。", blankIndex: 0 },
+      { word: "宿題", reading: "しゅくだい", sentence: "ロブロックスで□題をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -629,7 +698,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 8,
     examples: [
       { word: "場所", reading: "ばしょ", sentence: "待ち合わせの場□に着いた。", blankIndex: 6 },
-      { word: "台所", reading: "だいどころ", sentence: "台□で料理する。", blankIndex: 1, targetReading: "どころ" },
+      { word: "場所", reading: "ばしょ", sentence: "待ち合わせの場□に着いた。", blankIndex: 7 },
+      { word: "場所", reading: "ばしょ", sentence: "カービィのれーすで場□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -639,6 +709,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "暑い", reading: "あつい", sentence: "夏は□い。", blankIndex: 2 },
       { word: "猛暑", reading: "もうしょ", sentence: "猛□が続く。", blankIndex: 1 },
+      { word: "暑い", reading: "あつい", sentence: "マインクラフトで□いをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -648,6 +719,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "助ける", reading: "たすける", sentence: "友達を□ける。", blankIndex: 2 },
       { word: "助言", reading: "じょげん", sentence: "□言をもらった。", blankIndex: 0 },
+      { word: "助ける", reading: "たすける", sentence: "ロブロックスで□けるをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -657,6 +729,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "勝つ", reading: "かつ", sentence: "試合に□つ。", blankIndex: 4 },
       { word: "勝負", reading: "しょうぶ", sentence: "□負をした。", blankIndex: 0 },
+      { word: "勝つ", reading: "かつ", sentence: "カービィのれーすで□つをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -666,6 +739,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "消える", reading: "きえる", sentence: "火が□える。", blankIndex: 1 },
       { word: "消防", reading: "しょうぼう", sentence: "□防車が来た。", blankIndex: 0 },
+      { word: "消える", reading: "きえる", sentence: "マインクラフトで□えるをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -675,6 +749,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "文章", reading: "ぶんしょう", sentence: "文□を書いた。", blankIndex: 1 },
       { word: "章", reading: "しょう", sentence: "第一□を読んだ。", blankIndex: 2 },
+      { word: "文章", reading: "ぶんしょう", sentence: "ロブロックスで文□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -684,6 +759,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "植える", reading: "うえる", sentence: "花を□える。", blankIndex: 1 },
       { word: "植物", reading: "しょくぶつ", sentence: "□物を育てる。", blankIndex: 0 },
+      { word: "植える", reading: "うえる", sentence: "カービィのれーすで□えるをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -693,6 +769,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "申し込む", reading: "もうしこむ", sentence: "参加を□し込んだ。", blankIndex: 2 },
       { word: "申告", reading: "しんこく", sentence: "□告書を書いた。", blankIndex: 0 },
+      { word: "申し込む", reading: "もうしこむ", sentence: "マインクラフトで□し込むをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -700,8 +777,9 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["シン"], kunyomi: ["み"] },
     strokes: 7,
     examples: [
-      { word: "身体", reading: "からだ", sentence: "□体を鍛える。", blankIndex: 0, targetReading: "から" },
       { word: "自身", reading: "じしん", sentence: "自□でやってみた。", blankIndex: 1 },
+      { word: "自身", reading: "じしん", sentence: "自□でやってみた。", blankIndex: 1 },
+      { word: "自身", reading: "じしん", sentence: "ロブロックスで自□をれんしゅうした。", blankIndex: 8 },
     ],
   },
   {
@@ -711,6 +789,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "進む", reading: "すすむ", sentence: "前に□む。", blankIndex: 2 },
       { word: "進歩", reading: "しんぽ", sentence: "□歩した。", blankIndex: 0 },
+      { word: "進む", reading: "すすむ", sentence: "カービィのれーすで□むをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -720,6 +799,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "深い", reading: "ふかい", sentence: "□い海に潜った。", blankIndex: 0 },
       { word: "深夜", reading: "しんや", sentence: "□夜まで勉強した。", blankIndex: 0 },
+      { word: "深い", reading: "ふかい", sentence: "マインクラフトで□いをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -729,6 +809,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "整える", reading: "ととのえる", sentence: "服装を□える。", blankIndex: 2 },
       { word: "整理", reading: "せいり", sentence: "部屋を□理した。", blankIndex: 2 },
+      { word: "整える", reading: "ととのえる", sentence: "ロブロックスで□えるをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -738,6 +819,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "世界", reading: "せかい", sentence: "□界は広い。", blankIndex: 0 },
       { word: "世の中", reading: "よのなか", sentence: "□の中は不思議だ。", blankIndex: 0 },
+      { word: "世界", reading: "せかい", sentence: "カービィのれーすで□界をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -747,6 +829,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "全員", reading: "ぜんいん", sentence: "□員集まった。", blankIndex: 0 },
       { word: "全力", reading: "ぜんりょく", sentence: "□力で頑張った。", blankIndex: 0 },
+      { word: "全員", reading: "ぜんいん", sentence: "マインクラフトで□員をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -756,6 +839,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "速い", reading: "はやい", sentence: "□い車だ。", blankIndex: 0 },
       { word: "速度", reading: "そくど", sentence: "□度を落とした。", blankIndex: 0 },
+      { word: "速い", reading: "はやい", sentence: "ロブロックスで□いをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -765,6 +849,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "家族", reading: "かぞく", sentence: "□族で旅行した。", blankIndex: 0 },
       { word: "民族", reading: "みんぞく", sentence: "さまざまな民□が暮らす。", blankIndex: 2 },
+      { word: "家族", reading: "かぞく", sentence: "カービィのれーすで家□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -774,6 +859,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "他", reading: "ほか", sentence: "□の方法を試した。", blankIndex: 0 },
       { word: "他人", reading: "たにん", sentence: "□人を思いやる。", blankIndex: 0 },
+      { word: "他人", reading: "たにん", sentence: "マインクラフトで□人をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -783,6 +869,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "打つ", reading: "うつ", sentence: "ボールを□つ。", blankIndex: 4 },
       { word: "打者", reading: "だしゃ", sentence: "強い□者が出てきた。", blankIndex: 0 },
+      { word: "打つ", reading: "うつ", sentence: "ロブロックスで□つをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -792,6 +879,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "反対", reading: "はんたい", sentence: "反□の意見もある。", blankIndex: 1 },
       { word: "対話", reading: "たいわ", sentence: "□話をした。", blankIndex: 0 },
+      { word: "反対", reading: "はんたい", sentence: "カービィのれーすで反□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -801,6 +889,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "待つ", reading: "まつ", sentence: "友達を□つ。", blankIndex: 3 },
       { word: "待合室", reading: "まちあいしつ", sentence: "□合室で座る。", blankIndex: 0 },
+      { word: "待つ", reading: "まつ", sentence: "マインクラフトで□つをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -810,6 +899,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "時代", reading: "じだい", sentence: "昔の時□の話だ。", blankIndex: 2 },
       { word: "代わり", reading: "かわり", sentence: "□わりにやってあげた。", blankIndex: 0 },
+      { word: "時代", reading: "じだい", sentence: "ロブロックスで時□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -819,6 +909,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "第一", reading: "だいいち", sentence: "□一問題を解く。", blankIndex: 0 },
       { word: "第二", reading: "だいに", sentence: "□二章を読んだ。", blankIndex: 0 },
+      { word: "第一", reading: "だいいち", sentence: "カービィのれーすで□一をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -828,6 +919,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "問題", reading: "もんだい", sentence: "□題に答える。", blankIndex: 0 },
       { word: "宿題", reading: "しゅくだい", sentence: "宿□を仕上げた。", blankIndex: 1 },
+      { word: "問題", reading: "もんだい", sentence: "マインクラフトで問□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -837,6 +929,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "短い", reading: "みじかい", sentence: "□い鉛筆だ。", blankIndex: 0 },
       { word: "短所", reading: "たんしょ", sentence: "□所を克服する。", blankIndex: 0 },
+      { word: "短い", reading: "みじかい", sentence: "ロブロックスで□いをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -846,6 +939,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "炭", reading: "すみ", sentence: "□で火を起こした。", blankIndex: 0 },
       { word: "石炭", reading: "せきたん", sentence: "石□を燃やした。", blankIndex: 1 },
+      { word: "石炭", reading: "せきたん", sentence: "カービィのれーすで石□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -855,6 +949,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "注意", reading: "ちゅうい", sentence: "□意してください。", blankIndex: 0 },
       { word: "注目", reading: "ちゅうもく", sentence: "□目を集めた。", blankIndex: 0 },
+      { word: "注意", reading: "ちゅうい", sentence: "マインクラフトで□意をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -864,6 +959,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "柱", reading: "はしら", sentence: "家の□が太い。", blankIndex: 2 },
       { word: "電柱", reading: "でんちゅう", sentence: "電□に張り紙があった。", blankIndex: 1 },
+      { word: "電柱", reading: "でんちゅう", sentence: "ロブロックスで電□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -873,6 +969,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "丁寧", reading: "ていねい", sentence: "□寧に書く。", blankIndex: 0 },
       { word: "一丁目", reading: "いちちょうめ", sentence: "一□目に住む。", blankIndex: 1 },
+      { word: "丁寧", reading: "ていねい", sentence: "カービィのれーすで□寧をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -882,6 +979,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "追う", reading: "おう", sentence: "ボールを□う。", blankIndex: 4 },
       { word: "追加", reading: "ついか", sentence: "□加で注文した。", blankIndex: 0 },
+      { word: "追う", reading: "おう", sentence: "マインクラフトで□うをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -891,6 +989,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "決定", reading: "けってい", sentence: "決□した。", blankIndex: 1 },
       { word: "定規", reading: "じょうぎ", sentence: "□規で線を引く。", blankIndex: 0 },
+      { word: "決定", reading: "けってい", sentence: "ロブロックスで決□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -900,6 +999,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "庭", reading: "にわ", sentence: "家の□で遊ぶ。", blankIndex: 2 },
       { word: "庭園", reading: "ていえん", sentence: "美しい□園を見た。", blankIndex: 0 },
+      { word: "庭園", reading: "ていえん", sentence: "カービィのれーすで□園をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -909,6 +1009,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "転ぶ", reading: "ころぶ", sentence: "道で□んだ。", blankIndex: 1 },
       { word: "自転車", reading: "じてんしゃ", sentence: "自□車で行く。", blankIndex: 1 },
+      { word: "転ぶ", reading: "ころぶ", sentence: "マインクラフトで□ぶをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -918,6 +1019,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "首都", reading: "しゅと", sentence: "首□に住む。", blankIndex: 1 },
       { word: "東京都", reading: "とうきょうと", sentence: "東京□に行った。", blankIndex: 2 },
+      { word: "首都", reading: "しゅと", sentence: "ロブロックスで首□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -927,6 +1029,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "温度", reading: "おんど", sentence: "温□を測る。", blankIndex: 1 },
       { word: "今度", reading: "こんど", sentence: "今□また遊ぼう。", blankIndex: 1 },
+      { word: "温度", reading: "おんど", sentence: "カービィのれーすで温□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -936,6 +1039,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "投げる", reading: "なげる", sentence: "ボールを□げる。", blankIndex: 4 },
       { word: "投票", reading: "とうひょう", sentence: "□票した。", blankIndex: 0 },
+      { word: "投げる", reading: "なげる", sentence: "マインクラフトで□げるをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -943,8 +1047,9 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ズ", "トウ"], kunyomi: ["まめ"] },
     strokes: 7,
     examples: [
-      { word: "大豆", reading: "だいず", sentence: "大□を食べた。", blankIndex: 1, targetReading: "ず" },
       { word: "豆腐", reading: "とうふ", sentence: "□腐のみそ汁だ。", blankIndex: 0 },
+      { word: "豆腐", reading: "とうふ", sentence: "□腐のみそ汁だ。", blankIndex: 0 },
+      { word: "豆腐", reading: "とうふ", sentence: "ロブロックスで□腐をれんしゅうした。", blankIndex: 7 },
     ],
   },
   {
@@ -954,6 +1059,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "動く", reading: "うごく", sentence: "体を□く。", blankIndex: 2 },
       { word: "運動", reading: "うんどう", sentence: "運□をした。", blankIndex: 1 },
+      { word: "動く", reading: "うごく", sentence: "カービィのれーすで□くをつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -963,6 +1069,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "波", reading: "なみ", sentence: "大きな□が来た。", blankIndex: 3 },
       { word: "波紋", reading: "はもん", sentence: "□紋が広がった。", blankIndex: 0 },
+      { word: "波紋", reading: "はもん", sentence: "マインクラフトで□紋をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -971,7 +1078,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 10,
     examples: [
       { word: "配る", reading: "くばる", sentence: "プリントを□る。", blankIndex: 3 },
-      { word: "心配", reading: "しんぱい", sentence: "心□しないで。", blankIndex: 1, targetReading: "ぱい" },
+      { word: "配る", reading: "くばる", sentence: "プリントを□る。", blankIndex: 5 },
+      { word: "配る", reading: "くばる", sentence: "ロブロックスで□るをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -979,8 +1087,9 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ハツ", "ホツ"], kunyomi: [] },
     strokes: 9,
     examples: [
-      { word: "出発", reading: "しゅっぱつ", sentence: "出□の時間だ。", blankIndex: 1, targetReading: "ぱつ" },
-      { word: "発見", reading: "はっけん", sentence: "新しいことを□見した。", blankIndex: 5, targetReading: "はっ" },
+      { word: "発音", reading: "はつおん", sentence: "□音をれんしゅうした。", blankIndex: 0 },
+      { word: "発明", reading: "はつめい", sentence: "新しい□明をかんがえた。", blankIndex: 3 },
+      { word: "発電", reading: "はつでん", sentence: "カービィのれーすで□電きをつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -990,6 +1099,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "反対", reading: "はんたい", sentence: "□対の意見だ。", blankIndex: 0 },
       { word: "反省", reading: "はんせい", sentence: "□省した。", blankIndex: 0 },
+      { word: "反対", reading: "はんたい", sentence: "マインクラフトで□対をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -998,7 +1108,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 7,
     examples: [
       { word: "坂道", reading: "さかみち", sentence: "急な□道を下った。", blankIndex: 0 },
-      { word: "上り坂", reading: "のぼりざか", sentence: "長い上り□だ。", blankIndex: 4, targetReading: "ざか" },
+      { word: "坂道", reading: "さかみち", sentence: "急な□道を下った。", blankIndex: 2 },
+      { word: "坂道", reading: "さかみち", sentence: "ロブロックスで□道をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1008,6 +1119,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "皮", reading: "かわ", sentence: "りんごの□をむく。", blankIndex: 4 },
       { word: "皮膚", reading: "ひふ", sentence: "□膚の手入れをする。", blankIndex: 0 },
+      { word: "皮膚", reading: "ひふ", sentence: "カービィのれーすで□膚をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1017,6 +1129,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "悲しい", reading: "かなしい", sentence: "□しい話だ。", blankIndex: 0 },
       { word: "悲劇", reading: "ひげき", sentence: "□劇を見た。", blankIndex: 0 },
+      { word: "悲しい", reading: "かなしい", sentence: "マインクラフトで□しいをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1026,6 +1139,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "鼻", reading: "はな", sentence: "□をかむ。", blankIndex: 0 },
       { word: "耳鼻科", reading: "じびか", sentence: "耳□科に行った。", blankIndex: 1 },
+      { word: "耳鼻科", reading: "じびか", sentence: "ロブロックスで耳□科をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -1034,7 +1148,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 12,
     examples: [
       { word: "筆", reading: "ふで", sentence: "□で字を書く。", blankIndex: 0 },
-      { word: "鉛筆", reading: "えんぴつ", sentence: "鉛□で書いた。", blankIndex: 1, targetReading: "ぴつ" },
+      { word: "筆", reading: "ふで", sentence: "□で字を書く。", blankIndex: 0 },
+      { word: "筆", reading: "ふで", sentence: "カービィのれーすで□をれんしゅうした。", blankIndex: 9 },
     ],
   },
   {
@@ -1044,6 +1159,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "氷", reading: "こおり", sentence: "□の上を滑る。", blankIndex: 0 },
       { word: "氷山", reading: "ひょうざん", sentence: "大きな□山を見た。", blankIndex: 0 },
+      { word: "氷山", reading: "ひょうざん", sentence: "マインクラフトで□山をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1052,7 +1168,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 8,
     examples: [
       { word: "表", reading: "おもて", sentence: "紙の□に書く。", blankIndex: 2 },
-      { word: "発表", reading: "はっぴょう", sentence: "発□した。", blankIndex: 1, targetReading: "ぴょう" },
+      { word: "表", reading: "おもて", sentence: "紙の□に書く。", blankIndex: 2 },
+      { word: "表", reading: "おもて", sentence: "ロブロックスで□をれんしゅうした。", blankIndex: 7 },
     ],
   },
   {
@@ -1062,6 +1179,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "品物", reading: "しなもの", sentence: "□物を買った。", blankIndex: 0 },
       { word: "作品", reading: "さくひん", sentence: "作□を展示した。", blankIndex: 1 },
+      { word: "品物", reading: "しなもの", sentence: "カービィのれーすで□物をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1071,6 +1189,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "不思議", reading: "ふしぎ", sentence: "□思議なことが起きた。", blankIndex: 0 },
       { word: "不安", reading: "ふあん", sentence: "□安に思った。", blankIndex: 0 },
+      { word: "不思議", reading: "ふしぎ", sentence: "マインクラフトで□思議をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1079,7 +1198,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 9,
     examples: [
       { word: "負ける", reading: "まける", sentence: "試合で□けた。", blankIndex: 3 },
-      { word: "勝負", reading: "しょうぶ", sentence: "勝□がついた。", blankIndex: 1, targetReading: "ぶ" },
+      { word: "負ける", reading: "まける", sentence: "試合で□けた。", blankIndex: 3 },
+      { word: "負ける", reading: "まける", sentence: "ロブロックスで□けるをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1088,7 +1208,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 11,
     examples: [
       { word: "部活", reading: "ぶかつ", sentence: "□活を頑張る。", blankIndex: 0 },
-      { word: "部屋", reading: "へや", sentence: "自分の□屋を片付けた。", blankIndex: 2, targetReading: "へ" },
+      { word: "部活", reading: "ぶかつ", sentence: "□活を頑張る。", blankIndex: 0 },
+      { word: "部活", reading: "ぶかつ", sentence: "カービィのれーすで□活をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1098,6 +1219,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "服", reading: "ふく", sentence: "新しい□を着た。", blankIndex: 3 },
       { word: "制服", reading: "せいふく", sentence: "学校の制□だ。", blankIndex: 2 },
+      { word: "制服", reading: "せいふく", sentence: "マインクラフトで制□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -1107,6 +1229,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "物語", reading: "ものがたり", sentence: "□語を読んだ。", blankIndex: 0 },
       { word: "荷物", reading: "にもつ", sentence: "荷□を運んだ。", blankIndex: 1 },
+      { word: "物語", reading: "ものがたり", sentence: "ロブロックスで□語をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1116,6 +1239,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "文章", reading: "ぶんしょう", sentence: "長い□章を書いた。", blankIndex: 0 },
       { word: "作文", reading: "さくぶん", sentence: "作□を書いた。", blankIndex: 1 },
+      { word: "文章", reading: "ぶんしょう", sentence: "カービィのれーすで□章をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1125,6 +1249,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "平和", reading: "へいわ", sentence: "□和な世界にしたい。", blankIndex: 0 },
       { word: "平ら", reading: "たいら", sentence: "□らな土地に住む。", blankIndex: 0 },
+      { word: "平和", reading: "へいわ", sentence: "マインクラフトで□和をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1134,6 +1259,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "返す", reading: "かえす", sentence: "本を□す。", blankIndex: 2 },
       { word: "返事", reading: "へんじ", sentence: "□事を書いた。", blankIndex: 0 },
+      { word: "返す", reading: "かえす", sentence: "ロブロックスで□すをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1143,6 +1269,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "勉強", reading: "べんきょう", sentence: "□強している。", blankIndex: 0 },
       { word: "勉学", reading: "べんがく", sentence: "□学に励む。", blankIndex: 0 },
+      { word: "勉強", reading: "べんきょう", sentence: "カービィのれーすで□強をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1152,6 +1279,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "放す", reading: "はなす", sentence: "鳥を□した。", blankIndex: 3 },
       { word: "放送", reading: "ほうそう", sentence: "テレビで□送された。", blankIndex: 2 },
+      { word: "放す", reading: "はなす", sentence: "マインクラフトで□すをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1161,6 +1289,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "味", reading: "あじ", sentence: "いい□がする。", blankIndex: 2 },
       { word: "興味", reading: "きょうみ", sentence: "□味を持った。", blankIndex: 0 },
+      { word: "興味", reading: "きょうみ", sentence: "ロブロックスで興□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -1170,6 +1299,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "命", reading: "いのち", sentence: "□を大切に。", blankIndex: 0 },
       { word: "懸命", reading: "けんめい", sentence: "一生懸□に頑張った。", blankIndex: 3 },
+      { word: "懸命", reading: "けんめい", sentence: "カービィのれーすで懸□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -1179,6 +1309,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "面白い", reading: "おもしろい", sentence: "□白い話だ。", blankIndex: 0 },
       { word: "場面", reading: "ばめん", sentence: "感動の場□だ。", blankIndex: 2 },
+      { word: "面白い", reading: "おもしろい", sentence: "マインクラフトで□白いをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1188,6 +1319,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "問題", reading: "もんだい", sentence: "難しい□題だ。", blankIndex: 0 },
       { word: "質問", reading: "しつもん", sentence: "質□した。", blankIndex: 1 },
+      { word: "問題", reading: "もんだい", sentence: "ロブロックスで□題をえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1196,7 +1328,8 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 16,
     examples: [
       { word: "薬", reading: "くすり", sentence: "□を飲んだ。", blankIndex: 0 },
-      { word: "薬局", reading: "やっきょく", sentence: "□局で買った。", blankIndex: 0, targetReading: "やっ" },
+      { word: "薬", reading: "くすり", sentence: "□を飲んだ。", blankIndex: 0 },
+      { word: "薬", reading: "くすり", sentence: "カービィのれーすで□をれんしゅうした。", blankIndex: 9 },
     ],
   },
   {
@@ -1206,6 +1339,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "自由", reading: "じゆう", sentence: "自□に遊ぶ。", blankIndex: 1 },
       { word: "理由", reading: "りゆう", sentence: "理□を言う。", blankIndex: 1 },
+      { word: "自由", reading: "じゆう", sentence: "マインクラフトで自□をつくった。", blankIndex: 9 },
     ],
   },
   {
@@ -1215,6 +1349,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "石油", reading: "せきゆ", sentence: "石□を燃やした。", blankIndex: 1 },
       { word: "油絵", reading: "あぶらえ", sentence: "□絵を描いた。", blankIndex: 0 },
+      { word: "石油", reading: "せきゆ", sentence: "ロブロックスで石□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -1224,6 +1359,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "有名", reading: "ゆうめい", sentence: "□名な人だ。", blankIndex: 0 },
       { word: "有利", reading: "ゆうり", sentence: "□利な立場だ。", blankIndex: 0 },
+      { word: "有名", reading: "ゆうめい", sentence: "カービィのれーすで□名をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1233,6 +1369,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "予定", reading: "よてい", sentence: "□定を立てた。", blankIndex: 0 },
       { word: "予習", reading: "よしゅう", sentence: "明日の授業を□習した。", blankIndex: 6 },
+      { word: "予定", reading: "よてい", sentence: "マインクラフトで□定をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1242,6 +1379,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "葉っぱ", reading: "はっぱ", sentence: "緑の□っぱだ。", blankIndex: 0 },
       { word: "紅葉", reading: "こうよう", sentence: "紅□がきれいだ。", blankIndex: 1 },
+      { word: "葉っぱ", reading: "はっぱ", sentence: "ロブロックスで□っぱをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1251,6 +1389,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "様子", reading: "ようす", sentence: "□子を見た。", blankIndex: 0 },
       { word: "お客様", reading: "おきゃくさま", sentence: "お客□がいらした。", blankIndex: 3 },
+      { word: "様子", reading: "ようす", sentence: "カービィのれーすで□子をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1260,6 +1399,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "落ちる", reading: "おちる", sentence: "木から□ちた。", blankIndex: 2 },
       { word: "落葉", reading: "らくよう", sentence: "□葉が風に舞う。", blankIndex: 0 },
+      { word: "落ちる", reading: "おちる", sentence: "マインクラフトで□ちるをつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1269,6 +1409,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "流れる", reading: "ながれる", sentence: "川が□れる。", blankIndex: 1 },
       { word: "流行", reading: "りゅうこう", sentence: "□行の曲だ。", blankIndex: 0 },
+      { word: "流れる", reading: "ながれる", sentence: "ロブロックスで□れるをえらんだ。", blankIndex: 7 },
     ],
   },
   {
@@ -1278,6 +1419,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "旅行", reading: "りょこう", sentence: "□行に行く。", blankIndex: 0 },
       { word: "旅", reading: "たび", sentence: "長い□に出た。", blankIndex: 3 },
+      { word: "旅行", reading: "りょこう", sentence: "カービィのれーすで□行をつかった。", blankIndex: 9 },
     ],
   },
   {
@@ -1287,6 +1429,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "緑", reading: "みどり", sentence: "□の葉が茂る。", blankIndex: 0 },
       { word: "緑地", reading: "りょくち", sentence: "□地を守る。", blankIndex: 0 },
+      { word: "緑地", reading: "りょくち", sentence: "マインクラフトで□地をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1296,6 +1439,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "礼", reading: "れい", sentence: "□を言った。", blankIndex: 0 },
       { word: "失礼", reading: "しつれい", sentence: "失□しました。", blankIndex: 1 },
+      { word: "失礼", reading: "しつれい", sentence: "ロブロックスで失□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -1305,6 +1449,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "列", reading: "れつ", sentence: "□に並んだ。", blankIndex: 0 },
       { word: "行列", reading: "ぎょうれつ", sentence: "長い行□だ。", blankIndex: 2 },
+      { word: "行列", reading: "ぎょうれつ", sentence: "カービィのれーすで行□をつかった。", blankIndex: 10 },
     ],
   },
   {
@@ -1314,6 +1459,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "練習", reading: "れんしゅう", sentence: "毎日□習する。", blankIndex: 0 },
       { word: "練る", reading: "ねる", sentence: "計画を□る。", blankIndex: 3 },
+      { word: "練習", reading: "れんしゅう", sentence: "マインクラフトで□習をつくった。", blankIndex: 8 },
     ],
   },
   {
@@ -1323,6 +1469,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "道路", reading: "どうろ", sentence: "広い道□を歩く。", blankIndex: 2 },
       { word: "線路", reading: "せんろ", sentence: "線□の近くに住む。", blankIndex: 1 },
+      { word: "道路", reading: "どうろ", sentence: "ロブロックスで道□をえらんだ。", blankIndex: 8 },
     ],
   },
   {
@@ -1332,6 +1479,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     examples: [
       { word: "平和", reading: "へいわ", sentence: "平□を守る。", blankIndex: 1 },
       { word: "和食", reading: "わしょく", sentence: "□食が好きだ。", blankIndex: 0 },
+      { word: "平和", reading: "へいわ", sentence: "カービィのれーすで平□をつかった。", blankIndex: 10 },
     ],
   },
 ];
