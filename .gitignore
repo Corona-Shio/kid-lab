@@ -1,7 +1,18 @@
-.tmp
-plans
-node_modules
-.next
-out
+# macOS
+.DS_Store
+
+# Local workspace artifacts
+.claude/worktrees/
+.tmp/
+plans/
+
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+
+# Environment and local overrides
 .env*
 *.local
