@@ -94,6 +94,7 @@ export default function KanjiFillContent({ gradeStr }: { gradeStr: string }) {
         onQuit={() => router.push(`/grade/${grade}/kanji`)}
       >
         <FillInBlank
+          key={`${state.currentIndex}-${state.retryCount}`}
           problem={problem}
           onAnswer={handleAnswer}
           answered={answered}

@@ -16,6 +16,7 @@ export interface ProblemSessionState {
   correctCount: number;
   isComplete: boolean;
   startedAt: number;
+  retryCount: number;
 }
 
 export function useProblemSession(
@@ -25,6 +26,7 @@ export function useProblemSession(
   onMasteryUpdate: (topicId: string, mastery: TopicMastery) => void,
 ) {
   const startedAt = useRef(Date.now());
+  const stateRef = useRef<ProblemSessionState | null>(null);
   const [state, setState] = useState<ProblemSessionState>({
     sessionId: generateSessionId(),
     problems,
@@ -33,13 +35,18 @@ export function useProblemSession(
     correctCount: 0,
     isComplete: false,
     startedAt: startedAt.current,
+    retryCount: 0,
   });
+
+  // 常に最新の state を ref で参照できるようにする（ステール・クロージャー防止）
+  stateRef.current = state;
 
   const currentProblem = state.problems[state.currentIndex] ?? null;
 
   const submitAnswer = useCallback(
     (isCorrect: boolean) => {
-      const problem = state.problems[state.currentIndex];
+      const { problems, currentIndex } = stateRef.current!;
+      const problem = problems[currentIndex];
       if (!problem) return;
       const topicId = getTopicId(problem);
       const prevMastery = masteries[topicId] ?? createInitialMastery(topicId);
@@ -56,7 +63,7 @@ export function useProblemSession(
         };
       });
     },
-    [state.problems, state.currentIndex, masteries, getTopicId, onMasteryUpdate],
+    [masteries, getTopicId, onMasteryUpdate],
   );
 
   const nextProblem = useCallback(() => {
@@ -74,7 +81,7 @@ export function useProblemSession(
     setState((prev) => {
       const answers = [...prev.answers];
       answers[prev.currentIndex] = "unanswered";
-      return { ...prev, answers };
+      return { ...prev, answers, retryCount: prev.retryCount + 1 };
     });
   }, []);
 
