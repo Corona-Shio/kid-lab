@@ -1,4 +1,4 @@
-import MathWordContent from "./MathWordContent";
+import MathWordClientWrapper from "./MathWordClientWrapper";
 
 interface Props { params: Promise<{ grade: string }> }
 
@@ -9,5 +9,5 @@ export function generateStaticParams() {
 export default async function MathWordPage({ params }: Props) {
   const { grade } = await params;
 
-  return <MathWordContent gradeStr={grade} />;
+  return <MathWordClientWrapper gradeStr={grade} />;
 }

@@ -20,11 +20,13 @@ export function WordProblem({
   isCorrect,
 }: WordProblemProps) {
   const [input, setInput] = useState("");
+  const [showHint, setShowHint] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!answered) {
       setInput("");
+      setShowHint(false);
       inputRef.current?.focus();
     }
   }, [problem.id, answered]);
@@ -50,13 +52,21 @@ export function WordProblem({
         </p>
       </Card>
 
-      {problem.expression && !answered && (
-        <p className="text-sm text-center text-purple-400">
-          しき: {problem.expression}
-        </p>
-      )}
-
       <div className="flex flex-col items-center gap-4">
+        {problem.expression && !answered && (
+          showHint ? (
+            <p className="text-sm text-purple-400">
+              しき: {problem.expression}
+            </p>
+          ) : (
+            <button
+              onClick={() => setShowHint(true)}
+              className="text-sm text-purple-400 underline hover:text-purple-500 transition-colors"
+            >
+              ヒントをみる
+            </button>
+          )
+        )}
         <div className="flex items-center gap-2">
           <motion.input
             ref={inputRef}
