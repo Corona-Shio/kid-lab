@@ -81,6 +81,8 @@ export function selectAdaptiveProblems<T extends Problem>(
   getTopicId: (p: T) => string,
   sessionSize = 10,
 ): T[] {
+  if (sessionSize <= 0 || problems.length === 0) return [];
+
   const QUOTA: Record<MasteryLevel, number> = {
     new: 2,
     learning: 4,
@@ -115,16 +117,18 @@ export function selectAdaptiveProblems<T extends Problem>(
   // 不足分をランダムで補完
   if (selected.length < sessionSize) {
     const all = shuffle(problems);
-    const selectedIds = new Set(selected.map(getTopicId));
+    const selectedSet = new Set(selected);
     for (const p of all) {
       if (selected.length >= sessionSize) break;
-      if (!selectedIds.has(getTopicId(p))) {
+      if (!selectedSet.has(p)) {
         selected.push(p);
+        selectedSet.add(p);
       }
     }
   }
 
-  return shuffle(selected).slice(0, sessionSize);
+  const finalized = shuffle(selected).slice(0, sessionSize);
+  return avoidConsecutiveDuplicates(finalized);
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -134,4 +138,38 @@ function shuffle<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+function avoidConsecutiveDuplicates<T extends Problem>(problems: T[]): T[] {
+  const arranged = [...problems];
+
+  for (let i = 1; i < arranged.length; i += 1) {
+    if (getProblemSignature(arranged[i]) !== getProblemSignature(arranged[i - 1])) continue;
+
+    let swapIndex = -1;
+    for (let j = i + 1; j < arranged.length; j += 1) {
+      if (getProblemSignature(arranged[j]) !== getProblemSignature(arranged[i - 1])) {
+        swapIndex = j;
+        break;
+      }
+    }
+    if (swapIndex !== -1) {
+      [arranged[i], arranged[swapIndex]] = [arranged[swapIndex], arranged[i]];
+    }
+  }
+
+  return arranged;
+}
+
+function getProblemSignature(problem: Problem): string {
+  if (problem.type === "calc") {
+    return `calc:${problem.expression}:${problem.answer}`;
+  }
+  if (problem.type === "word") {
+    return `word:${problem.text}:${problem.question}:${problem.answer}:${problem.unit_label}`;
+  }
+  if (problem.type === "fill") {
+    return `fill:${problem.character}:${problem.sentence}:${problem.answer}`;
+  }
+  return `choice:${problem.character}:${problem.question}:${problem.choices.join("|")}:${problem.answer}`;
 }

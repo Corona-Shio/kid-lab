@@ -2,12 +2,13 @@
 
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import type { Grade, KanjiChoiceProblem } from "@/types/problem";
+import type { Grade, KanjiChoiceProblem, KanjiEntry } from "@/types/problem";
 import { GRADE1_KANJI } from "@/data/kanji/grade1";
 import { GRADE2_KANJI } from "@/data/kanji/grade2";
 import { GRADE3_KANJI } from "@/data/kanji/grade3";
 import { generateChoiceProblem } from "@/data/kanji/generator";
 import { selectAdaptiveProblems } from "@/lib/adaptive";
+import { pickRandom } from "@/lib/utils";
 import { useProgress } from "@/hooks/useProgress";
 import { useProblemSession } from "@/hooks/useProblemSession";
 import { ProblemShell } from "@/components/problem/ProblemShell";
@@ -17,6 +18,53 @@ import { SessionSummary } from "@/components/feedback/SessionSummary";
 import { StarBurst } from "@/components/feedback/StarBurst";
 
 const KANJI_BY_GRADE = { 1: GRADE1_KANJI, 2: GRADE2_KANJI, 3: GRADE3_KANJI };
+const SESSION_SIZE = 10;
+const MAX_UNIQUE_ATTEMPTS_PER_SLOT = 8;
+
+function getChoiceSignature(problem: KanjiChoiceProblem): string {
+  return `${problem.question}:${problem.choices.join("|")}:${problem.answer}`;
+}
+
+function addInstanceIds(problems: KanjiChoiceProblem[]): KanjiChoiceProblem[] {
+  return problems.map((problem, index) => ({
+    ...problem,
+    id: `${problem.id}:instance:${index}`,
+  }));
+}
+
+function buildChoiceProblemPool(entries: readonly KanjiEntry[], sessionSize: number): KanjiChoiceProblem[] {
+  if (entries.length === 0 || sessionSize <= 0) return [];
+
+  const pool: KanjiChoiceProblem[] = [];
+  const seenSignatures = new Set<string>();
+
+  const tryPush = (problem: KanjiChoiceProblem, allowDuplicate = false): boolean => {
+    const signature = getChoiceSignature(problem);
+    if (!allowDuplicate && seenSignatures.has(signature)) return false;
+    seenSignatures.add(signature);
+    pool.push(problem);
+    return true;
+  };
+
+  for (const entry of entries) {
+    tryPush(generateChoiceProblem(entry, entries));
+  }
+
+  let attempts = 0;
+  const maxAttempts = sessionSize * entries.length * MAX_UNIQUE_ATTEMPTS_PER_SLOT;
+  while (pool.length < sessionSize && attempts < maxAttempts) {
+    attempts += 1;
+    const entry = pickRandom(entries);
+    tryPush(generateChoiceProblem(entry, entries));
+  }
+
+  while (pool.length < sessionSize) {
+    const entry = pickRandom(entries);
+    tryPush(generateChoiceProblem(entry, entries), true);
+  }
+
+  return addInstanceIds(pool);
+}
 
 export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
@@ -25,12 +73,12 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
   const { progress, recordAnswer, recordSession } = useProgress(grade);
 
   const allEntries = KANJI_BY_GRADE[grade] ?? GRADE1_KANJI;
-  const allProblems = allEntries.map((e) => generateChoiceProblem(e, allEntries));
+  const allProblems = buildChoiceProblemPool(allEntries, SESSION_SIZE);
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
     (p) => `kanji:${(p as KanjiChoiceProblem).character}`,
-    10,
+    SESSION_SIZE,
   );
 
   const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =

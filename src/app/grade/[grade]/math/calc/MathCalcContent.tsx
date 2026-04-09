@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import type { Grade, MathCalcProblem } from "@/types/problem";
+import type { Grade, MathCalcProblem, MathUnit } from "@/types/problem";
 import { UNITS_BY_GRADE } from "@/types/problem";
 import { generateCalcProblems } from "@/data/math/generators";
 import { selectAdaptiveProblems } from "@/lib/adaptive";
@@ -14,6 +14,24 @@ import { AnswerFeedback } from "@/components/feedback/AnswerFeedback";
 import { SessionSummary } from "@/components/feedback/SessionSummary";
 import { StarBurst } from "@/components/feedback/StarBurst";
 
+const SESSION_SIZE = 10;
+const INITIAL_BATCH_PER_UNIT = 4;
+
+function buildCalcProblemPool(units: readonly MathUnit[], sessionSize: number): MathCalcProblem[] {
+  if (units.length === 0 || sessionSize <= 0) return [];
+
+  const pool: MathCalcProblem[] = [];
+  let isInitialBatch = true;
+
+  while (pool.length < sessionSize) {
+    const batchSize = isInitialBatch ? INITIAL_BATCH_PER_UNIT : 1;
+    pool.push(...units.flatMap((unit) => generateCalcProblems(unit, batchSize)));
+    isInitialBatch = false;
+  }
+
+  return pool;
+}
+
 export default function MathCalcContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
   const router = useRouter();
@@ -21,12 +39,12 @@ export default function MathCalcContent({ gradeStr }: { gradeStr: string }) {
   const { progress, recordAnswer, recordSession } = useProgress(grade);
 
   const units = UNITS_BY_GRADE[grade] ?? UNITS_BY_GRADE[1];
-  const allProblems = units.flatMap((unit) => generateCalcProblems(unit, 4));
+  const allProblems = buildCalcProblemPool(units, SESSION_SIZE);
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
     (p) => `math:${(p as MathCalcProblem).unit}`,
-    10,
+    SESSION_SIZE,
   );
 
   const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =

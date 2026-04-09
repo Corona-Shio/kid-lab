@@ -132,7 +132,7 @@ export function generateFillProblem(entry: KanjiEntry): KanjiFillProblem {
 
 export function generateChoiceProblem(
   entry: KanjiEntry,
-  allEntries: KanjiEntry[],
+  allEntries: readonly KanjiEntry[],
 ): KanjiChoiceProblem {
   const example = pickRandom(entry.examples);
   const correctReading = getExampleReading(entry, example.word, example.reading, example.targetReading);

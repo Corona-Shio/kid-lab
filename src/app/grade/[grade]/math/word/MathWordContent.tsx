@@ -14,6 +14,24 @@ import { AnswerFeedback } from "@/components/feedback/AnswerFeedback";
 import { SessionSummary } from "@/components/feedback/SessionSummary";
 import { StarBurst } from "@/components/feedback/StarBurst";
 
+const SESSION_SIZE = 10;
+const INITIAL_BATCH_PER_UNIT = 4;
+
+function buildWordProblemPool(units: readonly MathWordProblem["unit"][], sessionSize: number): MathWordProblem[] {
+  if (units.length === 0 || sessionSize <= 0) return [];
+
+  const pool: MathWordProblem[] = [];
+  let isInitialBatch = true;
+
+  while (pool.length < sessionSize) {
+    const batchSize = isInitialBatch ? INITIAL_BATCH_PER_UNIT : 1;
+    pool.push(...units.flatMap((unit) => generateWordProblems(unit, batchSize)));
+    isInitialBatch = false;
+  }
+
+  return pool;
+}
+
 export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
   const router = useRouter();
@@ -21,12 +39,12 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
   const { progress, recordAnswer, recordSession } = useProgress(grade);
 
   const units = UNITS_BY_GRADE[grade] ?? UNITS_BY_GRADE[1];
-  const allProblems = units.flatMap((unit) => generateWordProblems(unit, 4));
+  const allProblems = buildWordProblemPool(units, SESSION_SIZE);
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
     (p) => `math:${(p as MathWordProblem).unit}`,
-    Math.min(10, allProblems.length),
+    SESSION_SIZE,
   );
 
   const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
