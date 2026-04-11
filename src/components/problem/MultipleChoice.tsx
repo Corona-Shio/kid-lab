@@ -1,18 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import type { KanjiChoiceProblem } from "@/types/problem";
 import { Card } from "@/components/ui/Card";
 import type { RubyTerm } from "@/lib/ruby";
-import { renderRubyText, renderRubyTextWithHiddenTerm } from "@/lib/ruby";
+import { renderRubyTextWithHiddenTerm } from "@/lib/ruby";
 
 interface MultipleChoiceProps {
   problem: KanjiChoiceProblem;
   rubyDictionary: RubyTerm[];
   onAnswer: (isCorrect: boolean, userAnswer: string) => void;
   answered: boolean;
-  isCorrect?: boolean;
 }
 
 export function MultipleChoice({
@@ -23,6 +22,10 @@ export function MultipleChoice({
 }: MultipleChoiceProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
+  function toKatakana(text: string): string {
+    return text.replace(/[ぁ-ん]/g, (char) => String.fromCharCode(char.charCodeAt(0) + 0x60));
+  }
+
   function handleSelect(index: number) {
     if (answered) return;
     setSelected(index);
@@ -30,14 +33,35 @@ export function MultipleChoice({
     onAnswer(correct, problem.choices[index]);
   }
 
-  const questionText =
-    problem.answer === problem.character
-      ? renderRubyText(problem.question, rubyDictionary)
-      : renderRubyTextWithHiddenTerm(
-          problem.question,
-          rubyDictionary,
-          { term: problem.character, reading: problem.answer },
-        );
+  const questionText = useMemo(() => {
+    if (problem.mode === "character") {
+      const readingInKatakana = toKatakana(problem.targetReading);
+      const sentenceNodes = renderRubyTextWithHiddenTerm(
+        problem.sentence,
+        rubyDictionary,
+        { term: problem.character, reading: problem.targetReading },
+        (_text, key) => <Fragment key={key}>{readingInKatakana}</Fragment>,
+      );
+
+      return (
+        <>
+          「{sentenceNodes}」の「{readingInKatakana}」にあうかんじはどれ？
+        </>
+      );
+    }
+
+    const sentenceNodes = renderRubyTextWithHiddenTerm(
+      problem.sentence,
+      rubyDictionary,
+      { term: problem.character, reading: problem.targetReading },
+    );
+
+    return (
+      <>
+        「{sentenceNodes}」の「{problem.character}」のよみかたはどれ？
+      </>
+    );
+  }, [problem, rubyDictionary]);
 
   return (
     <div className="flex flex-col gap-5">

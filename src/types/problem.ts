@@ -35,6 +35,9 @@ export interface KanjiChoiceProblem {
   id: string;
   character: string;
   question: string;     // 質問文（例: "「山」の読み方はどれ？"）
+  sentence: string;     // 出題に使う文（例: "山田さんは元気です。"）
+  targetReading: string; // この文脈での正しい読み
+  mode: "reading" | "character";
   choices: string[];    // 4択
   answerIndex: number;  // 正解のインデックス (0-3)
   answer: string;       // 正解テキスト

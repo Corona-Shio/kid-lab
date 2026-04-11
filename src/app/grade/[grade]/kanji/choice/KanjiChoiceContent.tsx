@@ -104,7 +104,6 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
           rubyDictionary={rubyDictionary}
           onAnswer={handleAnswer}
           answered={answered}
-          isCorrect={isCorrect}
         />
         {answered && (
           <AnswerFeedback
