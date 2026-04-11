@@ -81,10 +81,10 @@ export function MultipleChoice({
             className={[
               "min-h-[80px] rounded-3xl border-4 font-bold text-3xl shadow transition-all duration-200",
               answered
-                ? i === problem.answerIndex
-                  ? "bg-emerald-50 border-emerald-400 text-emerald-700 shadow-emerald-200"
-                  : i === selected
-                  ? "bg-rose-50 border-rose-400 text-rose-600 shadow-rose-200"
+                ? i === selected
+                  ? i === problem.answerIndex
+                    ? "bg-emerald-50 border-emerald-400 text-emerald-700 shadow-emerald-200"
+                    : "bg-rose-50 border-rose-400 text-rose-600 shadow-rose-200"
                   : "bg-white border-gray-200 text-gray-400"
                 : "bg-white border-purple-200 text-gray-700 hover:border-purple-400 hover:shadow-purple-200 shadow-purple-100 cursor-pointer",
             ].join(" ")}
