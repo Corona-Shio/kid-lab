@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import type { KanjiChoiceProblem } from "@/types/problem";
 import { Card } from "@/components/ui/Card";
 import type { RubyTerm } from "@/lib/ruby";
-import { renderRubyText } from "@/lib/ruby";
+import { renderRubyText, renderRubyTextWithHiddenTerm } from "@/lib/ruby";
 
 interface MultipleChoiceProps {
   problem: KanjiChoiceProblem;
@@ -20,7 +20,6 @@ export function MultipleChoice({
   rubyDictionary,
   onAnswer,
   answered,
-  isCorrect,
 }: MultipleChoiceProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -31,21 +30,19 @@ export function MultipleChoice({
     onAnswer(correct, problem.choices[index]);
   }
 
-  function getChoiceVariant(index: number): "default" | "success" | "error" | "highlight" {
-    if (!answered) return "default";
-    if (index === problem.answerIndex) return "success";
-    if (index === selected && selected !== problem.answerIndex) return "error";
-    return "default";
-  }
+  const questionText =
+    problem.answer === problem.character
+      ? renderRubyText(problem.question, rubyDictionary)
+      : renderRubyTextWithHiddenTerm(
+          problem.question,
+          rubyDictionary,
+          { term: problem.character, reading: problem.answer },
+        );
 
   return (
     <div className="flex flex-col gap-5">
       <Card>
-        <p className="text-2xl font-bold text-gray-700 text-center py-2">
-          {renderRubyText(problem.question, rubyDictionary, {
-            excludeTerms: [problem.character, problem.answer],
-          })}
-        </p>
+        <p className="text-2xl font-bold text-gray-700 text-center py-2">{questionText}</p>
       </Card>
 
       <div className="grid grid-cols-2 gap-3">

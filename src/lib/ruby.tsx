@@ -6,6 +6,11 @@ export interface RubyTerm {
   reading: string;
 }
 
+export interface HiddenRubyTerm {
+  term: string;
+  reading: string;
+}
+
 interface RenderRubyTextOptions {
   excludeTerms?: string[];
 }
@@ -184,6 +189,138 @@ function toRubyChunks(surface: string, reading: string): RubyChunk[] {
   return rubyChunks;
 }
 
+function renderRubyChunks(chunks: RubyChunk[], keyBase: string): ReactNode[] {
+  return chunks.map((chunk, index) => {
+    if (chunk.type === "text") return chunk.text;
+    return (
+      <ruby key={`${keyBase}:${index}`} className="kid-ruby">
+        {chunk.text}
+        <rt className="kid-ruby-rt">{chunk.reading}</rt>
+      </ruby>
+    );
+  });
+}
+
+function splitReadingByHiddenTerm(
+  surface: string,
+  reading: string,
+  hiddenTerm: HiddenRubyTerm,
+): { beforeSurface: string; beforeReading: string; afterSurface: string; afterReading: string } | null {
+  const hiddenIndex = surface.indexOf(hiddenTerm.term);
+  if (hiddenIndex === -1) return null;
+
+  const normalizedReading = normalizeReading(reading);
+  const hiddenReading = normalizeReading(hiddenTerm.reading);
+  if (!hiddenReading) return null;
+
+  const readingPositions: number[] = [];
+  let searchFrom = 0;
+  while (searchFrom <= normalizedReading.length) {
+    const position = normalizedReading.indexOf(hiddenReading, searchFrom);
+    if (position === -1) break;
+    readingPositions.push(position);
+    searchFrom = position + 1;
+  }
+
+  if (readingPositions.length === 0) return null;
+
+  const beforeSurface = surface.slice(0, hiddenIndex);
+  const afterSurface = surface.slice(hiddenIndex + hiddenTerm.term.length);
+
+  let readingIndex: number | null = null;
+  if (readingPositions.length === 1) {
+    [readingIndex] = readingPositions;
+  } else if (beforeSurface === "") {
+    readingIndex = readingPositions.find((position) => position === 0) ?? null;
+  } else if (afterSurface === "") {
+    readingIndex =
+      readingPositions.find(
+        (position) => position + hiddenReading.length === normalizedReading.length,
+      ) ?? null;
+  }
+
+  if (readingIndex === null) return null;
+
+  return {
+    beforeSurface,
+    beforeReading: normalizedReading.slice(0, readingIndex),
+    afterSurface,
+    afterReading: normalizedReading.slice(readingIndex + hiddenReading.length),
+  };
+}
+
+export function renderRubyTextWithHiddenTerm(
+  text: string,
+  dictionary: RubyTerm[],
+  hiddenTerm: HiddenRubyTerm,
+  renderHidden: (text: string, key: string) => ReactNode = (value) => value,
+): ReactNode[] {
+  if (!text) return [text];
+  if (dictionary.length === 0) return [text];
+
+  const nodes: ReactNode[] = [];
+  let index = 0;
+
+  while (index < text.length) {
+    const match = dictionary.find((item) => text.startsWith(item.term, index));
+
+    if (!match) {
+      if (text.startsWith(hiddenTerm.term, index)) {
+        nodes.push(renderHidden(hiddenTerm.term, `hidden:${index}`));
+        index += hiddenTerm.term.length;
+        continue;
+      }
+
+      nodes.push(text[index]);
+      index += 1;
+      continue;
+    }
+
+    if (!match.term.includes(hiddenTerm.term)) {
+      nodes.push(...renderRubyChunks(toRubyChunks(match.term, match.reading), `${match.term}:${index}`));
+      index += match.term.length;
+      continue;
+    }
+
+    const split = splitReadingByHiddenTerm(match.term, match.reading, hiddenTerm);
+    if (!split) {
+      const hiddenIndex = match.term.indexOf(hiddenTerm.term);
+      if (hiddenIndex === -1) {
+        nodes.push(...renderRubyChunks(toRubyChunks(match.term, match.reading), `${match.term}:${index}`));
+      } else {
+        const beforeSurface = match.term.slice(0, hiddenIndex);
+        const afterSurface = match.term.slice(hiddenIndex + hiddenTerm.term.length);
+        if (beforeSurface) nodes.push(beforeSurface);
+        nodes.push(renderHidden(hiddenTerm.term, `hidden:${index}`));
+        if (afterSurface) nodes.push(afterSurface);
+      }
+      index += match.term.length;
+      continue;
+    }
+
+    if (split.beforeSurface) {
+      nodes.push(
+        ...renderRubyChunks(
+          toRubyChunks(split.beforeSurface, split.beforeReading),
+          `${match.term}:${index}:before`,
+        ),
+      );
+    }
+    nodes.push(renderHidden(hiddenTerm.term, `hidden:${index}`));
+    if (split.afterSurface) {
+      nodes.push(
+        ...renderRubyChunks(
+          toRubyChunks(split.afterSurface, split.afterReading),
+          `${match.term}:${index}:after`,
+        ),
+      );
+    }
+    index += match.term.length;
+  }
+
+  return nodes;
+}
+
 export function renderRubyText(
   text: string,
   dictionary: RubyTerm[],
@@ -219,18 +356,7 @@ export function renderRubyText(
     }
 
     const rubyChunks = toRubyChunks(match.term, match.reading);
-    rubyChunks.forEach((chunk, chunkIndex) => {
-      if (chunk.type === "text") {
-        nodes.push(chunk.text);
-        return;
-      }
-      nodes.push(
-        <ruby key={`${match.term}:${index}:${chunkIndex}`} className="kid-ruby">
-          {chunk.text}
-          <rt className="kid-ruby-rt">{chunk.reading}</rt>
-        </ruby>,
-      );
-    });
+    nodes.push(...renderRubyChunks(rubyChunks, `${match.term}:${index}`));
     index += match.term.length;
   }
 

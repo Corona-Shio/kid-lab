@@ -6,7 +6,7 @@ import type { KanjiFillProblem } from "@/types/problem";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import type { RubyTerm } from "@/lib/ruby";
-import { renderRubyText } from "@/lib/ruby";
+import { renderRubyText, renderRubyTextWithHiddenTerm } from "@/lib/ruby";
 
 interface FillInBlankProps {
   problem: KanjiFillProblem;
@@ -26,24 +26,23 @@ export function FillInBlank({
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function renderSentenceWithHighlight(sentence: string, character: string) {
-    const index = sentence.indexOf(character);
-    if (index === -1) {
-      return renderRubyText(sentence, rubyDictionary, {
-        excludeTerms: [character],
-      });
+  function renderSentenceWithHighlight(sentence: string, character: string, reading: string) {
+    if (!sentence.includes(character)) {
+      return renderRubyText(sentence, rubyDictionary);
     }
 
-    const before = sentence.slice(0, index);
-    const after = sentence.slice(index + character.length);
-    return (
-      <>
-        {renderRubyText(before, rubyDictionary, { excludeTerms: [character] })}
-        <span className="inline-flex px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 font-bold">
-          {character}
+    return renderRubyTextWithHiddenTerm(
+      sentence,
+      rubyDictionary,
+      { term: character, reading },
+      (text, key) => (
+        <span
+          key={key}
+          className="inline-flex px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 font-bold"
+        >
+          {text}
         </span>
-        {renderRubyText(after, rubyDictionary, { excludeTerms: [character] })}
-      </>
+      ),
     );
   }
 
@@ -67,7 +66,7 @@ export function FillInBlank({
           ぶんのなかの ことばを よんでみよう
         </p>
         <p className="text-xl text-gray-700 leading-relaxed text-center py-2">
-          {renderSentenceWithHighlight(problem.sentence, problem.character)}
+          {renderSentenceWithHighlight(problem.sentence, problem.character, problem.answer)}
         </p>
       </Card>
 
