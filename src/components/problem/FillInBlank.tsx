@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import type { KanjiFillProblem } from "@/types/problem";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import type { RubyTerm } from "@/lib/ruby";
+import { renderRubyText } from "@/lib/ruby";
 
 interface FillInBlankProps {
   problem: KanjiFillProblem;
+  rubyDictionary: RubyTerm[];
   onAnswer: (isCorrect: boolean, userAnswer: string) => void;
   answered: boolean;
   isCorrect?: boolean;
@@ -15,6 +18,7 @@ interface FillInBlankProps {
 
 export function FillInBlank({
   problem,
+  rubyDictionary,
   onAnswer,
   answered,
   isCorrect,
@@ -24,17 +28,21 @@ export function FillInBlank({
 
   function renderSentenceWithHighlight(sentence: string, character: string) {
     const index = sentence.indexOf(character);
-    if (index === -1) return sentence;
+    if (index === -1) {
+      return renderRubyText(sentence, rubyDictionary, {
+        excludeTerms: [character],
+      });
+    }
 
     const before = sentence.slice(0, index);
     const after = sentence.slice(index + character.length);
     return (
       <>
-        {before}
+        {renderRubyText(before, rubyDictionary, { excludeTerms: [character] })}
         <span className="inline-flex px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 font-bold">
           {character}
         </span>
-        {after}
+        {renderRubyText(after, rubyDictionary, { excludeTerms: [character] })}
       </>
     );
   }

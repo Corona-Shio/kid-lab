@@ -4,9 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import type { KanjiChoiceProblem } from "@/types/problem";
 import { Card } from "@/components/ui/Card";
+import type { RubyTerm } from "@/lib/ruby";
+import { renderRubyText } from "@/lib/ruby";
 
 interface MultipleChoiceProps {
   problem: KanjiChoiceProblem;
+  rubyDictionary: RubyTerm[];
   onAnswer: (isCorrect: boolean, userAnswer: string) => void;
   answered: boolean;
   isCorrect?: boolean;
@@ -14,6 +17,7 @@ interface MultipleChoiceProps {
 
 export function MultipleChoice({
   problem,
+  rubyDictionary,
   onAnswer,
   answered,
   isCorrect,
@@ -38,7 +42,9 @@ export function MultipleChoice({
     <div className="flex flex-col gap-5">
       <Card>
         <p className="text-2xl font-bold text-gray-700 text-center py-2">
-          {problem.question}
+          {renderRubyText(problem.question, rubyDictionary, {
+            excludeTerms: [problem.character, problem.answer],
+          })}
         </p>
       </Card>
 

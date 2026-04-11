@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import type { Grade, KanjiChoiceProblem } from "@/types/problem";
 import { GRADE1_KANJI } from "@/data/kanji/grade1";
@@ -15,6 +15,7 @@ import { MultipleChoice } from "@/components/problem/MultipleChoice";
 import { AnswerFeedback } from "@/components/feedback/AnswerFeedback";
 import { SessionSummary } from "@/components/feedback/SessionSummary";
 import { StarBurst } from "@/components/feedback/StarBurst";
+import { buildRubyDictionaryFromKanjiEntries } from "@/lib/ruby";
 
 const KANJI_BY_GRADE = { 1: GRADE1_KANJI, 2: GRADE2_KANJI, 3: GRADE3_KANJI };
 
@@ -25,6 +26,7 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
   const { progress, recordAnswer, recordSession } = useProgress(grade);
 
   const allEntries = KANJI_BY_GRADE[grade] ?? GRADE1_KANJI;
+  const rubyDictionary = useMemo(() => buildRubyDictionaryFromKanjiEntries(allEntries), [allEntries]);
   const allProblems = allEntries.map((e) => generateChoiceProblem(e, allEntries));
   const selected = selectAdaptiveProblems(
     allProblems,
@@ -95,6 +97,7 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
         <MultipleChoice
           key={`${state.currentIndex}-${state.retryCount}`}
           problem={problem}
+          rubyDictionary={rubyDictionary}
           onAnswer={handleAnswer}
           answered={answered}
           isCorrect={isCorrect}

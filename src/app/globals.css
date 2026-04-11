@@ -33,3 +33,14 @@ button, a {
   background: #c4b5fd;
   border-radius: 999px;
 }
+
+ruby.kid-ruby {
+  ruby-align: center;
+}
+
+ruby.kid-ruby .kid-ruby-rt {
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #7c3aed;
+}

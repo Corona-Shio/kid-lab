@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import type { MathWordProblem } from "@/types/problem";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { MATH_RUBY_DICTIONARY, renderRubyText } from "@/lib/ruby";
 
 interface WordProblemProps {
   problem: MathWordProblem;
@@ -42,13 +43,13 @@ export function WordProblem({
     <div className="flex flex-col gap-5">
       <Card>
         <p className="text-xl font-bold text-gray-700 leading-relaxed">
-          {problem.text}
+          {renderRubyText(problem.text, MATH_RUBY_DICTIONARY)}
         </p>
       </Card>
 
       <Card variant={answered ? (isCorrect ? "success" : "error") : "highlight"}>
         <p className="text-xl font-bold text-orange-600 text-center">
-          {problem.question}
+          {renderRubyText(problem.question, MATH_RUBY_DICTIONARY)}
         </p>
       </Card>
 
