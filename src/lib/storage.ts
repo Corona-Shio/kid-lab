@@ -33,7 +33,11 @@ function computeTotalStars(sessions: SessionRecord[]): number {
 }
 
 function normalizeProblemResults(problemResults: SessionRecord["problemResults"] | undefined): SessionProblemResult[] {
-  return Array.isArray(problemResults) ? problemResults : [];
+  if (!Array.isArray(problemResults)) return [];
+  return problemResults.map((result) => ({
+    ...result,
+    problemKey: result.problemKey ?? result.problemId,
+  }));
 }
 
 function normalizeSessions(sessions: SessionRecord[] | undefined): SessionRecord[] {
@@ -141,7 +145,7 @@ function updateWeakTopics(
       }
     }
 
-    if (result.finalAttempt === "correct") {
+    if (result.firstAttempt === "correct") {
       record = {
         ...record,
         lastCorrectAt: session.completedAt,

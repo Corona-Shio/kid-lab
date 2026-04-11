@@ -22,15 +22,24 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
 
   const units = UNITS_BY_GRADE[grade] ?? UNITS_BY_GRADE[1];
   const allProblems = units.flatMap((unit) => generateWordProblems(unit, 4));
+  const getTopicId = useCallback((p: MathWordProblem) => `math:${p.unit}`, []);
+  const getProblemKey = useCallback(
+    (p: MathWordProblem) => `word:${p.text}::${p.question}`,
+    [],
+  );
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
-    (p) => `math:${(p as MathWordProblem).unit}`,
+    getTopicId,
     Math.min(10, allProblems.length),
+    {
+      sessions: progress.sessions,
+      getProblemKey,
+    },
   );
 
   const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
-    useProblemSession(selected, progress.masteries, (p) => `math:${(p as MathWordProblem).unit}`, recordAnswer);
+    useProblemSession(selected, progress.masteries, getTopicId, recordAnswer, getProblemKey);
 
   const [starBurst, setStarBurst] = useState(false);
 

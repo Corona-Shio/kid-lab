@@ -22,15 +22,21 @@ export default function MathCalcContent({ gradeStr }: { gradeStr: string }) {
 
   const units = UNITS_BY_GRADE[grade] ?? UNITS_BY_GRADE[1];
   const allProblems = units.flatMap((unit) => generateCalcProblems(unit, 4));
+  const getTopicId = useCallback((p: MathCalcProblem) => `math:${p.unit}`, []);
+  const getProblemKey = useCallback((p: MathCalcProblem) => `calc:${p.expression}`, []);
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
-    (p) => `math:${(p as MathCalcProblem).unit}`,
+    getTopicId,
     10,
+    {
+      sessions: progress.sessions,
+      getProblemKey,
+    },
   );
 
   const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
-    useProblemSession(selected, progress.masteries, (p) => `math:${(p as MathCalcProblem).unit}`, recordAnswer);
+    useProblemSession(selected, progress.masteries, getTopicId, recordAnswer, getProblemKey);
 
   const [starBurst, setStarBurst] = useState(false);
 

@@ -16,6 +16,7 @@ export interface TopicMastery {
 
 export interface SessionProblemResult {
   problemId: string;
+  problemKey: string;
   topicId: string;
   firstAttempt: AnswerOutcome;
   finalAttempt: AnswerOutcome;

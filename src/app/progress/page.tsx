@@ -8,16 +8,26 @@ import { Badge } from "@/components/ui/Badge";
 import { StarRating } from "@/components/ui/StarRating";
 import { Card } from "@/components/ui/Card";
 import { loadProgress } from "@/lib/storage";
+import { buildKanjiPerformanceRows } from "@/lib/progressStats";
 import { calcAccuracy, calcStars } from "@/lib/scoring";
 import { formatDate } from "@/lib/utils";
 import type { Grade } from "@/types/problem";
 import { GRADE_THEMES } from "@/types/common";
+import { GRADE1_KANJI } from "@/data/kanji/grade1";
+import { GRADE2_KANJI } from "@/data/kanji/grade2";
+import { GRADE3_KANJI } from "@/data/kanji/grade3";
 
 const GRADES: Grade[] = [1, 2, 3];
+const KANJI_BY_GRADE = {
+  1: GRADE1_KANJI,
+  2: GRADE2_KANJI,
+  3: GRADE3_KANJI,
+} as const;
 
 export default function ProgressPage() {
   const [selectedGrade, setSelectedGrade] = useState<Grade>(1);
   const progress = loadProgress(selectedGrade);
+  const kanjiRows = buildKanjiPerformanceRows(KANJI_BY_GRADE[selectedGrade], progress);
 
   const accuracy = calcAccuracy(progress.sessions);
   const recentSessions = [...progress.sessions].reverse().slice(0, 10);
@@ -94,6 +104,31 @@ export default function ProgressPage() {
             </div>
           </Card>
         )}
+
+        <Card className="mb-6">
+          <p className="font-bold text-gray-700 mb-3">🈶 かんじべつ せいせき</p>
+          <div className="grid grid-cols-[minmax(0,1fr)_88px_88px] gap-2 px-2 pb-2 text-xs font-bold text-gray-500">
+            <span>かんじ</span>
+            <span className="text-right">かいとう</span>
+            <span className="text-right">せいかいりつ</span>
+          </div>
+          <div className="max-h-80 overflow-y-auto pr-1">
+            <div className="flex flex-col gap-1">
+              {kanjiRows.map((row) => (
+                <div
+                  key={row.character}
+                  className="grid grid-cols-[minmax(0,1fr)_88px_88px] items-center gap-2 rounded-xl border border-gray-100 px-2 py-1.5"
+                >
+                  <p className="text-xl font-bold text-gray-700">{row.character}</p>
+                  <p className="text-right text-sm font-bold text-gray-600">{row.attempts}回</p>
+                  <p className="text-right text-sm font-bold text-purple-600">
+                    {row.accuracy === null ? "--" : `${row.accuracy}%`}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
 
         {/* バッジ */}
         {progress.badges.length > 0 && (

@@ -182,15 +182,18 @@ function getExampleReading(
   return getContextReading(entry, exampleReading);
 }
 
-export function generateFillProblem(entry: KanjiEntry): KanjiFillProblem {
-  const example = pickRandom(getSelectableExamples(entry));
+function createFillProblem(
+  entry: KanjiEntry,
+  example: KanjiExample,
+  exampleIndex: number,
+): KanjiFillProblem {
   // □を漢字に戻して例文を表示する（読み方を答えさせる）
   const sentence = example.sentence.replace("□", entry.character);
   const reading = getExampleReading(entry, example.word, example.reading, example.targetReading);
 
   return {
     type: "fill",
-    id: `fill:${entry.character}`,
+    id: `fill:${entry.character}:${exampleIndex}`,
     character: entry.character,
     sentence,
     answer: reading,
@@ -198,18 +201,19 @@ export function generateFillProblem(entry: KanjiEntry): KanjiFillProblem {
   };
 }
 
-export function generateChoiceProblem(
+function createChoiceProblem(
   entry: KanjiEntry,
   allEntries: KanjiEntry[],
+  example: KanjiExample,
+  exampleIndex: number,
+  mode: KanjiChoiceProblem["mode"],
 ): KanjiChoiceProblem {
-  const example = pickRandom(getSelectableExamples(entry));
   const correctReading = getExampleReading(entry, example.word, example.reading, example.targetReading);
   const readingInKatakana = toKatakana(correctReading);
   const sentenceWithKanji = example.sentence.replace("□", entry.character);
   const sentenceWithReading = example.sentence.replace("□", readingInKatakana);
-  const readingMode = Math.random() < 0.5;
 
-  if (readingMode) {
+  if (mode === "reading") {
     // 読みモード：文中の漢字の読みを選ぶ
     const distractorReadings = shuffle(
       allEntries
@@ -223,7 +227,7 @@ export function generateChoiceProblem(
 
     return {
       type: "choice",
-      id: `choice:${entry.character}`,
+      id: `choice:${entry.character}:${exampleIndex}:reading`,
       character: entry.character,
       question: `「${sentenceWithKanji}」の「${entry.character}」のよみかたはどれ？`,
       sentence: sentenceWithKanji,
@@ -244,7 +248,7 @@ export function generateChoiceProblem(
 
     return {
       type: "choice",
-      id: `choice:${entry.character}`,
+      id: `choice:${entry.character}:${exampleIndex}:character`,
       character: entry.character,
       question: `「${sentenceWithReading}」の「${readingInKatakana}」にあうかんじはどれ？`,
       sentence: sentenceWithKanji,
@@ -255,4 +259,31 @@ export function generateChoiceProblem(
       answer: entry.character,
     };
   }
+}
+
+export function generateFillProblems(entry: KanjiEntry): KanjiFillProblem[] {
+  return getSelectableExamples(entry).map((example, index) => createFillProblem(entry, example, index));
+}
+
+export function generateChoiceProblems(
+  entry: KanjiEntry,
+  allEntries: KanjiEntry[],
+): KanjiChoiceProblem[] {
+  return getSelectableExamples(entry).flatMap((example, index) => [
+    createChoiceProblem(entry, allEntries, example, index, "reading"),
+    createChoiceProblem(entry, allEntries, example, index, "character"),
+  ]);
+}
+
+// 既存API互換: ランダム1問を返す
+export function generateFillProblem(entry: KanjiEntry): KanjiFillProblem {
+  return pickRandom(generateFillProblems(entry));
+}
+
+// 既存API互換: ランダム1問を返す
+export function generateChoiceProblem(
+  entry: KanjiEntry,
+  allEntries: KanjiEntry[],
+): KanjiChoiceProblem {
+  return pickRandom(generateChoiceProblems(entry, allEntries));
 }

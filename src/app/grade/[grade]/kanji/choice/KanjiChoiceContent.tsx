@@ -6,7 +6,7 @@ import type { Grade, KanjiChoiceProblem } from "@/types/problem";
 import { GRADE1_KANJI } from "@/data/kanji/grade1";
 import { GRADE2_KANJI } from "@/data/kanji/grade2";
 import { GRADE3_KANJI } from "@/data/kanji/grade3";
-import { generateChoiceProblem } from "@/data/kanji/generator";
+import { generateChoiceProblems } from "@/data/kanji/generator";
 import { selectAdaptiveProblems } from "@/lib/adaptive";
 import { useProgress } from "@/hooks/useProgress";
 import { useProblemSession } from "@/hooks/useProblemSession";
@@ -31,16 +31,26 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
     () => buildRubyDictionaryFromKanjiEntries(ALL_KANJI_ENTRIES),
     [],
   );
-  const allProblems = allEntries.map((e) => generateChoiceProblem(e, allEntries));
+  const allProblems = allEntries.flatMap((e) => generateChoiceProblems(e, allEntries));
   const selected = selectAdaptiveProblems(
     allProblems,
     progress.masteries,
     (p) => `kanji:${(p as KanjiChoiceProblem).character}`,
     10,
+    {
+      sessions: progress.sessions,
+      getProblemKey: (p) => (p as KanjiChoiceProblem).id,
+    },
   );
 
   const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
-    useProblemSession(selected, progress.masteries, (p) => `kanji:${(p as KanjiChoiceProblem).character}`, recordAnswer);
+    useProblemSession(
+      selected,
+      progress.masteries,
+      (p) => `kanji:${(p as KanjiChoiceProblem).character}`,
+      recordAnswer,
+      (p) => (p as KanjiChoiceProblem).id,
+    );
 
   const [starBurst, setStarBurst] = useState(false);
 

@@ -1,4 +1,4 @@
-import type { TopicMastery, MasteryLevel } from "@/types/progress";
+import type { AnswerOutcome, SessionRecord, TopicMastery, MasteryLevel } from "@/types/progress";
 import type { Problem } from "@/types/problem";
 
 const REVIEW_THRESHOLD_DAYS = 3;
@@ -74,53 +74,159 @@ export function createInitialMastery(topicId: string): TopicMastery {
 
 // ========== 問題選択 ==========
 
+const DEFAULT_MIX = {
+  unseen: 4,
+  weak: 3,
+  strong: 3,
+} as const;
+
+interface SelectionMix {
+  unseen: number;
+  weak: number;
+  strong: number;
+}
+
+interface AdaptiveSelectionOptions<T extends Problem> {
+  sessions?: SessionRecord[];
+  getProblemKey?: (p: T) => string;
+  mix?: SelectionMix;
+}
+
+interface FirstAttemptStats {
+  attempts: number;
+  correct: number;
+}
+
+function getRate(stats: FirstAttemptStats | undefined): number {
+  if (!stats || stats.attempts === 0) return 0;
+  return stats.correct / stats.attempts;
+}
+
+function getFirstAttempt(result: {
+  firstAttempt?: AnswerOutcome;
+  finalAttempt?: AnswerOutcome;
+}): AnswerOutcome {
+  if (result.firstAttempt === "correct" || result.firstAttempt === "incorrect") {
+    return result.firstAttempt;
+  }
+  if (result.finalAttempt === "correct") return "correct";
+  return "incorrect";
+}
+
+function collectFirstAttemptStats(sessions: SessionRecord[]) {
+  const topicStats = new Map<string, FirstAttemptStats>();
+  const problemStats = new Map<string, FirstAttemptStats>();
+
+  for (const session of sessions) {
+    for (const result of session.problemResults) {
+      const firstAttempt = getFirstAttempt(result);
+      const problemKey = result.problemKey ?? result.problemId;
+
+      const existingTopic = topicStats.get(result.topicId) ?? { attempts: 0, correct: 0 };
+      existingTopic.attempts += 1;
+      if (firstAttempt === "correct") existingTopic.correct += 1;
+      topicStats.set(result.topicId, existingTopic);
+
+      const existingProblem = problemStats.get(problemKey) ?? { attempts: 0, correct: 0 };
+      existingProblem.attempts += 1;
+      if (firstAttempt === "correct") existingProblem.correct += 1;
+      problemStats.set(problemKey, existingProblem);
+    }
+  }
+
+  return { topicStats, problemStats };
+}
+
+function isWeakTopic(topicStats: FirstAttemptStats | undefined, mastery: TopicMastery | undefined): boolean {
+  if (mastery?.level === "review") return true;
+  if (!topicStats) return false;
+  return getRate(topicStats) < 0.7;
+}
+
+function isWeakProblem(problemStats: FirstAttemptStats | undefined): boolean {
+  if (!problemStats) return false;
+  return getRate(problemStats) < 0.75;
+}
+
+function takeUnique<T extends Problem>(
+  selected: T[],
+  candidatePool: T[],
+  targetCount: number,
+  getProblemKey: (p: T) => string,
+  selectedKeys: Set<string>,
+): void {
+  if (targetCount <= 0) return;
+  for (const problem of shuffle(candidatePool)) {
+    if (selected.length >= targetCount) break;
+    const key = getProblemKey(problem);
+    if (selectedKeys.has(key)) continue;
+    selectedKeys.add(key);
+    selected.push(problem);
+  }
+}
+
 /** 10問セッション用の問題を適応アルゴリズムで選択する */
 export function selectAdaptiveProblems<T extends Problem>(
   problems: T[],
   masteries: Record<string, TopicMastery>,
   getTopicId: (p: T) => string,
   sessionSize = 10,
+  options?: AdaptiveSelectionOptions<T>,
 ): T[] {
-  const QUOTA: Record<MasteryLevel, number> = {
-    new: 2,
-    learning: 4,
-    developing: 2,
-    mastered: 1,
-    review: 1,
-  };
+  const mix = options?.mix ?? DEFAULT_MIX;
+  const getProblemKey = options?.getProblemKey ?? ((p: T) => p.id);
+  const { topicStats, problemStats } = collectFirstAttemptStats(options?.sessions ?? []);
 
-  // 各問題の習熟度を確認
-  const buckets: Record<MasteryLevel, T[]> = {
-    new: [],
-    learning: [],
-    developing: [],
-    mastered: [],
-    review: [],
-  };
+  const unseen: T[] = [];
+  const weak: T[] = [];
+  const strong: T[] = [];
 
-  for (const p of problems) {
-    const id = getTopicId(p);
-    const mastery = masteries[id] ?? createInitialMastery(id);
-    const checked = checkReviewStatus(mastery);
-    buckets[checked.level].push(p);
+  for (const problem of problems) {
+    const topicId = getTopicId(problem);
+    const problemKey = getProblemKey(problem);
+    const topicAttemptStats = topicStats.get(topicId);
+    const problemAttemptStats = problemStats.get(problemKey);
+    const mastery = masteries[topicId];
+    const checkedMastery = mastery ? checkReviewStatus(mastery) : undefined;
+
+    if (!topicAttemptStats || !problemAttemptStats) {
+      unseen.push(problem);
+      continue;
+    }
+
+    const weakByTopic = isWeakTopic(topicAttemptStats, checkedMastery);
+    const weakByProblem = isWeakProblem(problemAttemptStats);
+    const weakByMastery =
+      checkedMastery?.level === "learning" ||
+      checkedMastery?.level === "review";
+
+    if (weakByTopic || weakByProblem || weakByMastery) {
+      weak.push(problem);
+    } else {
+      strong.push(problem);
+    }
   }
 
   const selected: T[] = [];
+  const selectedKeys = new Set<string>();
 
-  for (const [level, quota] of Object.entries(QUOTA) as [MasteryLevel, number][]) {
-    const pool = shuffle(buckets[level]);
-    selected.push(...pool.slice(0, quota));
-  }
+  takeUnique(selected, unseen, Math.min(sessionSize, mix.unseen), getProblemKey, selectedKeys);
+  takeUnique(selected, weak, Math.min(sessionSize, selected.length + mix.weak), getProblemKey, selectedKeys);
+  takeUnique(selected, strong, Math.min(sessionSize, selected.length + mix.strong), getProblemKey, selectedKeys);
+
+  // 優先枠が不足した場合は残り候補を混ぜて補完
+  const remainingCandidates = [...unseen, ...weak, ...strong];
+  takeUnique(selected, remainingCandidates, sessionSize, getProblemKey, selectedKeys);
 
   // 不足分をランダムで補完
   if (selected.length < sessionSize) {
     const all = shuffle(problems);
-    const selectedIds = new Set(selected.map(getTopicId));
     for (const p of all) {
       if (selected.length >= sessionSize) break;
-      if (!selectedIds.has(getTopicId(p))) {
-        selected.push(p);
-      }
+      const key = getProblemKey(p);
+      if (selectedKeys.has(key)) continue;
+      selectedKeys.add(key);
+      selected.push(p);
     }
   }
 

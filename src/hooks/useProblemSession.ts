@@ -8,10 +8,11 @@ import { generateSessionId } from "@/lib/scoring";
 
 export type AnswerState = "unanswered" | "correct" | "incorrect";
 
-export interface ProblemSessionState {
+export interface ProblemSessionState<T extends Problem = Problem> {
   sessionId: string;
-  problems: Problem[];
+  problems: T[];
   topicIds: string[];
+  problemKeys: string[];
   currentIndex: number;
   answers: AnswerState[];
   firstAttemptAnswers: AnswerState[];
@@ -44,15 +45,17 @@ function toAnswerOutcome(primary: AnswerState, fallback: AnswerState): AnswerOut
   return resolved === "correct" ? "correct" : "incorrect";
 }
 
-function createInitialState(
-  problems: Problem[],
+function createInitialState<T extends Problem>(
+  problems: T[],
   startedAt: number,
-  getTopicId: (p: Problem) => string,
-): ProblemSessionState {
+  getTopicId: (p: T) => string,
+  getProblemKey: (p: T) => string,
+): ProblemSessionState<T> {
   return {
     sessionId: generateSessionId(),
     problems,
     topicIds: problems.map((problem) => getTopicId(problem)),
+    problemKeys: problems.map((problem) => getProblemKey(problem)),
     currentIndex: 0,
     answers: new Array(problems.length).fill("unanswered") as AnswerState[],
     firstAttemptAnswers: new Array(problems.length).fill("unanswered") as AnswerState[],
@@ -65,15 +68,16 @@ function createInitialState(
   };
 }
 
-export function useProblemSession(
-  problems: Problem[],
+export function useProblemSession<T extends Problem>(
+  problems: T[],
   masteries: Record<string, TopicMastery>,
-  getTopicId: (p: Problem) => string,
+  getTopicId: (p: T) => string,
   onMasteryUpdate: (topicId: string, mastery: TopicMastery) => void,
+  getProblemKey: (p: T) => string = (p) => p.id,
 ) {
-  const [state, setState] = useState<ProblemSessionState>(() => {
+  const [state, setState] = useState<ProblemSessionState<T>>(() => {
     const initialStartedAt = Date.now();
-    return createInitialState(problems, initialStartedAt, getTopicId);
+    return createInitialState(problems, initialStartedAt, getTopicId, getProblemKey);
   });
 
   const currentProblem = state.problems[state.currentIndex] ?? null;
@@ -81,13 +85,22 @@ export function useProblemSession(
     () =>
       state.problems.map((problem, index) => ({
         problemId: problem.id,
+        problemKey: state.problemKeys[index] ?? problem.id,
         topicId: state.topicIds[index] ?? getTopicId(problem),
         firstAttempt: toAnswerOutcome(state.firstAttemptAnswers[index], state.finalAnswers[index]),
         finalAttempt: toAnswerOutcome(state.finalAnswers[index], state.firstAttemptAnswers[index]),
         retried: state.attemptCounts[index] > 1,
         promptSummary: createPromptSummary(problem),
       })),
-    [state.problems, state.topicIds, state.firstAttemptAnswers, state.finalAnswers, state.attemptCounts, getTopicId],
+    [
+      state.problems,
+      state.topicIds,
+      state.problemKeys,
+      state.firstAttemptAnswers,
+      state.finalAnswers,
+      state.attemptCounts,
+      getTopicId,
+    ],
   );
 
   const submitAnswer = useCallback(
@@ -95,9 +108,13 @@ export function useProblemSession(
       const problem = currentProblem;
       if (!problem) return;
       const topicId = getTopicId(problem);
-      const prevMastery = masteries[topicId] ?? createInitialMastery(topicId);
-      const nextMastery = updateMasteryLevel(prevMastery, isCorrect);
-      onMasteryUpdate(topicId, nextMastery);
+      const isFirstAttempt = state.firstAttemptAnswers[state.currentIndex] === "unanswered";
+
+      if (isFirstAttempt) {
+        const prevMastery = masteries[topicId] ?? createInitialMastery(topicId);
+        const nextMastery = updateMasteryLevel(prevMastery, isCorrect);
+        onMasteryUpdate(topicId, nextMastery);
+      }
 
       setState((prev) => {
         const answers = [...prev.answers];
@@ -105,13 +122,13 @@ export function useProblemSession(
         const finalAnswers = [...prev.finalAnswers];
         const attemptCounts = [...prev.attemptCounts];
         const nextAnswer = isCorrect ? "correct" : "incorrect";
-        const isFirstAttempt = firstAttemptAnswers[prev.currentIndex] === "unanswered";
+        const isFirstAttemptInState = firstAttemptAnswers[prev.currentIndex] === "unanswered";
 
         answers[prev.currentIndex] = nextAnswer;
         finalAnswers[prev.currentIndex] = nextAnswer;
         attemptCounts[prev.currentIndex] += 1;
 
-        if (isFirstAttempt) {
+        if (isFirstAttemptInState) {
           firstAttemptAnswers[prev.currentIndex] = nextAnswer;
         }
 
@@ -121,11 +138,11 @@ export function useProblemSession(
           firstAttemptAnswers,
           finalAnswers,
           attemptCounts,
-          correctCount: prev.correctCount + (isFirstAttempt && isCorrect ? 1 : 0),
+          correctCount: prev.correctCount + (isFirstAttemptInState && isCorrect ? 1 : 0),
         };
       });
     },
-    [currentProblem, masteries, getTopicId, onMasteryUpdate],
+    [currentProblem, getTopicId, masteries, onMasteryUpdate, state.currentIndex, state.firstAttemptAnswers],
   );
 
   const nextProblem = useCallback(() => {
@@ -153,8 +170,8 @@ export function useProblemSession(
 
   const resetSession = useCallback(() => {
     const nextStartedAt = Date.now();
-    setState(createInitialState(problems, nextStartedAt, getTopicId));
-  }, [problems, getTopicId]);
+    setState(createInitialState(problems, nextStartedAt, getTopicId, getProblemKey));
+  }, [problems, getProblemKey, getTopicId]);
 
   return { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession };
 }
