@@ -100,12 +100,6 @@ export function WordProblem({
             こたえる！
           </Button>
         )}
-
-        {answered && !isCorrect && (
-          <p className="text-lg text-gray-600 font-bold">
-            せいかい: <span className="text-emerald-600">{problem.answer} {problem.unit_label}</span>
-          </p>
-        )}
       </div>
     </div>
   );

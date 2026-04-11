@@ -93,12 +93,6 @@ export function CalcInput({
             {displayValue}
           </motion.span>
         </p>
-        {answered && !isCorrect && (
-          <p className="text-center text-sm sm:text-base text-gray-500 font-bold pb-1 sm:pb-2">
-            せいかい:{" "}
-            <span className="text-emerald-600 text-base sm:text-lg">{problem.answer}</span>
-          </p>
-        )}
       </Card>
 
       {/* 電卓パッド（回答前のみ表示） */}

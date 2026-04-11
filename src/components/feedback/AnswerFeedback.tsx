@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { pickRandom } from "@/lib/utils";
@@ -52,6 +52,7 @@ export function AnswerFeedback({
   fixedCorrectMessage,
   compactMobile = false,
 }: AnswerFeedbackProps) {
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const message = useMemo(() => {
     if (isCorrect && fixedCorrectMessage) {
       return fixedCorrectMessage;
@@ -149,14 +150,18 @@ export function AnswerFeedback({
         </motion.p>
 
         {isCorrect ? null : (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className={answerClass}
-          >
-            せいかい: <span className="font-bold text-emerald-600">{correctAnswer}</span>
-          </motion.p>
+          <>
+            {showCorrectAnswer ? (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className={answerClass}
+              >
+                せいかい: <span className="font-bold text-emerald-600">{correctAnswer}</span>
+              </motion.p>
+            ) : null}
+          </>
         )}
 
         <motion.div
@@ -174,6 +179,15 @@ export function AnswerFeedback({
               <Button onClick={onRetry} size={compactMobile ? "md" : "lg"}>
                 もういちど！
               </Button>
+              {!showCorrectAnswer ? (
+                <Button
+                  onClick={() => setShowCorrectAnswer(true)}
+                  variant="secondary"
+                  size={compactMobile ? "sm" : "md"}
+                >
+                  答えを表示する
+                </Button>
+              ) : null}
               <Button onClick={onNext} variant="ghost" size={compactMobile ? "sm" : "md"}>
                 スキップ [S]
               </Button>
