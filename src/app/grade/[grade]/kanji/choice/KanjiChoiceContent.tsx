@@ -18,6 +18,7 @@ import { StarBurst } from "@/components/feedback/StarBurst";
 import { buildRubyDictionaryFromKanjiEntries } from "@/lib/ruby";
 
 const KANJI_BY_GRADE = { 1: GRADE1_KANJI, 2: GRADE2_KANJI, 3: GRADE3_KANJI };
+const ALL_KANJI_ENTRIES = [...GRADE1_KANJI, ...GRADE2_KANJI, ...GRADE3_KANJI];
 
 export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
   const grade = parseInt(gradeStr, 10) as Grade;
@@ -26,7 +27,10 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
   const { progress, recordAnswer, recordSession } = useProgress(grade);
 
   const allEntries = KANJI_BY_GRADE[grade] ?? GRADE1_KANJI;
-  const rubyDictionary = useMemo(() => buildRubyDictionaryFromKanjiEntries(allEntries), [allEntries]);
+  const rubyDictionary = useMemo(
+    () => buildRubyDictionaryFromKanjiEntries(ALL_KANJI_ENTRIES),
+    [],
+  );
   const allProblems = allEntries.map((e) => generateChoiceProblem(e, allEntries));
   const selected = selectAdaptiveProblems(
     allProblems,

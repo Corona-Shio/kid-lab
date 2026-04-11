@@ -39,6 +39,12 @@ const MATH_RUBY_TERMS: RubyTerm[] = [
 
 export const MATH_RUBY_DICTIONARY = createRubyDictionary(MATH_RUBY_TERMS);
 
+const KANJI_SUPPLEMENTAL_TERMS: RubyTerm[] = [
+  { term: "遊ぶ", reading: "あそぶ" },
+  { term: "遊んだ", reading: "あそんだ" },
+  { term: "雪遊び", reading: "ゆきあそび" },
+];
+
 function toHiragana(text: string): string {
   return text.replace(/[ァ-ヶ]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60));
 }
@@ -77,7 +83,7 @@ export function buildRubyDictionaryFromKanjiEntries(entries: KanjiEntry[]): Ruby
     }
   }
 
-  return createRubyDictionary(terms);
+  return createRubyDictionary([...terms, ...KANJI_SUPPLEMENTAL_TERMS]);
 }
 
 function startsWithAny(text: string, index: number, candidates: string[]): string | null {
