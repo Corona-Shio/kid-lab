@@ -160,7 +160,6 @@ const WORD_TEMPLATES: WordTemplate[] = [
   {
     unit: "add_carry",
     generate: () => {
-      const name = pickRandom(NAMES);
       const item = pickRandom(FRUITS);
       const a = randomInt(3, 8);
       const b = randomInt(11 - a, 9);
@@ -220,7 +219,6 @@ const WORD_TEMPLATES: WordTemplate[] = [
   {
     unit: "sub2",
     generate: () => {
-      const name = pickRandom(NAMES);
       const a = randomInt(30, 99);
       const b = randomInt(10, a - 10);
       return {
@@ -259,7 +257,6 @@ const WORD_TEMPLATES: WordTemplate[] = [
   {
     unit: "div_intro",
     generate: () => {
-      const name = pickRandom(NAMES);
       const item = pickRandom(ITEMS);
       const b = randomInt(2, 5);
       const answer = randomInt(2, 8);

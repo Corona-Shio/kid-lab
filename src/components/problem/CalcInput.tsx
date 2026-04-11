@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { MathCalcProblem } from "@/types/problem";
 import { Card } from "@/components/ui/Card";
@@ -30,22 +30,6 @@ export function CalcInput({
   isCorrect,
 }: CalcInputProps) {
   const [input, setInput] = useState("");
-  const [shake, setShake] = useState(false);
-
-  useEffect(() => {
-    if (!answered) {
-      setInput("");
-    }
-  }, [problem.id, answered]);
-
-  // 不正解時にシェイク
-  useEffect(() => {
-    if (answered && !isCorrect) {
-      setShake(true);
-      const t = setTimeout(() => setShake(false), 500);
-      return () => clearTimeout(t);
-    }
-  }, [answered, isCorrect]);
 
   function handleDigit(digit: string) {
     if (answered) return;
@@ -83,7 +67,7 @@ export function CalcInput({
         <p className="text-[1.95rem] sm:text-4xl leading-tight font-bold text-center py-2 sm:py-3 text-gray-800 tracking-wide">
           {problem.expression} ={" "}
           <motion.span
-            animate={shake ? { x: [0, -10, 10, -10, 10, 0] } : {}}
+            animate={answered && !isCorrect ? { x: [0, -10, 10, -10, 10, 0] } : {}}
             transition={{ duration: 0.4 }}
             className={[
               "inline-block min-w-[2.5rem] sm:min-w-[3rem] px-2 rounded-xl",

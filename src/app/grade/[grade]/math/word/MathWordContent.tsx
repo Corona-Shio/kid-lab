@@ -29,7 +29,7 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
     Math.min(10, allProblems.length),
   );
 
-  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
+  const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
     useProblemSession(selected, progress.masteries, (p) => `math:${(p as MathWordProblem).unit}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -55,10 +55,11 @@ export default function MathWordContent({ gradeStr }: { gradeStr: string }) {
       mode: "word",
       totalProblems: state.problems.length,
       correctCount: state.correctCount,
+      problemResults,
       completedAt: Date.now(),
       durationMs: getDurationMs(),
     });
-  }, [state, grade, recordSession, getDurationMs]);
+  }, [state, grade, problemResults, recordSession, getDurationMs]);
 
   if (state.isComplete) {
     return (

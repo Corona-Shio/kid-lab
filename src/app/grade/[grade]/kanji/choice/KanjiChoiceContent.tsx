@@ -39,7 +39,7 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
     10,
   );
 
-  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
+  const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
     useProblemSession(selected, progress.masteries, (p) => `kanji:${(p as KanjiChoiceProblem).character}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -65,10 +65,11 @@ export default function KanjiChoiceContent({ gradeStr }: { gradeStr: string }) {
       mode: "choice",
       totalProblems: state.problems.length,
       correctCount: state.correctCount,
+      problemResults,
       completedAt: Date.now(),
       durationMs: getDurationMs(),
     });
-  }, [state, grade, recordSession, getDurationMs]);
+  }, [state, grade, problemResults, recordSession, getDurationMs]);
 
   if (state.isComplete) {
     return (

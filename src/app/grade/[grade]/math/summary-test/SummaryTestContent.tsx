@@ -26,7 +26,7 @@ export default function SummaryTestContent({ gradeStr }: { gradeStr: string }) {
     units.flatMap((unit) => generateCalcProblems(unit, perUnit)),
   ).slice(0, 20);
 
-  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
+  const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs, resetSession } =
     useProblemSession(allProblems, progress.masteries, (p) => `math:${(p as MathCalcProblem).unit}`, recordAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -52,10 +52,11 @@ export default function SummaryTestContent({ gradeStr }: { gradeStr: string }) {
       mode: "summary-test",
       totalProblems: state.problems.length,
       correctCount: state.correctCount,
+      problemResults,
       completedAt: Date.now(),
       durationMs: getDurationMs(),
     });
-  }, [state, grade, recordSession, getDurationMs]);
+  }, [state, grade, problemResults, recordSession, getDurationMs]);
 
   if (state.isComplete) {
     return (

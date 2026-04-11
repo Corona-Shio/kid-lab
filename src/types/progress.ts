@@ -1,6 +1,7 @@
 import type { Grade, MathUnit } from "./problem";
 
 export type MasteryLevel = "new" | "learning" | "developing" | "mastered" | "review";
+export type AnswerOutcome = "correct" | "incorrect";
 
 export interface TopicMastery {
   topicId: string;           // 例: "kanji:山" or "math:add1"
@@ -13,6 +14,15 @@ export interface TopicMastery {
   reviewIntervalDays: number; // 現在の復習間隔（日数）
 }
 
+export interface SessionProblemResult {
+  problemId: string;
+  topicId: string;
+  firstAttempt: AnswerOutcome;
+  finalAttempt: AnswerOutcome;
+  retried: boolean;
+  promptSummary: string;
+}
+
 export interface SessionRecord {
   id: string;
   grade: Grade;
@@ -20,9 +30,28 @@ export interface SessionRecord {
   mode: "fill" | "choice" | "calc" | "word" | "unit-test" | "summary-test";
   unit?: MathUnit;
   totalProblems: number;
-  correctCount: number;
+  correctCount: number; // 初回判定ベースの正解数
+  problemResults: SessionProblemResult[];
   completedAt: number; // Unix timestamp (ms)
   durationMs: number;
+}
+
+export interface WeakProblemSnapshot {
+  sessionId: string;
+  problemId: string;
+  promptSummary: string;
+  firstAttempt: AnswerOutcome;
+  finalAttempt: AnswerOutcome;
+  completedAt: number;
+}
+
+export interface WeakTopicRecord {
+  topicId: string;
+  incorrectFirstAttempts: number;
+  sessionCount: number;
+  lastIncorrectAt?: number;
+  lastCorrectAt?: number;
+  recentProblemSnapshots: WeakProblemSnapshot[];
 }
 
 export interface BadgeInfo {
@@ -35,6 +64,7 @@ export interface BadgeInfo {
 export interface UserProgress {
   grade: Grade;
   masteries: Record<string, TopicMastery>; // topicId → TopicMastery
+  weakTopics: Record<string, WeakTopicRecord>;
   sessions: SessionRecord[];
   badges: BadgeInfo[];
   totalStars: number;

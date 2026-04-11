@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import type { KanjiFillProblem } from "@/types/problem";
 import { Button } from "@/components/ui/Button";
@@ -24,7 +24,6 @@ export function FillInBlank({
   isCorrect,
 }: FillInBlankProps) {
   const [input, setInput] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
 
   function renderSentenceWithHighlight(sentence: string, character: string, reading: string) {
     if (!sentence.includes(character)) {
@@ -45,13 +44,6 @@ export function FillInBlank({
       ),
     );
   }
-
-  useEffect(() => {
-    if (!answered) {
-      setInput("");
-      inputRef.current?.focus();
-    }
-  }, [problem.id, answered]);
 
   function handleSubmit() {
     if (answered || !input.trim()) return;
@@ -74,8 +66,8 @@ export function FillInBlank({
       <div className="flex flex-col items-center gap-4">
         <p className="text-sm text-purple-500 font-bold">「{problem.character}」の よみを ひらがなで かいてね</p>
         <motion.input
-          ref={inputRef}
           type="text"
+          autoFocus
           value={input}
           onChange={(e) => !answered && setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()}

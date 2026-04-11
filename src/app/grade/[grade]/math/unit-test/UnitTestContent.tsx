@@ -61,11 +61,10 @@ export default function UnitTestContent({ gradeStr }: { gradeStr: string }) {
 
   return (
     <UnitTestSession
-      grade={grade}
       unit={selectedUnit}
       masteries={progress.masteries}
       onAnswer={recordAnswer}
-      onComplete={(correct, total, sessionId, durationMs) => {
+      onComplete={(correct, total, problemResults, sessionId, durationMs) => {
         recordSession({
           id: sessionId,
           grade,
@@ -74,6 +73,7 @@ export default function UnitTestContent({ gradeStr }: { gradeStr: string }) {
           unit: selectedUnit,
           totalProblems: total,
           correctCount: correct,
+          problemResults,
           completedAt: Date.now(),
           durationMs,
         });
@@ -85,7 +85,6 @@ export default function UnitTestContent({ gradeStr }: { gradeStr: string }) {
 }
 
 function UnitTestSession({
-  grade,
   unit,
   masteries,
   onAnswer,
@@ -93,17 +92,22 @@ function UnitTestSession({
   onHome,
   onRetry,
 }: {
-  grade: Grade;
   unit: MathUnit;
   masteries: Record<string, import("@/types/progress").TopicMastery>;
   onAnswer: (id: string, m: import("@/types/progress").TopicMastery) => void;
-  onComplete: (correct: number, total: number, sessionId: string, durationMs: number) => void;
+  onComplete: (
+    correct: number,
+    total: number,
+    problemResults: import("@/types/progress").SessionProblemResult[],
+    sessionId: string,
+    durationMs: number,
+  ) => void;
   onHome: () => void;
   onRetry: () => void;
 }) {
   const problems = shuffle(generateCalcProblems(unit, 20)).slice(0, 10);
 
-  const { state, currentProblem, submitAnswer, nextProblem, retryAnswer, getDurationMs } =
+  const { state, currentProblem, problemResults, submitAnswer, nextProblem, retryAnswer, getDurationMs } =
     useProblemSession(problems, masteries, (p) => `math:${(p as MathCalcProblem).unit}`, onAnswer);
 
   const [starBurst, setStarBurst] = useState(false);
@@ -156,7 +160,13 @@ function UnitTestSession({
             correctAnswer={String(problem.answer)}
             onNext={() => {
               if (state.currentIndex === state.problems.length - 1) {
-                onComplete(state.correctCount + (isCorrect ? 1 : 0), state.problems.length, state.sessionId, getDurationMs());
+                onComplete(
+                  state.correctCount,
+                  state.problems.length,
+                  problemResults,
+                  state.sessionId,
+                  getDurationMs(),
+                );
               }
               handleNext();
             }}

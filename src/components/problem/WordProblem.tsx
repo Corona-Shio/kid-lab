@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import type { MathWordProblem } from "@/types/problem";
 import { Button } from "@/components/ui/Button";
@@ -22,15 +22,6 @@ export function WordProblem({
 }: WordProblemProps) {
   const [input, setInput] = useState("");
   const [showHint, setShowHint] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!answered) {
-      setInput("");
-      setShowHint(false);
-      inputRef.current?.focus();
-    }
-  }, [problem.id, answered]);
 
   function handleSubmit() {
     if (answered || !input.trim()) return;
@@ -70,8 +61,8 @@ export function WordProblem({
         )}
         <div className="flex items-center gap-2">
           <motion.input
-            ref={inputRef}
             type="number"
+            autoFocus
             inputMode="numeric"
             value={input}
             onChange={(e) => !answered && setInput(e.target.value)}

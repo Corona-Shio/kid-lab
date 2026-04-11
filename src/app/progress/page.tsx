@@ -18,7 +18,6 @@ const GRADES: Grade[] = [1, 2, 3];
 export default function ProgressPage() {
   const [selectedGrade, setSelectedGrade] = useState<Grade>(1);
   const progress = loadProgress(selectedGrade);
-  const theme = GRADE_THEMES[selectedGrade];
 
   const accuracy = calcAccuracy(progress.sessions);
   const recentSessions = [...progress.sessions].reverse().slice(0, 10);

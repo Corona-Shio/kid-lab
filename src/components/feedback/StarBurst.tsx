@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
 
 interface Particle {
   id: number;
@@ -10,32 +9,26 @@ interface Particle {
   emoji: string;
 }
 
-const EMOJIS = ["⭐", "✨", "🌟", "💫", "🎉"];
+const PARTICLES: Particle[] = [
+  { id: 1, x: -42, y: -58, emoji: "⭐" },
+  { id: 2, x: -18, y: -82, emoji: "✨" },
+  { id: 3, x: 15, y: -74, emoji: "🌟" },
+  { id: 4, x: 39, y: -52, emoji: "💫" },
+  { id: 5, x: -48, y: -30, emoji: "🎉" },
+  { id: 6, x: -8, y: -96, emoji: "⭐" },
+  { id: 7, x: 28, y: -88, emoji: "✨" },
+  { id: 8, x: 52, y: -34, emoji: "🌟" },
+];
 
 interface StarBurstProps {
   trigger: boolean;
 }
 
 export function StarBurst({ trigger }: StarBurstProps) {
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    if (!trigger) return;
-    const newParticles: Particle[] = Array.from({ length: 8 }, (_, i) => ({
-      id: Date.now() + i,
-      x: Math.random() * 100 - 50,
-      y: -(Math.random() * 80 + 40),
-      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
-    }));
-    setParticles(newParticles);
-    const t = setTimeout(() => setParticles([]), 1200);
-    return () => clearTimeout(t);
-  }, [trigger]);
-
   return (
     <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
       <AnimatePresence>
-        {particles.map((p) => (
+        {(trigger ? PARTICLES : []).map((p) => (
           <motion.span
             key={p.id}
             initial={{ opacity: 1, x: 0, y: 0, scale: 1 }}
