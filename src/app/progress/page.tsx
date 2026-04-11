@@ -108,25 +108,41 @@ export default function ProgressPage() {
 
         <Card className="mb-6">
           <p className="font-bold text-gray-700 mb-3">🈶 かんじべつ せいせき</p>
-          <div className="grid grid-cols-[minmax(0,1fr)_88px_88px] gap-2 px-2 pb-2 text-xs font-bold text-gray-500">
+          <div className="grid grid-cols-[minmax(0,1fr)_120px_58px_58px] gap-2 px-2 pb-2 text-xs font-bold text-gray-500">
             <span>かんじ</span>
+            <span className="text-center">わりあい</span>
             <span className="text-right">かいとう</span>
-            <span className="text-right">せいかいりつ</span>
+            <span className="text-right">まちがい</span>
           </div>
           <div className="max-h-80 overflow-y-auto pr-1">
             <div className="flex flex-col gap-1">
-              {kanjiRows.map((row) => (
-                <div
-                  key={row.character}
-                  className="grid grid-cols-[minmax(0,1fr)_88px_88px] items-center gap-2 rounded-xl border border-gray-100 px-2 py-1.5"
-                >
-                  <p className="text-xl font-bold text-gray-700">{row.character}</p>
-                  <p className="text-right text-sm font-bold text-gray-600">{row.attempts}回</p>
-                  <p className="text-right text-sm font-bold text-purple-600">
-                    {row.accuracy === null ? "--" : `${row.accuracy}%`}
-                  </p>
-                </div>
-              ))}
+              {kanjiRows.map((row) => {
+                const correctCount = row.correct;
+                const incorrectCount = Math.max(0, row.attempts - row.correct);
+                const correctPct = row.attempts > 0 ? Math.round((correctCount / row.attempts) * 100) : 0;
+                const incorrectPct = row.attempts > 0 ? Math.max(0, 100 - correctPct) : 0;
+
+                return (
+                  <div
+                    key={row.character}
+                    className="grid grid-cols-[minmax(0,1fr)_120px_58px_58px] items-center gap-2 rounded-xl border border-gray-100 px-2 py-1.5"
+                  >
+                    <p className="text-xl font-bold text-gray-700">{row.character}</p>
+                    <div className="h-2.5 overflow-hidden rounded-full bg-gray-100 border border-gray-200 flex">
+                      <div
+                        className="bg-emerald-400"
+                        style={{ width: `${correctPct}%` }}
+                      />
+                      <div
+                        className="bg-rose-400"
+                        style={{ width: `${incorrectPct}%` }}
+                      />
+                    </div>
+                    <p className="text-right text-sm font-bold text-sky-600">{row.attempts}回</p>
+                    <p className="text-right text-sm font-bold text-rose-500">{incorrectCount}回</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </Card>
@@ -137,27 +153,46 @@ export default function ProgressPage() {
             <p className="text-sm text-gray-500">まだ まちがいきろく は ありません</p>
           ) : (
             <>
-              <div className="grid grid-cols-[minmax(0,1fr)_70px_78px] gap-2 px-2 pb-2 text-xs font-bold text-gray-500">
+              <div className="grid grid-cols-[minmax(0,1fr)_120px_58px_58px] gap-2 px-2 pb-2 text-xs font-bold text-gray-500">
                 <span>もんだい</span>
+                <span className="text-center">わりあい</span>
+                <span className="text-right">かいとう</span>
                 <span className="text-right">まちがい</span>
-                <span className="text-right">せいかいりつ</span>
               </div>
               <div className="max-h-80 overflow-y-auto pr-1">
                 <div className="flex flex-col gap-1">
-                  {weakMathRows.map((row) => (
-                    <div
-                      key={row.problemKey}
-                      className="grid grid-cols-[minmax(0,1fr)_70px_78px] items-center gap-2 rounded-xl border border-gray-100 px-2 py-1.5"
-                    >
-                      <p className="text-sm font-bold text-gray-700 leading-tight line-clamp-2">
-                        {row.promptSummary}
-                      </p>
-                      <p className="text-right text-sm font-bold text-rose-500">
-                        {row.incorrectFirstAttempts}回
-                      </p>
-                      <p className="text-right text-sm font-bold text-blue-600">{row.accuracy}%</p>
-                    </div>
-                  ))}
+                  {weakMathRows.map((row) => {
+                    const correctCount = row.attempts - row.incorrectFirstAttempts;
+                    const correctPct = row.attempts > 0 ? Math.round((correctCount / row.attempts) * 100) : 0;
+                    const incorrectPct = Math.max(0, 100 - correctPct);
+
+                    return (
+                      <div
+                        key={row.problemKey}
+                        className="grid grid-cols-[minmax(0,1fr)_120px_58px_58px] items-center gap-2 rounded-xl border border-gray-100 px-2 py-1.5"
+                      >
+                        <p className="text-sm font-bold text-gray-700 leading-tight line-clamp-2">
+                          {row.promptSummary}
+                        </p>
+                        <div>
+                          <div className="h-2.5 overflow-hidden rounded-full bg-gray-100 border border-gray-200 flex">
+                            <div
+                              className="bg-emerald-400"
+                              style={{ width: `${correctPct}%` }}
+                            />
+                            <div
+                              className="bg-rose-400"
+                              style={{ width: `${incorrectPct}%` }}
+                            />
+                          </div>
+                        </div>
+                        <p className="text-right text-sm font-bold text-sky-600">{row.attempts}回</p>
+                        <p className="text-right text-sm font-bold text-rose-500">
+                          {row.incorrectFirstAttempts}回
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </>
