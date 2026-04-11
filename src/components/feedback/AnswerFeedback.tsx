@@ -167,7 +167,7 @@ export function AnswerFeedback({
         >
           {isCorrect ? (
             <Button onClick={onNext} size={compactMobile ? "md" : "lg"}>
-              {isLast ? "けっかをみる 📊 (Enter)" : "つぎへ → (Enter)"}
+              {isLast ? "けっかをみる 📊" : "つぎへ →"}
             </Button>
           ) : (
             <>
