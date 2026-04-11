@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Header } from "@/components/layout/Header";
 import { PageWrapper } from "@/components/layout/PageWrapper";
@@ -16,6 +16,7 @@ import { GRADE_THEMES } from "@/types/common";
 import { GRADE1_KANJI } from "@/data/kanji/grade1";
 import { GRADE2_KANJI } from "@/data/kanji/grade2";
 import { GRADE3_KANJI } from "@/data/kanji/grade3";
+import type { UserProgress } from "@/types/progress";
 
 const GRADES: Grade[] = [1, 2, 3];
 const KANJI_BY_GRADE = {
@@ -24,9 +25,26 @@ const KANJI_BY_GRADE = {
   3: GRADE3_KANJI,
 } as const;
 
+function createEmptyProgress(grade: Grade): UserProgress {
+  return {
+    grade,
+    masteries: {},
+    weakTopics: {},
+    sessions: [],
+    badges: [],
+    totalStars: 0,
+    updatedAt: 0,
+  };
+}
+
 export default function ProgressPage() {
   const [selectedGrade, setSelectedGrade] = useState<Grade>(1);
-  const progress = loadProgress(selectedGrade);
+  const [progress, setProgress] = useState<UserProgress>(() => createEmptyProgress(1));
+
+  useEffect(() => {
+    setProgress(loadProgress(selectedGrade));
+  }, [selectedGrade]);
+
   const kanjiRows = buildKanjiPerformanceRows(KANJI_BY_GRADE[selectedGrade], progress);
   const weakMathRows = buildWeakMathProblemRows(progress, 12);
 
