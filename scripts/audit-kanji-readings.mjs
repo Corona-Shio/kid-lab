@@ -137,6 +137,23 @@ function splitReadingByHiddenTerm(surface, reading, hiddenTerm, hiddenReading) {
   };
 }
 
+function hasAlignedHiddenCharacter(entry, example) {
+  const wordChars = Array.from(example.word);
+  const sentenceChars = Array.from(example.sentence);
+  const targetIndex = wordChars.indexOf(entry.character);
+  const blankIndex = sentenceChars.indexOf("□");
+
+  if (targetIndex === -1 || blankIndex === -1) return false;
+
+  const beforeTarget = targetIndex > 0 ? wordChars[targetIndex - 1] : null;
+  const afterTarget = targetIndex < wordChars.length - 1 ? wordChars[targetIndex + 1] : null;
+
+  if (beforeTarget && !isKana(beforeTarget) && sentenceChars[blankIndex - 1] !== beforeTarget) return false;
+  if (afterTarget && !isKana(afterTarget) && sentenceChars[blankIndex + 1] !== afterTarget) return false;
+
+  return true;
+}
+
 function parseEntries(filePath) {
   const src = fs.readFileSync(filePath, "utf8");
   const start = src.indexOf("[");
@@ -158,6 +175,7 @@ for (const entry of allEntries) {
 
 const rows = [];
 const unresolvedSplitRows = [];
+const sentenceMismatchRows = [];
 let handledSplitRiskCount = 0;
 
 for (const relativeFile of DATA_FILES) {
@@ -165,6 +183,17 @@ for (const relativeFile of DATA_FILES) {
   const entries = parseEntries(filePath);
   for (const entry of entries) {
     for (const example of entry.examples) {
+      const sentenceWithCharacter = example.sentence.replace("□", entry.character);
+      if (!hasAlignedHiddenCharacter(entry, example)) {
+        sentenceMismatchRows.push({
+          file: relativeFile,
+          character: entry.character,
+          word: example.word,
+          sentence: example.sentence,
+          rendered: sentenceWithCharacter,
+        });
+      }
+
       const targetReading = typeof example.targetReading === "string" ? toHiragana(example.targetReading.trim()) : "";
       const hasTarget = targetReading !== "";
       const extracted = extractReadingFromWord(entry, example.word, example.reading);
@@ -238,7 +267,7 @@ for (const relativeFile of DATA_FILES) {
   }
 }
 
-if (rows.length === 0 && unresolvedSplitRows.length === 0) {
+if (rows.length === 0 && unresolvedSplitRows.length === 0 && sentenceMismatchRows.length === 0) {
   console.log("No risky kanji reading examples found.");
   console.log(`Compound ruby split audit passed. handled_risky_segments=${handledSplitRiskCount}`);
   process.exit(0);
@@ -261,9 +290,17 @@ if (unresolvedSplitRows.length > 0) {
     );
   }
 }
+if (sentenceMismatchRows.length > 0) {
+  console.log("file\tcharacter\tword\tsentence\trendered\treason");
+  for (const row of sentenceMismatchRows) {
+    console.log(
+      `${row.file}\t${row.character}\t${row.word}\t${row.sentence}\t${row.rendered}\tsentence-word-mismatch`,
+    );
+  }
+}
 const errorCount = rows.filter((row) => row.reason.includes("fallback-no-match")).length;
-const warningCount = rows.length - errorCount + unresolvedSplitRows.length;
+const warningCount = rows.length - errorCount + unresolvedSplitRows.length + sentenceMismatchRows.length;
 console.error(
   `TOTAL_ERRORS=${errorCount} TOTAL_WARNINGS=${warningCount} HANDLED_SPLIT_RISKS=${handledSplitRiskCount}`,
 );
-process.exit(errorCount > 0 || unresolvedSplitRows.length > 0 ? 1 : 0);
+process.exit(errorCount > 0 || unresolvedSplitRows.length > 0 || sentenceMismatchRows.length > 0 ? 1 : 0);

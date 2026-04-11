@@ -682,7 +682,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["バン"], kunyomi: [] },
     strokes: 12,
     examples: [
-      { word: "一番", reading: "いちばん", sentence: "□番好きな色は青だ。", blankIndex: 0 },
+      { word: "一番", reading: "いちばん", sentence: "一□好きな色は青だ。", blankIndex: 1 },
       { word: "番号", reading: "ばんごう", sentence: "□号を言ってください。", blankIndex: 0 },
     ],
   },
@@ -872,7 +872,7 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     strokes: 4,
     examples: [
       { word: "方向", reading: "ほうこう", sentence: "□向を確認した。", blankIndex: 0 },
-      { word: "仕方", reading: "しかた", sentence: "やり□がある。", blankIndex: 2 },
+      { word: "やり方", reading: "やりかた", sentence: "やり□がある。", blankIndex: 2 },
     ],
   },
   {

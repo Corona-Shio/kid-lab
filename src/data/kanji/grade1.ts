@@ -478,7 +478,7 @@ export const GRADE1_KANJI: KanjiEntry[] = [
     strokes: 7,
     examples: [
       { word: "足", reading: "あし", sentence: "□が速い子だ。", blankIndex: 0 },
-      { word: "足算", reading: "たしざん", sentence: "□し算をする。", blankIndex: 0 },
+      { word: "足し算", reading: "たしざん", sentence: "□し算をする。", blankIndex: 0 },
     ],
   },
   {

@@ -62,7 +62,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 10,
     examples: [
       { word: "委員", reading: "いいん", sentence: "委□になった。", blankIndex: 1 },
-      { word: "全員", reading: "ぜんいん", sentence: "クラス□員が集まった。", blankIndex: 3 },
+      { word: "全員", reading: "ぜんいん", sentence: "全□が集まった。", blankIndex: 1 },
     ],
   },
   {
@@ -71,7 +71,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 10,
     examples: [
       { word: "病院", reading: "びょういん", sentence: "病□に行った。", blankIndex: 1 },
-      { word: "入院", reading: "にゅういん", sentence: "□院して治療を受けた。", blankIndex: 0 },
+      { word: "入院", reading: "にゅういん", sentence: "入□して治療を受けた。", blankIndex: 1 },
     ],
   },
   {
@@ -143,7 +143,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 4,
     examples: [
       { word: "文化", reading: "ぶんか", sentence: "日本の文□を学ぶ。", blankIndex: 2 },
-      { word: "変化", reading: "へんか", sentence: "季節の□化を感じる。", blankIndex: 2 },
+      { word: "変化", reading: "へんか", sentence: "季節の変□を感じる。", blankIndex: 4 },
     ],
   },
   {
@@ -160,7 +160,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["カイ"], kunyomi: [] },
     strokes: 9,
     examples: [
-      { word: "世界", reading: "せかい", sentence: "□界は広い。", blankIndex: 0 },
+      { word: "世界", reading: "せかい", sentence: "世□は広い。", blankIndex: 1 },
       { word: "業界", reading: "ぎょうかい", sentence: "その業□で働く。", blankIndex: 2 },
     ],
   },
@@ -602,7 +602,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 9,
     examples: [
       { word: "重い", reading: "おもい", sentence: "□い荷物を持った。", blankIndex: 0 },
-      { word: "大重", reading: "だいじゅう", sentence: "体□が増えた。", blankIndex: 1 },
+      { word: "体重", reading: "たいじゅう", sentence: "体□が増えた。", blankIndex: 1 },
     ],
   },
   {
@@ -763,7 +763,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ゾク"], kunyomi: [] },
     strokes: 11,
     examples: [
-      { word: "家族", reading: "かぞく", sentence: "□族で旅行した。", blankIndex: 0 },
+      { word: "家族", reading: "かぞく", sentence: "家□で旅行した。", blankIndex: 1 },
       { word: "民族", reading: "みんぞく", sentence: "さまざまな民□が暮らす。", blankIndex: 2 },
     ],
   },
@@ -826,7 +826,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["ダイ"], kunyomi: [] },
     strokes: 18,
     examples: [
-      { word: "問題", reading: "もんだい", sentence: "□題に答える。", blankIndex: 0 },
+      { word: "問題", reading: "もんだい", sentence: "問□に答える。", blankIndex: 1 },
       { word: "宿題", reading: "しゅくだい", sentence: "宿□を仕上げた。", blankIndex: 1 },
     ],
   },
@@ -1160,7 +1160,7 @@ export const GRADE3_KANJI: KanjiEntry[] = [
     strokes: 8,
     examples: [
       { word: "味", reading: "あじ", sentence: "いい□がする。", blankIndex: 2 },
-      { word: "興味", reading: "きょうみ", sentence: "□味を持った。", blankIndex: 0 },
+      { word: "興味", reading: "きょうみ", sentence: "興□を持った。", blankIndex: 1 },
     ],
   },
   {
