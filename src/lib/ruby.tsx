@@ -87,6 +87,97 @@ function startsWithAny(text: string, index: number, candidates: string[]): strin
   return null;
 }
 
+interface SurfaceChunk {
+  text: string;
+  isKanji: boolean;
+}
+
+interface RubyChunk {
+  type: "text" | "ruby";
+  text: string;
+  reading?: string;
+}
+
+function splitSurfaceByKanji(surface: string): SurfaceChunk[] {
+  const chunks: SurfaceChunk[] = [];
+
+  for (const char of Array.from(surface)) {
+    const isKanji = hasKanji(char);
+    const last = chunks[chunks.length - 1];
+
+    if (!last || last.isKanji !== isKanji) {
+      chunks.push({ text: char, isKanji });
+      continue;
+    }
+    last.text += char;
+  }
+
+  return chunks;
+}
+
+function toRubyChunks(surface: string, reading: string): RubyChunk[] {
+  const surfaceChunks = splitSurfaceByKanji(surface);
+  const normalizedReading = normalizeReading(reading);
+  if (surfaceChunks.length === 0) return [{ type: "text", text: surface }];
+
+  const hasAnyKanji = surfaceChunks.some((chunk) => chunk.isKanji);
+  if (!hasAnyKanji) return [{ type: "text", text: surface }];
+
+  const rubyChunks: RubyChunk[] = [];
+  let cursor = 0;
+
+  for (let i = 0; i < surfaceChunks.length; i += 1) {
+    const chunk = surfaceChunks[i];
+
+    if (!chunk.isKanji) {
+      const literal = toHiragana(chunk.text);
+      const foundAt = normalizedReading.indexOf(literal, cursor);
+      if (foundAt === -1) {
+        return [{ type: "ruby", text: surface, reading: normalizedReading }];
+      }
+      if (foundAt > cursor && i === 0) {
+        return [{ type: "ruby", text: surface, reading: normalizedReading }];
+      }
+      rubyChunks.push({ type: "text", text: chunk.text });
+      cursor = foundAt + literal.length;
+      continue;
+    }
+
+    const nextChunk = surfaceChunks[i + 1];
+    const nextLiteral = nextChunk && !nextChunk.isKanji ? toHiragana(nextChunk.text) : "";
+
+    let rubyReading = "";
+    if (nextLiteral) {
+      const nextPos = normalizedReading.indexOf(nextLiteral, cursor);
+      if (nextPos === -1) {
+        return [{ type: "ruby", text: surface, reading: normalizedReading }];
+      }
+      rubyReading = normalizedReading.slice(cursor, nextPos);
+      cursor = nextPos;
+    } else {
+      rubyReading = normalizedReading.slice(cursor);
+      cursor = normalizedReading.length;
+    }
+
+    if (!rubyReading) {
+      return [{ type: "ruby", text: surface, reading: normalizedReading }];
+    }
+    rubyChunks.push({ type: "ruby", text: chunk.text, reading: rubyReading });
+  }
+
+  if (cursor < normalizedReading.length && surfaceChunks[surfaceChunks.length - 1]?.isKanji) {
+    const tail = normalizedReading.slice(cursor);
+    if (tail) {
+      const last = rubyChunks[rubyChunks.length - 1];
+      if (last && last.type === "ruby") {
+        last.reading = `${last.reading ?? ""}${tail}`;
+      }
+    }
+  }
+
+  return rubyChunks;
+}
+
 export function renderRubyText(
   text: string,
   dictionary: RubyTerm[],
@@ -121,12 +212,19 @@ export function renderRubyText(
       continue;
     }
 
-    nodes.push(
-      <ruby key={`${match.term}:${index}`} className="kid-ruby">
-        {match.term}
-        <rt className="kid-ruby-rt">{match.reading}</rt>
-      </ruby>,
-    );
+    const rubyChunks = toRubyChunks(match.term, match.reading);
+    rubyChunks.forEach((chunk, chunkIndex) => {
+      if (chunk.type === "text") {
+        nodes.push(chunk.text);
+        return;
+      }
+      nodes.push(
+        <ruby key={`${match.term}:${index}:${chunkIndex}`} className="kid-ruby">
+          {chunk.text}
+          <rt className="kid-ruby-rt">{chunk.reading}</rt>
+        </ruby>,
+      );
+    });
     index += match.term.length;
   }
 
