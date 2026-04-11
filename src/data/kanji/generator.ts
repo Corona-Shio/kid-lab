@@ -1,5 +1,73 @@
-import type { KanjiEntry, KanjiFillProblem, KanjiChoiceProblem } from "@/types/problem";
+import type { KanjiEntry, KanjiExample, KanjiFillProblem, KanjiChoiceProblem } from "@/types/problem";
 import { shuffle, pickRandom } from "@/lib/utils";
+
+const LOW_QUALITY_GAME_SENTENCE = /(マインクラフト|ロブロックス|カービィ)/;
+
+function makeExample(
+  word: string,
+  reading: string,
+  sentence: string,
+  targetReading?: string,
+): KanjiExample {
+  const blankIndex = sentence.indexOf("□");
+  if (blankIndex === -1) {
+    throw new Error(`Curated example must include □: ${sentence}`);
+  }
+
+  return targetReading
+    ? { word, reading, sentence, blankIndex, targetReading }
+    : { word, reading, sentence, blankIndex };
+}
+
+// もとのデータにある雑なゲーム風例文は除外し、
+// 実際のゲーム内容に自然に合うものだけを個別に追加する。
+const CURATED_GAME_EXAMPLES: Partial<Record<string, KanjiExample[]>> = {
+  山: [makeExample("山", "やま", "カービィはワープスターで□をこえた。")],
+  木: [makeExample("木", "き", "マインクラフトで□を切って木ざいを集めた。")],
+  土: [makeExample("土", "つち", "マインクラフトで□をほって地下へ進んだ。")],
+  二: [makeExample("二ひき", "にひき", "マインクラフトで□ひきの羊を見つけた。")],
+  花: [makeExample("花", "はな", "カービィが□ばたけのコースを走った。")],
+  空: [makeExample("空", "そら", "カービィのエアライドで□をかけぬけた。")],
+  雨: [makeExample("雨", "あめ", "マインクラフトで□がふる前に家に入った。")],
+  右: [makeExample("右", "みぎ", "カービィのエアライドで□に曲がった。")],
+  左: [makeExample("左", "ひだり", "カービィのエアライドで□に曲がった。")],
+  口: [makeExample("口", "くち", "カービィは□からすいこんでコピーした。")],
+  村: [makeExample("村", "むら", "マインクラフトで□を見つけてベッドを借りた。")],
+  魚: [makeExample("魚", "さかな", "マインクラフトで□をつって食べた。")],
+  雪: [makeExample("雪", "ゆき", "マインクラフトで□のふるバイオームを歩いた。")],
+  青: [makeExample("青", "あお", "カービィのエアライドで□い空を飛んだ。")],
+  早: [makeExample("早い", "はやい", "カービィのエアライドで□くゴールした。")],
+  出: [makeExample("出る", "でる", "マインクラフトで洞くつから□る。")],
+  入: [makeExample("入る", "はいる", "マインクラフトで洞くつに□る。")],
+  家: [makeExample("家", "いえ", "マインクラフトで大きな□を建てた。")],
+  丸: [makeExample("丸い", "まるい", "カービィは□い体で転がった。")],
+  岩: [makeExample("岩", "いわ", "マインクラフトで□をほって石を集めた。")],
+  牛: [makeExample("牛乳", "ぎゅうにゅう", "マインクラフトで□乳をバケツに入れた。")],
+  地: [makeExample("地図", "ちず", "マインクラフトで□図を見ながら村を探した。")],
+  道: [makeExample("道路", "どうろ", "カービィのエアライドで近道の□路を見つけた。")],
+  方: [makeExample("方向", "ほうこう", "マインクラフトで□向をたしかめて帰った。")],
+  安: [makeExample("安全", "あんぜん", "マインクラフトで□全な場所にベッドを置いた。")],
+  泳: [makeExample("泳ぐ", "およぐ", "カービィが海で□いで宝箱へ向かった。")],
+  研: [makeExample("研究", "けんきゅう", "カービィのエアライドでマシンの特ちょうを研□した。")],
+  急: [makeExample("急ぐ", "いそぐ", "マインクラフトで夜になる前に□いで帰った。")],
+  曲: [makeExample("曲がる", "まがる", "カービィのエアライドでカーブを□がった。")],
+  軽: [makeExample("軽い", "かるい", "カービィのエアライドで□いマシンをえらんだ。")],
+  守: [makeExample("守る", "まもる", "マインクラフトで村人をモンスターから□った。")],
+  場: [makeExample("場所", "ばしょ", "マインクラフトでスポーンした場□を覚えた。")],
+  勝: [makeExample("勝つ", "かつ", "カービィのエアライドで友だちに□った。")],
+  進: [makeExample("進む", "すすむ", "カービィのエアライドでまっすぐ□んだ。")],
+  注: [makeExample("注意", "ちゅうい", "マインクラフトでクリーパーに□意した。")],
+  不: [makeExample("不思議", "ふしぎ", "カービィの世界は□思議な場所が多い。")],
+  平: [makeExample("平和", "へいわ", "マインクラフトを□和モードで遊んだ。")],
+};
+
+function getSelectableExamples(entry: KanjiEntry): KanjiExample[] {
+  const curated = CURATED_GAME_EXAMPLES[entry.character] ?? [];
+  const baseExamples = entry.examples.filter((example) => !LOW_QUALITY_GAME_SENTENCE.test(example.sentence));
+  const selectable = [...baseExamples, ...curated];
+
+  return selectable.length > 0 ? selectable : entry.examples;
+}
 
 function toKatakana(text: string): string {
   return text.replace(/[ぁ-ん]/g, (char) => String.fromCharCode(char.charCodeAt(0) + 0x60));
@@ -115,7 +183,7 @@ function getExampleReading(
 }
 
 export function generateFillProblem(entry: KanjiEntry): KanjiFillProblem {
-  const example = pickRandom(entry.examples);
+  const example = pickRandom(getSelectableExamples(entry));
   // □を漢字に戻して例文を表示する（読み方を答えさせる）
   const sentence = example.sentence.replace("□", entry.character);
   const reading = getExampleReading(entry, example.word, example.reading, example.targetReading);
@@ -134,7 +202,7 @@ export function generateChoiceProblem(
   entry: KanjiEntry,
   allEntries: KanjiEntry[],
 ): KanjiChoiceProblem {
-  const example = pickRandom(entry.examples);
+  const example = pickRandom(getSelectableExamples(entry));
   const correctReading = getExampleReading(entry, example.word, example.reading, example.targetReading);
   const readingInKatakana = toKatakana(correctReading);
   const sentenceWithKanji = example.sentence.replace("□", entry.character);
