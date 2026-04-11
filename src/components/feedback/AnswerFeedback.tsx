@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { pickRandom } from "@/lib/utils";
@@ -77,6 +77,51 @@ export function AnswerFeedback({
     ? "text-sm sm:text-base text-gray-600 font-medium"
     : "text-base text-gray-600 font-medium";
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      const target = event.target;
+      if (
+        target instanceof HTMLElement &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (
+        event.defaultPrevented ||
+        event.repeat ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
+        event.shiftKey
+      ) {
+        return;
+      }
+
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (isCorrect) {
+          onNext();
+          return;
+        }
+        onRetry?.();
+        return;
+      }
+
+      const key = event.key.toLowerCase();
+      if (!isCorrect && key === "s") {
+        event.preventDefault();
+        onNext();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isCorrect, onNext, onRetry]);
+
   return (
     <AnimatePresence>
       <motion.div
@@ -122,7 +167,7 @@ export function AnswerFeedback({
         >
           {isCorrect ? (
             <Button onClick={onNext} size={compactMobile ? "md" : "lg"}>
-              {isLast ? "けっかをみる 📊" : "つぎへ →"}
+              {isLast ? "けっかをみる 📊 (Enter)" : "つぎへ → (Enter)"}
             </Button>
           ) : (
             <>
@@ -130,7 +175,7 @@ export function AnswerFeedback({
                 もういちど！
               </Button>
               <Button onClick={onNext} variant="ghost" size={compactMobile ? "sm" : "md"}>
-                スキップ
+                スキップ [S]
               </Button>
             </>
           )}
