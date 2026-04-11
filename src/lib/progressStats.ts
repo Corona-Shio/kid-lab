@@ -8,6 +8,15 @@ export interface KanjiPerformanceRow {
   accuracy: number | null;
 }
 
+export interface WeakMathProblemRow {
+  problemKey: string;
+  promptSummary: string;
+  attempts: number;
+  incorrectFirstAttempts: number;
+  accuracy: number;
+  lastSeenAt: number;
+}
+
 function toFirstAttempt(result: SessionProblemResult): "correct" | "incorrect" {
   if (result.firstAttempt === "correct" || result.firstAttempt === "incorrect") {
     return result.firstAttempt;
@@ -52,4 +61,54 @@ export function buildKanjiPerformanceRows(
       accuracy: stat.attempts > 0 ? Math.round((stat.correct / stat.attempts) * 100) : null,
     };
   });
+}
+
+export function buildWeakMathProblemRows(
+  progress: UserProgress,
+  limit = 20,
+): WeakMathProblemRow[] {
+  const map = new Map<string, WeakMathProblemRow>();
+
+  for (const session of progress.sessions) {
+    if (session.subject !== "math") continue;
+
+    for (const result of session.problemResults) {
+      const firstAttempt = toFirstAttempt(result);
+      const key = result.problemKey ?? `legacy:${result.promptSummary}`;
+      const existing = map.get(key) ?? {
+        problemKey: key,
+        promptSummary: result.promptSummary,
+        attempts: 0,
+        incorrectFirstAttempts: 0,
+        accuracy: 0,
+        lastSeenAt: session.completedAt,
+      };
+
+      existing.attempts += 1;
+      if (firstAttempt === "incorrect") {
+        existing.incorrectFirstAttempts += 1;
+      }
+      if (session.completedAt >= existing.lastSeenAt) {
+        existing.promptSummary = result.promptSummary;
+        existing.lastSeenAt = session.completedAt;
+      }
+      map.set(key, existing);
+    }
+  }
+
+  return [...map.values()]
+    .map((row) => ({
+      ...row,
+      accuracy: row.attempts > 0
+        ? Math.round(((row.attempts - row.incorrectFirstAttempts) / row.attempts) * 100)
+        : 0,
+    }))
+    .filter((row) => row.incorrectFirstAttempts > 0)
+    .sort((a, b) => {
+      if (b.incorrectFirstAttempts !== a.incorrectFirstAttempts) {
+        return b.incorrectFirstAttempts - a.incorrectFirstAttempts;
+      }
+      return b.lastSeenAt - a.lastSeenAt;
+    })
+    .slice(0, limit);
 }

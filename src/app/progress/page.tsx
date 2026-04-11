@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { StarRating } from "@/components/ui/StarRating";
 import { Card } from "@/components/ui/Card";
 import { loadProgress } from "@/lib/storage";
-import { buildKanjiPerformanceRows } from "@/lib/progressStats";
+import { buildKanjiPerformanceRows, buildWeakMathProblemRows } from "@/lib/progressStats";
 import { calcAccuracy, calcStars } from "@/lib/scoring";
 import { formatDate } from "@/lib/utils";
 import type { Grade } from "@/types/problem";
@@ -28,6 +28,7 @@ export default function ProgressPage() {
   const [selectedGrade, setSelectedGrade] = useState<Grade>(1);
   const progress = loadProgress(selectedGrade);
   const kanjiRows = buildKanjiPerformanceRows(KANJI_BY_GRADE[selectedGrade], progress);
+  const weakMathRows = buildWeakMathProblemRows(progress, 12);
 
   const accuracy = calcAccuracy(progress.sessions);
   const recentSessions = [...progress.sessions].reverse().slice(0, 10);
@@ -128,6 +129,39 @@ export default function ProgressPage() {
               ))}
             </div>
           </div>
+        </Card>
+
+        <Card className="mb-6">
+          <p className="font-bold text-gray-700 mb-3">🔢 さんすう まちがいメモ</p>
+          {weakMathRows.length === 0 ? (
+            <p className="text-sm text-gray-500">まだ まちがいきろく は ありません</p>
+          ) : (
+            <>
+              <div className="grid grid-cols-[minmax(0,1fr)_70px_78px] gap-2 px-2 pb-2 text-xs font-bold text-gray-500">
+                <span>もんだい</span>
+                <span className="text-right">まちがい</span>
+                <span className="text-right">せいかいりつ</span>
+              </div>
+              <div className="max-h-80 overflow-y-auto pr-1">
+                <div className="flex flex-col gap-1">
+                  {weakMathRows.map((row) => (
+                    <div
+                      key={row.problemKey}
+                      className="grid grid-cols-[minmax(0,1fr)_70px_78px] items-center gap-2 rounded-xl border border-gray-100 px-2 py-1.5"
+                    >
+                      <p className="text-sm font-bold text-gray-700 leading-tight line-clamp-2">
+                        {row.promptSummary}
+                      </p>
+                      <p className="text-right text-sm font-bold text-rose-500">
+                        {row.incorrectFirstAttempts}回
+                      </p>
+                      <p className="text-right text-sm font-bold text-blue-600">{row.accuracy}%</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
         </Card>
 
         {/* バッジ */}
