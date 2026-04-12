@@ -1,6 +1,6 @@
 import type { KanjiEntry } from "@/types/problem";
 
-// 2年生配当漢字（160字）から代表的な字を収録
+// 2年生配当漢字（160字）を収録中
 export const GRADE2_KANJI: KanjiEntry[] = [
   {
     character: "回",
@@ -808,17 +808,8 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     readings: { onyomi: ["モン"], kunyomi: ["かど"] },
     strokes: 8,
     examples: [
-      { word: "門", reading: "かど", sentence: "学校の□を入る。", blankIndex: 3 },
+      { word: "門", reading: "もん", sentence: "学校の□を通る。", blankIndex: 3 },
       { word: "校門", reading: "こうもん", sentence: "校□の前に集まる。", blankIndex: 1 },
-    ],
-  },
-  {
-    character: "問",
-    readings: { onyomi: ["モン"], kunyomi: ["と"] },
-    strokes: 11,
-    examples: [
-      { word: "問題", reading: "もんだい", sentence: "難しい□題だ。", blankIndex: 0 },
-      { word: "質問", reading: "しつもん", sentence: "先生に質□した。", blankIndex: 2 },
     ],
   },
   {
@@ -858,15 +849,6 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     ],
   },
   {
-    character: "平",
-    readings: { onyomi: ["ヘイ", "ビョウ"], kunyomi: ["たい", "ひら"] },
-    strokes: 5,
-    examples: [
-      { word: "平ら", reading: "たいら", sentence: "□らな道を歩く。", blankIndex: 0 },
-      { word: "平和", reading: "へいわ", sentence: "□和な毎日を送る。", blankIndex: 0 },
-    ],
-  },
-  {
     character: "方",
     readings: { onyomi: ["ホウ"], kunyomi: ["かた"] },
     strokes: 4,
@@ -891,6 +873,573 @@ export const GRADE2_KANJI: KanjiEntry[] = [
     examples: [
       { word: "国", reading: "くに", sentence: "日本という□に住む。", blankIndex: 5 },
       { word: "外国", reading: "がいこく", sentence: "外□から来た人と話した。", blankIndex: 1 },
+    ],
+  },
+  {
+    character: "魚",
+    readings: { onyomi: ["ギョ"], kunyomi: ["さかな", "うお"] },
+    strokes: 11,
+    examples: [
+      { word: "魚", reading: "さかな", sentence: "川で□を釣った。", blankIndex: 2 },
+      { word: "金魚", reading: "きんぎょ", sentence: "金□を飼っている。", blankIndex: 1 },
+    ],
+  },
+  {
+    character: "引",
+    readings: { onyomi: ["イン"], kunyomi: ["ひく", "ひき", "びき", "ひける"] },
+    strokes: 4,
+    examples: [
+      { word: "引", reading: "ひ", sentence: "マイクラで弓の□き方をれんしゅうした。", blankIndex: 7, targetReading: "ひ" },
+      { word: "引", reading: "ひ", sentence: "くじを□いたら当たりが出た。", blankIndex: 3, targetReading: "ひ" },
+    ],
+  },
+  {
+    character: "羽",
+    readings: { onyomi: ["ウ"], kunyomi: ["は", "わ", "はね"] },
+    strokes: 6,
+    examples: [
+      { word: "羽", reading: "はね", sentence: "カービィのコピーで大きな□がはえた。", blankIndex: 12, targetReading: "はね" },
+      { word: "羽", reading: "はね", sentence: "公園で白い□をひろった。", blankIndex: 5, targetReading: "はね" },
+    ],
+  },
+  {
+    character: "雲",
+    readings: { onyomi: ["ウン"], kunyomi: ["くも", "ぐも"] },
+    strokes: 12,
+    examples: [
+      { word: "雲", reading: "くも", sentence: "エアライドの空に大きな□がうかんでいた。", blankIndex: 11, targetReading: "くも" },
+      { word: "雲", reading: "くも", sentence: "マイクラの山の上に□がかかった。", blankIndex: 9, targetReading: "くも" },
+    ],
+  },
+  {
+    character: "園",
+    readings: { onyomi: ["エン"], kunyomi: ["その"] },
+    strokes: 13,
+    examples: [
+      { word: "園", reading: "えん", sentence: "どうぶつ□でペンギンを見た。", blankIndex: 4, targetReading: "えん" },
+      { word: "園", reading: "えん", sentence: "ようち□の前で手をふった。", blankIndex: 3, targetReading: "えん" },
+    ],
+  },
+  {
+    character: "遠",
+    readings: { onyomi: ["エン", "オン"], kunyomi: ["とおい"] },
+    strokes: 13,
+    examples: [
+      { word: "遠", reading: "とお", sentence: "エアライドのゴールはまだ□い。", blankIndex: 12, targetReading: "とお" },
+      { word: "遠", reading: "とお", sentence: "マイクラの村が□くに見えた。", blankIndex: 7, targetReading: "とお" },
+    ],
+  },
+  {
+    character: "何",
+    readings: { onyomi: ["カ"], kunyomi: ["なに", "なん"] },
+    strokes: 7,
+    examples: [
+      { word: "何", reading: "なに", sentence: "カービィがつぎに□をすいこむか見ていた。", blankIndex: 8, targetReading: "なに" },
+      { word: "何", reading: "なに", sentence: "マイクラで□を作るか友だちとそうだんした。", blankIndex: 5, targetReading: "なに" },
+    ],
+  },
+  {
+    character: "画",
+    readings: { onyomi: ["ガ", "カク", "エ", "カイ"], kunyomi: ["えがく", "かくする", "かぎる", "はかりごと", "はかる"] },
+    strokes: 8,
+    examples: [
+      { word: "画", reading: "が", sentence: "このまんがは一□めからおもしろい。", blankIndex: 7, targetReading: "が" },
+      { word: "画", reading: "が", sentence: "つぎの一□でえがかんせいする。", blankIndex: 4, targetReading: "が" },
+    ],
+  },
+  {
+    character: "会",
+    readings: { onyomi: ["カイ", "エ"], kunyomi: ["あう", "あわせる", "あつまる"] },
+    strokes: 6,
+    examples: [
+      { word: "会", reading: "あ", sentence: "こんど友だちに□える日がたのしみ。", blankIndex: 7, targetReading: "あ" },
+      { word: "会", reading: "あ", sentence: "カービィの大会でみんなに□った。", blankIndex: 12, targetReading: "あ" },
+    ],
+  },
+  {
+    character: "外",
+    readings: { onyomi: ["ガイ", "ゲ"], kunyomi: ["そと", "ほか", "はずす", "はずれる", "と"] },
+    strokes: 5,
+    examples: [
+      { word: "外", reading: "そと", sentence: "マイクラの家の□でオオカミが待っていた。", blankIndex: 7, targetReading: "そと" },
+      { word: "外", reading: "そと", sentence: "雨がやんだから□であそぼう。", blankIndex: 7, targetReading: "そと" },
+    ],
+  },
+  {
+    character: "角",
+    readings: { onyomi: ["カク"], kunyomi: ["かど", "つの"] },
+    strokes: 7,
+    examples: [
+      { word: "角", reading: "かど", sentence: "エアライドのコースの□をうまく曲がった。", blankIndex: 10, targetReading: "かど" },
+      { word: "角", reading: "かど", sentence: "つくえの□にひじをぶつけた。", blankIndex: 4, targetReading: "かど" },
+    ],
+  },
+  {
+    character: "楽",
+    readings: { onyomi: ["ガク", "ラク", "ゴウ"], kunyomi: ["たのしい", "たのしむ", "このむ"] },
+    strokes: 13,
+    examples: [
+      { word: "楽", reading: "たの", sentence: "カービィのエアライドはみんなでやると□しい。", blankIndex: 18, targetReading: "たの" },
+      { word: "楽", reading: "たの", sentence: "マイクラでひみつ基地を作るのは□しい。", blankIndex: 15, targetReading: "たの" },
+    ],
+  },
+  {
+    character: "顔",
+    readings: { onyomi: ["ガン"], kunyomi: ["かお"] },
+    strokes: 18,
+    examples: [
+      { word: "顔", reading: "かお", sentence: "カービィのぬいぐるみはかわいい□をしている。", blankIndex: 15, targetReading: "かお" },
+      { word: "顔", reading: "かお", sentence: "うれしくて□がにこにこした。", blankIndex: 5, targetReading: "かお" },
+    ],
+  },
+  {
+    character: "汽",
+    readings: { onyomi: ["キ"], kunyomi: [] },
+    strokes: 7,
+    examples: [
+      { word: "汽", reading: "き", sentence: "□車にのる前にえきを見上げた。", blankIndex: 0, targetReading: "き" },
+      { word: "汽", reading: "き", sentence: "えほんに黒い□車が出てきた。", blankIndex: 6, targetReading: "き" },
+    ],
+  },
+  {
+    character: "弓",
+    readings: { onyomi: ["キュウ"], kunyomi: ["ゆみ"] },
+    strokes: 3,
+    examples: [
+      { word: "弓", reading: "ゆみ", sentence: "マイクラで□をつかってスケルトンとたたかった。", blankIndex: 5, targetReading: "ゆみ" },
+      { word: "弓", reading: "ゆみ", sentence: "おまつりでおもちゃの□をもった。", blankIndex: 10, targetReading: "ゆみ" },
+    ],
+  },
+  {
+    character: "京",
+    readings: { onyomi: ["キョウ", "ケイ", "キン"], kunyomi: ["みやこ"] },
+    strokes: 8,
+    examples: [
+      { word: "京", reading: "みやこ", sentence: "むかしの□におしろがあった。", blankIndex: 4, targetReading: "みやこ" },
+      { word: "京", reading: "みやこ", sentence: "本で□のくらしを読んだ。", blankIndex: 2, targetReading: "みやこ" },
+    ],
+  },
+  {
+    character: "原",
+    readings: { onyomi: ["ゲン"], kunyomi: ["はら"] },
+    strokes: 10,
+    examples: [
+      { word: "原", reading: "はら", sentence: "マイクラの草□を馬で走った。", blankIndex: 6, targetReading: "はら" },
+      { word: "原", reading: "はら", sentence: "広い□っぱで虫をさがした。", blankIndex: 2, targetReading: "はら" },
+    ],
+  },
+  {
+    character: "戸",
+    readings: { onyomi: ["コ"], kunyomi: ["と"] },
+    strokes: 4,
+    examples: [
+      { word: "戸", reading: "と", sentence: "マイクラの家の□を木で作った。", blankIndex: 7, targetReading: "と" },
+      { word: "戸", reading: "と", sentence: "へやの□をそっとしめた。", blankIndex: 3, targetReading: "と" },
+    ],
+  },
+  {
+    character: "午",
+    readings: { onyomi: ["ゴ"], kunyomi: ["うま"] },
+    strokes: 4,
+    examples: [
+      { word: "午", reading: "ご", sentence: "正□になったらきゅうしょくだ。", blankIndex: 1, targetReading: "ご" },
+      { word: "午", reading: "ご", sentence: "正□のチャイムがなった。", blankIndex: 1, targetReading: "ご" },
+    ],
+  },
+  {
+    character: "後",
+    readings: { onyomi: ["ゴ", "コウ"], kunyomi: ["のち", "うしろ", "あと", "おくれる"] },
+    strokes: 9,
+    examples: [
+      { word: "後", reading: "うし", sentence: "カービィの□ろを友だちが走ってきた。", blankIndex: 5, targetReading: "うし" },
+      { word: "後", reading: "うし", sentence: "いすの□ろにかばんをおいた。", blankIndex: 3, targetReading: "うし" },
+    ],
+  },
+  {
+    character: "広",
+    readings: { onyomi: ["コウ"], kunyomi: ["ひろい", "ひろまる", "ひろめる", "ひろがる", "ひろげる"] },
+    strokes: 5,
+    examples: [
+      { word: "広", reading: "ひろ", sentence: "エアライドのコースは思ったより□い。", blankIndex: 15, targetReading: "ひろ" },
+      { word: "広", reading: "ひろ", sentence: "マイクラのへやをもっと□くした。", blankIndex: 11, targetReading: "ひろ" },
+    ],
+  },
+  {
+    character: "交",
+    readings: { onyomi: ["コウ"], kunyomi: ["まじわる", "まじえる", "まじる", "まざる", "まぜる", "かう", "かわす", "こもごも"] },
+    strokes: 6,
+    examples: [
+      { word: "交", reading: "まじ", sentence: "赤と青を□ぜるとむらさきになる。", blankIndex: 4, targetReading: "まじ" },
+      { word: "交", reading: "まじ", sentence: "人が□じるところでは走らない。", blankIndex: 2, targetReading: "まじ" },
+    ],
+  },
+  {
+    character: "光",
+    readings: { onyomi: ["コウ"], kunyomi: ["ひかる", "ひかり"] },
+    strokes: 6,
+    examples: [
+      { word: "光", reading: "ひかり", sentence: "カービィがすったスターの□がまぶしい。", blankIndex: 12, targetReading: "ひかり" },
+      { word: "光", reading: "ひかり", sentence: "あさの□がまどからさした。", blankIndex: 3, targetReading: "ひかり" },
+    ],
+  },
+  {
+    character: "考",
+    readings: { onyomi: ["コウ"], kunyomi: ["かんがえる", "かんがえ"] },
+    strokes: 6,
+    examples: [
+      { word: "考", reading: "かんが", sentence: "つぎにどこをほるかマイクラで□えた。", blankIndex: 14, targetReading: "かんが" },
+      { word: "考", reading: "かんが", sentence: "こたえをじっくり□えよう。", blankIndex: 8, targetReading: "かんが" },
+    ],
+  },
+  {
+    character: "高",
+    readings: { onyomi: ["コウ"], kunyomi: ["たかい", "たか", "だか", "たかまる", "たかめる"] },
+    strokes: 10,
+    examples: [
+      { word: "高", reading: "たか", sentence: "エアライドで□くジャンプできた。", blankIndex: 6, targetReading: "たか" },
+      { word: "高", reading: "たか", sentence: "たなの上は□くて手がとどかない。", blankIndex: 5, targetReading: "たか" },
+    ],
+  },
+  {
+    character: "黄",
+    readings: { onyomi: ["コウ", "オウ"], kunyomi: ["き", "こ"] },
+    strokes: 11,
+    examples: [
+      { word: "黄", reading: "き", sentence: "マイクラの花の中に□い花がさいていた。", blankIndex: 9, targetReading: "き" },
+      { word: "黄", reading: "き", sentence: "カービィのマシンに□い線をかいた。", blankIndex: 9, targetReading: "き" },
+    ],
+  },
+  {
+    character: "合",
+    readings: { onyomi: ["ゴウ", "ガッ", "カッ"], kunyomi: ["あう", "あい", "あわす", "あわせる"] },
+    strokes: 6,
+    examples: [
+      { word: "合", reading: "あ", sentence: "友だちとタイミングを□わせてジャンプした。", blankIndex: 10, targetReading: "あ" },
+      { word: "合", reading: "あ", sentence: "いきを□わせて歌った。", blankIndex: 3, targetReading: "あ" },
+    ],
+  },
+  {
+    character: "谷",
+    readings: { onyomi: ["コク"], kunyomi: ["たに", "きわまる"] },
+    strokes: 7,
+    examples: [
+      { word: "谷", reading: "たに", sentence: "山の下に深い□が見えた。", blankIndex: 6, targetReading: "たに" },
+      { word: "谷", reading: "たに", sentence: "川が□をながれている。", blankIndex: 2, targetReading: "たに" },
+    ],
+  },
+  {
+    character: "黒",
+    readings: { onyomi: ["コク"], kunyomi: ["くろ", "くろずむ", "くろい"] },
+    strokes: 11,
+    examples: [
+      { word: "黒", reading: "くろ", sentence: "エンダーマンのからだは□く見えた。", blankIndex: 11, targetReading: "くろ" },
+      { word: "黒", reading: "くろ", sentence: "□いねこがみちをわたった。", blankIndex: 0, targetReading: "くろ" },
+    ],
+  },
+  {
+    character: "細",
+    readings: { onyomi: ["サイ"], kunyomi: ["ほそい", "ほそる", "こまか", "こまかい"] },
+    strokes: 11,
+    examples: [
+      { word: "細", reading: "ほそ", sentence: "□い道でもマイクラならまっすぐ歩けた。", blankIndex: 0, targetReading: "ほそ" },
+      { word: "細", reading: "ほそ", sentence: "このえんぴつは□くて書きやすい。", blankIndex: 7, targetReading: "ほそ" },
+    ],
+  },
+  {
+    character: "止",
+    readings: { onyomi: ["シ"], kunyomi: ["とまる", "どまり", "とめる", "どめ", "とどめる", "とどめ", "とどまる", "やめる", "やむ", "よす", "さす", "さし"] },
+    strokes: 4,
+    examples: [
+      { word: "止", reading: "と", sentence: "赤しんごうでぴたっと□まった。", blankIndex: 10, targetReading: "と" },
+      { word: "止", reading: "と", sentence: "マイクラの水を□めるために土をおいた。", blankIndex: 7, targetReading: "と" },
+    ],
+  },
+  {
+    character: "市",
+    readings: { onyomi: ["シ"], kunyomi: ["いち"] },
+    strokes: 5,
+    examples: [
+      { word: "市", reading: "いち", sentence: "あさ□でやさいを買った。", blankIndex: 2, targetReading: "いち" },
+      { word: "市", reading: "いち", sentence: "おまつりの□でりんごあめを見つけた。", blankIndex: 5, targetReading: "いち" },
+    ],
+  },
+  {
+    character: "姉",
+    readings: { onyomi: ["シ"], kunyomi: ["あね", "はは"] },
+    strokes: 8,
+    examples: [
+      { word: "姉", reading: "お", sentence: "□ちゃんといっしょにカービィであそんだ。", blankIndex: 0, targetReading: "お" },
+      { word: "姉", reading: "お", sentence: "□さんがしゅくだいを見てくれた。", blankIndex: 0, targetReading: "お" },
+    ],
+  },
+  {
+    character: "秋",
+    readings: { onyomi: ["シュウ"], kunyomi: ["あき", "とき"] },
+    strokes: 9,
+    examples: [
+      { word: "秋", reading: "あき", sentence: "□はどんぐりひろいがたのしい。", blankIndex: 0, targetReading: "あき" },
+      { word: "秋", reading: "あき", sentence: "サンマがおいしいのは□だね。", blankIndex: 10, targetReading: "あき" },
+    ],
+  },
+  {
+    character: "週",
+    readings: { onyomi: ["シュウ"], kunyomi: [] },
+    strokes: 11,
+    examples: [
+      { word: "週", reading: "しゅう", sentence: "来□のえんそくがたのしみだ。", blankIndex: 1, targetReading: "しゅう" },
+      { word: "週", reading: "しゅう", sentence: "今□はカービィを一回だけにする。", blankIndex: 1, targetReading: "しゅう" },
+    ],
+  },
+  {
+    character: "場",
+    readings: { onyomi: ["ジョウ", "チョウ"], kunyomi: ["ば"] },
+    strokes: 12,
+    examples: [
+      { word: "場", reading: "ば", sentence: "エアライドのスタート□にみんな集まった。", blankIndex: 10, targetReading: "ば" },
+      { word: "場", reading: "ば", sentence: "こうえんはボールあそびの□になった。", blankIndex: 12, targetReading: "ば" },
+    ],
+  },
+  {
+    character: "色",
+    readings: { onyomi: ["ショク", "シキ"], kunyomi: ["いろ"] },
+    strokes: 6,
+    examples: [
+      { word: "色", reading: "いろ", sentence: "カービィはピンク□がよくにあう。", blankIndex: 8, targetReading: "いろ" },
+      { word: "色", reading: "いろ", sentence: "マイクラで好きな□の羊毛を集めた。", blankIndex: 8, targetReading: "いろ" },
+    ],
+  },
+  {
+    character: "心",
+    readings: { onyomi: ["シン"], kunyomi: ["こころ", "ごころ"] },
+    strokes: 4,
+    examples: [
+      { word: "心", reading: "こころ", sentence: "むずかしくてもやってみようと思う□が大事だ。", blankIndex: 16, targetReading: "こころ" },
+      { word: "心", reading: "こころ", sentence: "やさしいことばで□があたたかくなった。", blankIndex: 8, targetReading: "こころ" },
+    ],
+  },
+  {
+    character: "図",
+    readings: { onyomi: ["ズ", "ト"], kunyomi: ["え", "はかる"] },
+    strokes: 7,
+    examples: [
+      { word: "図", reading: "え", sentence: "たからの□をノートにかいた。", blankIndex: 4, targetReading: "え" },
+      { word: "図", reading: "え", sentence: "先生がかいた□を見て作り方がわかった。", blankIndex: 6, targetReading: "え" },
+    ],
+  },
+  {
+    character: "西",
+    readings: { onyomi: ["セイ", "サイ", "ス"], kunyomi: ["にし"] },
+    strokes: 6,
+    examples: [
+      { word: "西", reading: "にし", sentence: "たいようがしずむ方は□だよ。", blankIndex: 10, targetReading: "にし" },
+      { word: "西", reading: "にし", sentence: "マイクラで□がわへ歩いた。", blankIndex: 5, targetReading: "にし" },
+    ],
+  },
+  {
+    character: "声",
+    readings: { onyomi: ["セイ", "ショウ"], kunyomi: ["こえ", "こわ"] },
+    strokes: 7,
+    examples: [
+      { word: "声", reading: "こえ", sentence: "カービィの『ぽよ』という□がかわいい。", blankIndex: 12, targetReading: "こえ" },
+      { word: "声", reading: "こえ", sentence: "大きな□でへんじをした。", blankIndex: 3, targetReading: "こえ" },
+    ],
+  },
+  {
+    character: "星",
+    readings: { onyomi: ["セイ", "ショウ"], kunyomi: ["ほし", "ぼし"] },
+    strokes: 9,
+    examples: [
+      { word: "星", reading: "ほし", sentence: "夜空の□をかぞえた。", blankIndex: 3, targetReading: "ほし" },
+      { word: "星", reading: "ほし", sentence: "カービィみたいな□のもようをかいた。", blankIndex: 8, targetReading: "ほし" },
+    ],
+  },
+  {
+    character: "前",
+    readings: { onyomi: ["ゼン"], kunyomi: ["まえ"] },
+    strokes: 9,
+    examples: [
+      { word: "前", reading: "まえ", sentence: "先生の□であいさつした。", blankIndex: 3, targetReading: "まえ" },
+      { word: "前", reading: "まえ", sentence: "ゴールの□でころんでしまった。", blankIndex: 4, targetReading: "まえ" },
+    ],
+  },
+  {
+    character: "組",
+    readings: { onyomi: ["ソ"], kunyomi: ["くむ", "くみ", "ぐみ"] },
+    strokes: 11,
+    examples: [
+      { word: "組", reading: "くみ", sentence: "二人□でブロックをはこんだ。", blankIndex: 2, targetReading: "くみ" },
+      { word: "組", reading: "くみ", sentence: "同じ□の友だちとマイクラの話をした。", blankIndex: 2, targetReading: "くみ" },
+    ],
+  },
+  {
+    character: "多",
+    readings: { onyomi: ["タ"], kunyomi: ["おおい", "まさに", "まさる"] },
+    strokes: 6,
+    examples: [
+      { word: "多", reading: "おお", sentence: "マイクラの村には人が□かった。", blankIndex: 10, targetReading: "おお" },
+      { word: "多", reading: "おお", sentence: "今日はやることが□い。", blankIndex: 8, targetReading: "おお" },
+    ],
+  },
+  {
+    character: "太",
+    readings: { onyomi: ["タイ", "タ"], kunyomi: ["ふとい", "ふとる"] },
+    strokes: 4,
+    examples: [
+      { word: "太", reading: "ふと", sentence: "マイクラの木は□いみきが目立つ。", blankIndex: 7, targetReading: "ふと" },
+      { word: "太", reading: "ふと", sentence: "このロープは□くてじょうぶだ。", blankIndex: 6, targetReading: "ふと" },
+    ],
+  },
+  {
+    character: "茶",
+    readings: { onyomi: ["チャ", "サ"], kunyomi: [] },
+    strokes: 9,
+    examples: [
+      { word: "茶", reading: "ちゃ", sentence: "おやつの時間にむぎ□をのんだ。", blankIndex: 9, targetReading: "ちゃ" },
+      { word: "茶", reading: "ちゃ", sentence: "くまのぬいぐるみは□色だ。", blankIndex: 9, targetReading: "ちゃ" },
+    ],
+  },
+  {
+    character: "鳥",
+    readings: { onyomi: ["チョウ"], kunyomi: ["とり"] },
+    strokes: 11,
+    examples: [
+      { word: "鳥", reading: "とり", sentence: "木の上で□がないている。", blankIndex: 4, targetReading: "とり" },
+      { word: "鳥", reading: "とり", sentence: "マイクラでオウムみたいな□を見つけたい。", blankIndex: 12, targetReading: "とり" },
+    ],
+  },
+  {
+    character: "直",
+    readings: { onyomi: ["チョク", "ジキ", "ジカ"], kunyomi: ["ただちに", "なおす", "なおる", "なおき", "すぐ"] },
+    strokes: 8,
+    examples: [
+      { word: "直", reading: "なお", sentence: "こわれた線路をすぐに□した。", blankIndex: 10, targetReading: "なお" },
+      { word: "直", reading: "なお", sentence: "まちがえた字を□して書きなおした。", blankIndex: 7, targetReading: "なお" },
+    ],
+  },
+  {
+    character: "弟",
+    readings: { onyomi: ["テイ", "ダイ", "デ"], kunyomi: ["おとうと"] },
+    strokes: 7,
+    examples: [
+      { word: "弟", reading: "おとうと", sentence: "□がマイクラで犬に名前をつけた。", blankIndex: 0, targetReading: "おとうと" },
+      { word: "弟", reading: "おとうと", sentence: "□とこうえんでおにごっこをした。", blankIndex: 0, targetReading: "おとうと" },
+    ],
+  },
+  {
+    character: "店",
+    readings: { onyomi: ["テン"], kunyomi: ["みせ", "たな"] },
+    strokes: 8,
+    examples: [
+      { word: "店", reading: "みせ", sentence: "ゲームの帰りにおかしの□へよった。", blankIndex: 11, targetReading: "みせ" },
+      { word: "店", reading: "みせ", sentence: "マイクラの村の□でパンを見つけた。", blankIndex: 7, targetReading: "みせ" },
+    ],
+  },
+  {
+    character: "点",
+    readings: { onyomi: ["テン"], kunyomi: ["つける", "つく", "たてる", "さす", "とぼす", "ともす", "ぼち"] },
+    strokes: 9,
+    examples: [
+      { word: "点", reading: "つ", sentence: "テストで百□がとれた。", blankIndex: 5, targetReading: "つ" },
+      { word: "点", reading: "つ", sentence: "サイコロの三□をゆびでなぞった。", blankIndex: 6, targetReading: "つ" },
+    ],
+  },
+  {
+    character: "刀",
+    readings: { onyomi: ["トウ"], kunyomi: ["かたな", "そり"] },
+    strokes: 2,
+    examples: [
+      { word: "刀", reading: "かたな", sentence: "むかしのえほんに□が出てきた。", blankIndex: 8, targetReading: "かたな" },
+      { word: "刀", reading: "かたな", sentence: "おまつりのおもちゃの□をふった。", blankIndex: 10, targetReading: "かたな" },
+    ],
+  },
+  {
+    character: "東",
+    readings: { onyomi: ["トウ"], kunyomi: ["ひがし"] },
+    strokes: 8,
+    examples: [
+      { word: "東", reading: "ひがし", sentence: "あさ日がのぼる方は□だよ。", blankIndex: 9, targetReading: "ひがし" },
+      { word: "東", reading: "ひがし", sentence: "マイクラの地図で□へすすんだ。", blankIndex: 8, targetReading: "ひがし" },
+    ],
+  },
+  {
+    character: "頭",
+    readings: { onyomi: ["トウ", "ズ", "ト"], kunyomi: ["あたま", "かしら", "がしら", "かぶり"] },
+    strokes: 16,
+    examples: [
+      { word: "頭", reading: "あたま", sentence: "ねる前に□をやさしくあらった。", blankIndex: 4, targetReading: "あたま" },
+      { word: "頭", reading: "あたま", sentence: "カービィの人形を□の上にのせた。", blankIndex: 8, targetReading: "あたま" },
+    ],
+  },
+  {
+    character: "同",
+    readings: { onyomi: ["ドウ"], kunyomi: ["おなじ"] },
+    strokes: 6,
+    examples: [
+      { word: "同", reading: "おな", sentence: "ぼくと□じ色のぼうしだ。", blankIndex: 3, targetReading: "おな" },
+      { word: "同", reading: "おな", sentence: "マイクラで□じ形の家を二こ作った。", blankIndex: 5, targetReading: "おな" },
+    ],
+  },
+  {
+    character: "風",
+    readings: { onyomi: ["フウ", "フ"], kunyomi: ["かぜ", "かざ"] },
+    strokes: 9,
+    examples: [
+      { word: "風", reading: "かぜ", sentence: "マイクラの草が□でゆれて見えた。", blankIndex: 7, targetReading: "かぜ" },
+      { word: "風", reading: "かぜ", sentence: "つよい□でぼうしが飛んだ。", blankIndex: 3, targetReading: "かぜ" },
+    ],
+  },
+  {
+    character: "聞",
+    readings: { onyomi: ["ブン", "モン"], kunyomi: ["きく", "きこえる"] },
+    strokes: 14,
+    examples: [
+      { word: "聞", reading: "き", sentence: "カービィの音楽を□きながら絵をかいた。", blankIndex: 8, targetReading: "き" },
+      { word: "聞", reading: "き", sentence: "先生の話をよく□こう。", blankIndex: 7, targetReading: "き" },
+    ],
+  },
+  {
+    character: "米",
+    readings: { onyomi: ["ベイ", "マイ", "メエトル"], kunyomi: ["こめ", "よね"] },
+    strokes: 6,
+    examples: [
+      { word: "米", reading: "こめ", sentence: "あたたかいごはんは□からできる。", blankIndex: 9, targetReading: "こめ" },
+      { word: "米", reading: "こめ", sentence: "田んぼで□がみのっていた。", blankIndex: 4, targetReading: "こめ" },
+    ],
+  },
+  {
+    character: "歩",
+    readings: { onyomi: ["ホ", "ブ", "フ"], kunyomi: ["あるく", "あゆむ"] },
+    strokes: 8,
+    examples: [
+      { word: "歩", reading: "ある", sentence: "マイクラの村まで□いて行ってみた。", blankIndex: 8, targetReading: "ある" },
+      { word: "歩", reading: "ある", sentence: "しんごうを見てゆっくり□こう。", blankIndex: 11, targetReading: "ある" },
+    ],
+  },
+  {
+    character: "妹",
+    readings: { onyomi: ["マイ"], kunyomi: ["いもうと"] },
+    strokes: 8,
+    examples: [
+      { word: "妹", reading: "いもうと", sentence: "□がカービィのえを上手にかいた。", blankIndex: 0, targetReading: "いもうと" },
+      { word: "妹", reading: "いもうと", sentence: "□といっしょにブランコにのった。", blankIndex: 0, targetReading: "いもうと" },
+    ],
+  },
+  {
+    character: "毛",
+    readings: { onyomi: ["モウ"], kunyomi: ["け"] },
+    strokes: 4,
+    examples: [
+      { word: "毛", reading: "け", sentence: "ひつじの□はふわふわだ。", blankIndex: 4, targetReading: "け" },
+      { word: "毛", reading: "け", sentence: "マイクラのオオカミの□なみは白い。", blankIndex: 10, targetReading: "け" },
+    ],
+  },
+  {
+    character: "曜",
+    readings: { onyomi: ["ヨウ"], kunyomi: [] },
+    strokes: 18,
+    examples: [
+      { word: "曜", reading: "よう", sentence: "日□日は家ぞくで出かける。", blankIndex: 1, targetReading: "よう" },
+      { word: "曜", reading: "よう", sentence: "金□日のよるはカービィであそぶ。", blankIndex: 1, targetReading: "よう" },
     ],
   },
 ];
