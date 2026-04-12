@@ -1,4 +1,4 @@
-import MathCalcContent from "./MathCalcContent";
+import MathCalcClientWrapper from "./MathCalcClientWrapper";
 
 interface Props { params: Promise<{ grade: string }> }
 
@@ -9,5 +9,5 @@ export function generateStaticParams() {
 export default async function MathCalcPage({ params }: Props) {
   const { grade } = await params;
 
-  return <MathCalcContent gradeStr={grade} />;
+  return <MathCalcClientWrapper gradeStr={grade} />;
 }

@@ -1,4 +1,4 @@
-import UnitTestContent from "./UnitTestContent";
+import UnitTestClientWrapper from "./UnitTestClientWrapper";
 
 interface Props { params: Promise<{ grade: string }> }
 
@@ -9,5 +9,5 @@ export function generateStaticParams() {
 export default async function UnitTestPage({ params }: Props) {
   const { grade } = await params;
 
-  return <UnitTestContent gradeStr={grade} />;
+  return <UnitTestClientWrapper gradeStr={grade} />;
 }

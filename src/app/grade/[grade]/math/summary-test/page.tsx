@@ -1,4 +1,4 @@
-import SummaryTestContent from "./SummaryTestContent";
+import SummaryTestClientWrapper from "./SummaryTestClientWrapper";
 
 interface Props { params: Promise<{ grade: string }> }
 
@@ -9,5 +9,5 @@ export function generateStaticParams() {
 export default async function SummaryTestPage({ params }: Props) {
   const { grade } = await params;
 
-  return <SummaryTestContent gradeStr={grade} />;
+  return <SummaryTestClientWrapper gradeStr={grade} />;
 }

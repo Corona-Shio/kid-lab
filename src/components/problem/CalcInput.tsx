@@ -22,6 +22,11 @@ const ROW_COLORS = [
 const ZERO_COLOR = "from-sky-400 to-cyan-500";
 const DELETE_COLOR = "from-rose-400 to-pink-500";
 const SUBMIT_COLOR = "from-orange-400 via-pink-500 to-purple-500";
+const KEYPAD_ROWS = [
+  { digits: ["1", "2", "3"], gradient: ROW_COLORS[2] },
+  { digits: ["4", "5", "6"], gradient: ROW_COLORS[1] },
+  { digits: ["7", "8", "9"], gradient: ROW_COLORS[0] },
+];
 
 export function CalcInput({
   problem,
@@ -82,36 +87,18 @@ export function CalcInput({
       {/* 電卓パッド（回答前のみ表示） */}
       {!answered && (
         <div className="grid grid-cols-3 gap-2 sm:gap-2.5 px-0.5 sm:px-1">
-          {/* 7, 8, 9 */}
-          {["7", "8", "9"].map((d, i) => (
-            <NumButton
-              key={d}
-              label={d}
-              gradient={ROW_COLORS[0]}
-              onPress={() => handleDigit(d)}
-              delay={i * 0.03}
-            />
-          ))}
-          {/* 4, 5, 6 */}
-          {["4", "5", "6"].map((d, i) => (
-            <NumButton
-              key={d}
-              label={d}
-              gradient={ROW_COLORS[1]}
-              onPress={() => handleDigit(d)}
-              delay={i * 0.03}
-            />
-          ))}
-          {/* 1, 2, 3 */}
-          {["1", "2", "3"].map((d, i) => (
-            <NumButton
-              key={d}
-              label={d}
-              gradient={ROW_COLORS[2]}
-              onPress={() => handleDigit(d)}
-              delay={i * 0.03}
-            />
-          ))}
+          {/* 1, 2, 3 → 4, 5, 6 → 7, 8, 9 */}
+          {KEYPAD_ROWS.flatMap(({ digits, gradient }) =>
+            digits.map((d, i) => (
+              <NumButton
+                key={d}
+                label={d}
+                gradient={gradient}
+                onPress={() => handleDigit(d)}
+                delay={i * 0.03}
+              />
+            )),
+          )}
           {/* 最下行: 削除, 0, こたえる */}
           <NumButton
             label={<DeleteKeyLabel />}
